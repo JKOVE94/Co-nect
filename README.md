@@ -36,11 +36,12 @@
 5. user_mail: 사용자 이메일
 6. user_pic: 사용자 사진 경로 (상대경로 사용 0_asset/emp_pic)
 7. user_rank: 사용자 직급
-8. user_lastlogin: 마지막 로그인 일시 (DATETIME)
-9. user_fk_job_num: 사용자 직무 번호 (FK => job_pk_num)
-10. user_fk_dpart_num: 사용자 부서번호 (FK => dpart_pk_num)
-11. user_fk_acc_authornum: 사용자 계정 권한 번호 (FK => acc_pk_authornum)
-12. user_fk_comp_num : 사용자 회사 고유번호 (랜딩 페이지에서 입력한 회사 번호가 모든 페이지에서 따라다닐수 있게 input type=hidden으로 설정, 관리자가 설정시에 해당 데이터는 자동 전송)
+8. user_lastlogin: 사용자 마지막 로그인 일시 (DATETIME)
+9. user_trynum : 사용자 로그인 시도 횟수 (로그인 실패 시 증가, 5회 초과시 acc_pk_authornum 4로 변경 (잠금), 로그인 성공시 0으로 설정) 
+10. user_fk_job_num: 사용자 직무 번호 (FK => job_pk_num)
+11. user_fk_dpart_num: 사용자 부서번호 (FK => dpart_pk_num)
+12. user_fk_acc_authornum: 사용자 계정 권한 번호 (FK => acc_pk_authornum)
+13. user_fk_comp_num : 사용자 회사 고유번호 (랜딩 페이지에서 입력한 회사 번호가 모든 페이지에서 따라다닐수 있게 input type=hidden으로 설정, 관리자가 설정시에 해당 데이터는 자동 전송)
 
 프로젝트 (project)
 1. proj_pk_num (PK): 프로젝트 번호
