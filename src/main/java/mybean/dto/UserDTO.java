@@ -12,18 +12,12 @@ public class UserDTO {
 	private String user_pic;
 	private String user_rank;
 	private Date user_lastlogin;
+	
 	private int user_fk_job_num;
 	private int user_fk_dpart_num;
 	private int user_fk_acc_authornum;
 	private int user_fk_comp_num;
-	private int user_trynum;
 	
-	public int getUser_trynum() {
-		return user_trynum;
-	}
-	public void setUser_trynum(String user_trynum) {
-		this.user_trynum = user_trynum;
-	}
 	public String getUser_pw() {
 		return user_pw;
 	}
