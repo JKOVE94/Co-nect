@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 public class CompanyDTO {
 	private int comp_pk_num;

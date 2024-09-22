@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 public class JobDTO {
 	private int job_pk_num;

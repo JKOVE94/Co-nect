@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 import java.util.Date;
 
@@ -17,11 +17,19 @@ public class UserDTO {
 	private int user_fk_acc_authornum;
 	private int user_fk_comp_num;
 	private int user_trynum;
+	private boolean user_locked;
 	
+	
+	public boolean isUser_locked() {
+		return user_locked;
+	}
+	public void setUser_locked(boolean user_locked) {
+		this.user_locked = user_locked;
+	}
 	public int getUser_trynum() {
 		return user_trynum;
 	}
-	public void setUser_trynum(String user_trynum) {
+	public void setUser_trynum(int user_trynum) {
 		this.user_trynum = user_trynum;
 	}
 	public String getUser_pw() {

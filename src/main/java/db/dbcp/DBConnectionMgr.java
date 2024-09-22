@@ -1,4 +1,4 @@
-package mybean.dbcp;
+package db.dbcp;
 
 import java.sql.*;
 import java.util.Properties;
