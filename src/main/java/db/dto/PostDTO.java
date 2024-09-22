@@ -14,7 +14,14 @@ public class PostDTO {
 	private int post_fk_dpart_num; //게시글 작성자
 	private int post_fk_comp_num; 
 	private int post_fk_user_num;
+	private int post_depth;
 	
+	public int getPost_depth() {
+		return post_depth;
+	}
+	public void setPost_depth(int post_depth) {
+		this.post_depth = post_depth;
+	}
 	public int getPost_pk_num() {
 		return post_pk_num;
 	}
