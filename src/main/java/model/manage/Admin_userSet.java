@@ -1,10 +1,10 @@
-package mybean.dao;
+package model.manage;
 import java.sql.*;
 
-import mybean.dto.UserDTO;
-import mybean.dbcp.DBConnectionMgr;
+import db.dbcp.DBConnectionMgr;
+import db.dto.UserDTO;
 
-public class admin_setUserProcDAO {
+public class Admin_userSet {
 	
 	public void setUser(UserDTO user) {
 		DBConnectionMgr pool =null;

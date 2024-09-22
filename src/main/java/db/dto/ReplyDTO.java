@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 public class ReplyDTO {
 	private int reply_pk_num;

@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 public class DepartmentDTO {
 	private int dpart_pk_num;

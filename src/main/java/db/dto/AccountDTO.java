@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 public class AccountDTO {
 	private int acc_pk_authornum;

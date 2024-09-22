@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -5,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="0_asset/login/login.css">
+  <link rel="stylesheet" href="./asset/login/login.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Orbit&display=swap"
@@ -39,25 +41,26 @@
       <!-- END SIGN UP -->
       <!-- SIGN IN -->
       <div class="col align-items-center flex-col sign-in">
-        <img src="0_asset/login/images.png" alt="error" width="170" height="100" />
-
+        <img src="./asset/login/images.png" alt="error" width="170" height="100" />
+		<form method="post" action="${pageContext.request.contextPath}/landing?fn=LOGIN">
         <div class="form-wrapper align-items-center">
           <div class="form sign-in">
             <div class="input-group">
               <i class='bx bxs-com-num'></i>
-              <input type="text" placeholder="Company Number">
+              <input type="text" placeholder="Company Number" name="comp_pk_num">
             </div>
             <div class="input-group">
               <i class='bx bxs-user'></i>
-              <input type="text" placeholder="Username">
+              <input type="text" placeholder="Usernumber" name="user_pk_num">
             </div>
             <div class="input-group">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Password">
+              <input type="password" placeholder="Password" name="user_pw">
             </div>
             <button>
               Sign in
             </button>
+            </form>
             <p>
               <b onclick="toggle()" class="pointer">
                 Forgot Password
@@ -105,7 +108,7 @@
     <!-- END CONTENT SECTION -->
   </div>
 
-  <script src="0_asset/login/login.js"></script>
+  <script src="./asset/login/login.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-package mybean.dto;
+package db.dto;
 
 import java.util.Date;
 
