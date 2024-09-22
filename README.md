@@ -109,9 +109,9 @@ person_favorit : 즐겨찾기
 - parameter value는 팀별 기량으로 설정해주세요 (직관적인 명칭으로)
 
 2. 컨트롤러 구조는 3단계로 나누기
-&nbsap;&nbsap;1) landing->dashboard  @webServlet("/landing")
-&nbsap;&nbsap;2) dashboard내에 다양한 기능들 (프로젝트, 자유게시판, 사용자 설정&관리자 설정) @webServlet("/dashboard") 
-&nbsap;&nbsap;3) 사용자설정&관리자설정 내의 기능들 @webServlet("/manage")
+- landing->dashboard  @webServlet("/landing")
+- dashboard내에 다양한 기능들 (프로젝트, 자유게시판, 사용자 설정&관리자 설정) @webServlet("/dashboard") 
+- 사용자설정&관리자설정 내의 기능들 @webServlet("/manage")
 
 3. 모든 view는 WEB-INF/views 폴더안에 위치 (index.html 제외)
 - 이 때에 views안에 세부 폴더로 분리 => landing, dashboard, manage
