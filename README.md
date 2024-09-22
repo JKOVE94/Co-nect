@@ -106,22 +106,26 @@ person_favorit : 즐겨찾기
 
 <h1>MVC패턴 관련 적용사항</h1>
 1. controller에 정보를 줄 parameter명은 fn으로 통일 (예제 : http://localhost:8080/acorn_wbs/dashboard?fn=파라미터값)
-parameter value는 팀별 기량으로 설정해주세요 (직관적인 명칭으로)
+- parameter value는 팀별 기량으로 설정해주세요 (직관적인 명칭으로)
+
 2. 컨트롤러 구조는 3단계로 나누기
-1) landing->dashboard  @webServlet("/landing")
-2) dashboard내에 다양한 기능들 (프로젝트, 자유게시판, 사용자 설정&관리자 설정) @webServlet("/dashboard") 
-3) 사용자설정&관리자설정 내의 기능들 @webServlet("/manage")
+&nbsap;&nbsap;1) landing->dashboard  @webServlet("/landing")
+&nbsap;&nbsap;2) dashboard내에 다양한 기능들 (프로젝트, 자유게시판, 사용자 설정&관리자 설정) @webServlet("/dashboard") 
+&nbsap;&nbsap;3) 사용자설정&관리자설정 내의 기능들 @webServlet("/manage")
+
 3. 모든 view는 WEB-INF/views 폴더안에 위치 (index.html 제외)
-이 때에 views안에 세부 폴더로 분리 => landing, dashboard, manage
-dashboard의 경우에는 그 안에 세부폴더로 가능 분리 (예제 : WEB-INF/views/dashboard/project)
+- 이 때에 views안에 세부 폴더로 분리 => landing, dashboard, manage
+- dashboard의 경우에는 그 안에 세부폴더로 가능 분리 (예제 : WEB-INF/views/dashboard/project)
+
 4. package명 설정
-controller (내부 클래스 : LandingServlet, DashboardServlet, ManageServlet)
-model.landing / model.dashboard / model.manage (내부 클래스 : 각 내부 클래스별 기능)
-지금까지 작업했던 dao가 해당 모델 패키지로 이동한다고 생각하시면 됩니다.
-단 기능을 직관적으로 구분하기 위해 해당 명칭의 규칙을 적용하겠습니다.
-Class 파일명 규칙1 : 관례에 따라 첫 글자는 대문자로 통일
-Class 파일명 규칙2 : 구분을 쉽게 하기 위해 언더바 적극 기용 => (예제 : model.dashbaord.Free_create -> model.dashboard 패키지 Free_create 자유게시판 생성)
-db.dto / db.dbcp
-dto의 class명은 변경하지 않겠습니다.
+- controller (내부 클래스 : LandingServlet, DashboardServlet, ManageServlet)
+- model.landing / model.dashboard / model.manage (내부 클래스 : 각 내부 클래스별 기능)
+- 지금까지 작업했던 dao가 해당 모델 패키지로 이동한다고 생각하시면 됩니다. 단 기능을 직관적으로 구분하기 위해 해당 명칭의 규칙을 적용하겠습니다.
+
+- Class 파일명 규칙1 : 관례에 따라 첫 글자는 대문자로 통일
+- Class 파일명 규칙2 : 구분을 쉽게 하기 위해 언더바 적극 기용 => (예제 : model.dashbaord.Free_create -> model.dashboard 패키지 Free_create 자유게시판 생성)
+- db.dto / db.dbcp
+- dto의 class명은 변경하지 않겠습니다.
+
 MVC패턴이 적용되면서 변경되는부분이 상당히 많습니다. 처음에 적용하는데 상당히 번거롭겠지만 평가 기준이 MVC패턴이고 추후 Spring이 MVC패턴의 구조를 띄고 있기 때문에 필히 적용해야하는 사항입니다. 기본적인 사항들은 제가 main branch, master branch를 통해 적용 / 수정해두겠습니다.
 ※ 이번에 package명, class명을 변경하다보니 예외가 발생할 확률이 매우 높습니다. package명, class명 변경시 기존에 적용해주셨던 문서에서도 해당 package명, class명 수정 필히 부탁드립니다. (꼭 eclipse의 Refactor - rename 기능을 사용해주시기 바랍니다)
