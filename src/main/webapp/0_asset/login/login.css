@@ -6,6 +6,7 @@
     --gray: #efefef;
     --gray-2: #757575;
 
+
 }
 
 * {
@@ -135,6 +136,11 @@ body {
     pointer-events: none;
     z-index: 6;
     width: 100%;
+}
+
+
+.logo-name {
+    color: #1E74B1;
 }
 
 .text {
