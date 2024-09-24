@@ -265,103 +265,158 @@
 
       <div class="container-fluid py-4">
         <div class="row">
-          <div class="col-12 px-0">
-            <div class="card mx-auto" style="max-width: 98%;">
-              <div class="card-body p-3">
-                <div class="row mx-0">
-                  <!-- 프로젝트 번호 -->
-                  <div class="col-md-2 px-2">
-                    <!-- 너비 감소 -->
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        프로젝트 번호
-                      </p>
-                      <h5 class="font-weight-bolder">PJ-2024-001</h5>
-                      <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder"
-                          >등록일:</span
-                        >
-                        2024-01-15
-                      </p>
-                    </div>
-                  </div>
-
-                  <!-- 프로젝트 제목 -->
-                  <div class="col-md-4 px-2">
-                    <!-- 너비 증가 -->
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        프로젝트 제목
-                      </p>
-                      <h5 class="font-weight-bolder mb-2">
-                        네비게이션 시스템 개발
-                      </h5>
-                      <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder"
-                          >상태:</span
-                        >
-                        진행 중
-                      </p>
-                    </div>
-                  </div>
-
-                  <!-- 담당자, 마감일자, 진행도 -->
-                  <div class="col-md-6 px-2">
-                    <div class="row mx-0">
-                      <div class="col-md-4 px-1">
-                        <div class="numbers">
-                          <p
-                            class="text-sm mb-0 text-uppercase font-weight-bold"
-                          >
-                            담당자
-                          </p>
-                          <h5 class="font-weight-bolder">홍길동</h5>
-                          <p class="mb-0">
-                            <span
-                              class="text-success text-sm font-weight-bolder"
-                              >직책:</span
-                            >
-                            프로젝트 매니저
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-4 px-1">
-                        <!-- 마감일자 섹션 너비 유지 -->
-                        <div class="numbers">
-                          <p
-                            class="text-sm mb-0 text-uppercase font-weight-bold"
-                          >
-                            마감일자
-                          </p>
-                          <h5 class="font-weight-bolder">2024년 12월 31일</h5>
-                          <p class="mb-0">
-                            <span
-                              class="text-warning text-sm font-weight-bolder"
-                              >남은 기간:</span
-                            >
-                            100일
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-4 px-1">
-                        <div class="numbers">
-                          <p
-                            class="text-sm mb-0 text-uppercase font-weight-bold"
-                          >
-                            진행도
-                          </p>
-                          <h5 class="font-weight-bolder">75%</h5>
-                          <p class="mb-0">
-                            <span
-                              class="text-primary text-sm font-weight-bolder"
-                              >상태:</span
-                            >
-                            정상 진행 중
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6 style="text-align: center;">프로젝트 테이블</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center justify-content-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">예산</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">상태</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">진행도</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img src="./assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Spotify</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">working</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">60%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img src="./assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Invision</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img src="./assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Jira</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">30%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img src="./assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Slack</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <span class="me-2 text-xs font-weight-bold">0%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -514,64 +569,6 @@
 
             <!-- 업무 -->
 
-<div class="container-fluid py-5">
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0 p-3">
-          <h6 class="mb-0 text-center">프로젝트</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">마감일</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">상태</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">진행도</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">팀프로젝트</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">2024-09-21</p>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">진행 중</span>
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">60%</span>
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">60%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <!-- 나머지 프로젝트들에 대해 위와 같은 구조로 반복 -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
         <footer class="footer pt-3">
           <div class="container-fluid">
