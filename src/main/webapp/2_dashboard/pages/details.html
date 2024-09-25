@@ -306,14 +306,12 @@
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
             id="navbar"
           >
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+              
+            </div>
             <ul class="navbar-nav align-items-center ml-auto">
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                <a
-                  href="javascript:;"
-                  class="nav-link text-white p-0"
-                  id="iconNavbarSidenav"
-                >
+                <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                   <div class="sidenav-toggler-inner">
                     <i class="sidenav-toggler-line bg-white"></i>
                     <i class="sidenav-toggler-line bg-white"></i>
@@ -321,22 +319,52 @@
                   </div>
                 </a>
               </li>
-              <li
-                class="nav-item px-3 d-flex align-items-center profile-container"
-              >
-                <a class="nav-link" href="../pages/profile.html">
+              <li class="nav-item px-3 d-flex align-items-center profile-container">
+                <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-photo-small">
-                    <img
-                      src="path/to/profile-photo.jpg"
-                      alt="프로필 사진"
-                      class="rounded-circle"
-                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                    />
+                    <img src="path/to/profile-photo.jpg" alt="프로필 사진" class="rounded-circle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <i class="bi bi-person-circle default-icon"></i>
                   </div>
                 </a>
-              </li>
-            </ul>
+                <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="./pages/profile.html">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="bi bi-person-circle avatar avatar-sm bg-white text-dark me-3"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">마이 페이지</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">
+                            <i class="bi bi-bell me-1"></i>
+                            1 new
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="bi bi-gear-fill avatar avatar-sm bg-white text-dark me-3"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">관리자 페이지</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">
+                            <i class="bi bi-bell me-1"></i>
+                            1 new
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                
           </div>
         </div>
       </nav>
