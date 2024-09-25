@@ -9,9 +9,9 @@
     <link
       rel="apple-touch-icon"
       sizes="76x76"
-      href="./assets/img/apple-icon.png"
+      href="../assets/img/apple-icon.png"
     />
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <title>2조 프로젝트</title>
     <!--     Fonts and icons     -->
     <link
@@ -19,18 +19,18 @@
       rel="stylesheet"
     />
     <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/42d5adcbca.js"
       crossorigin="anonymous"
     ></script>
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link
       id="pagestyle"
-      href="./assets/css/argon-dashboard.css?v=2.0.4"
+      href="../assets/css/argon-dashboard.css?v=2.0.4"
       rel="stylesheet"
     />
     <link
@@ -48,25 +48,25 @@
     </style>
     <style>
       .profile-container {
-  margin-top: 8px; /* 위쪽 마진 추가 */
-}
+        margin-top: 8px; /* 위쪽 마진 추가 */
+      }
       .profile-container {
         margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
       }
-      
+
       .profile-photo-small {
         width: 36px;
         height: 36px;
         position: relative;
         overflow: hidden;
       }
-      
+
       .profile-photo-small img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      
+
       .profile-photo-small .default-icon {
         display: none;
         width: 100%;
@@ -77,13 +77,276 @@
         color: #f1f1f1;
         background-color: transparent;
       }
-      
-      @media (max-width: 1199.98px) { /* xl 브레이크포인트 미만에서 적용 */
+
+      @media (max-width: 1199.98px) {
+        /* xl 브레이크포인트 미만에서 적용 */
         .profile-container {
           margin-right: 15px; /* 모바일에서 오른쪽 여백 추가 */
         }
       }
-      </style>
+    </style>
+    <style>
+      :root {
+        --level-1: #8dccad;
+        --level-2: #f5cc7f;
+        --level-3: #7b9fe0;
+        --level-4: #f27c8d;
+        --black: black;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      ol {
+        list-style: none;
+      }
+
+      body {
+        margin: 50px 0 100px;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+      }
+
+      .container {
+        max-width: 1000px;
+        padding: 0 10px;
+        margin: 0 auto;
+      }
+
+      .rectangle {
+        position: relative;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      /* LEVEL-1 STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      .level-1 {
+        width: 50%;
+        margin: 0 auto 40px;
+        background: var(--level-1);
+      }
+
+      .level-1::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background: var(--black);
+      }
+
+      /* LEVEL-2 STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      .level-2-wrapper {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .level-2-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 25%;
+        width: 50%;
+        height: 2px;
+        background: var(--black);
+      }
+
+      .level-2-wrapper::after {
+        display: none;
+        content: "";
+        position: absolute;
+        left: -20px;
+        bottom: -20px;
+        width: calc(100% + 20px);
+        height: 2px;
+        background: var(--black);
+      }
+
+      .level-2-wrapper li {
+        position: relative;
+      }
+
+      .level-2-wrapper > li::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background: var(--black);
+      }
+
+      .level-2 {
+        width: 70%;
+        margin: 0 auto 40px;
+        background: var(--level-2);
+      }
+
+      .level-2::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background: var(--black);
+      }
+
+      .level-2::after {
+        display: none;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(-100%, -50%);
+        width: 20px;
+        height: 2px;
+        background: var(--black);
+      }
+
+      /* LEVEL-3 STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      .level-3-wrapper {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .level-3-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: calc(25% - 5px);
+        width: calc(50% + 10px);
+        height: 2px;
+        background: var(--black);
+      }
+
+      .level-3-wrapper > li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        width: 2px;
+        height: 20px;
+        background: var(--black);
+      }
+
+      .level-3 {
+        margin-bottom: 20px;
+        background: var(--level-3);
+      }
+
+      /* LEVEL-4 STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      .level-4-wrapper {
+        position: relative;
+        width: 80%;
+        margin-left: auto;
+      }
+
+      .level-4-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 2px;
+        height: calc(100% + 20px);
+        background: var(--black);
+      }
+
+      .level-4-wrapper li + li {
+        margin-top: 20px;
+      }
+
+      .level-4 {
+        font-weight: normal;
+        background: var(--level-4);
+      }
+
+      .level-4::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(-100%, -50%);
+        width: 20px;
+        height: 2px;
+        background: var(--black);
+      }
+
+      /* MQ STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      @media screen and (max-width: 700px) {
+        .rectangle {
+          padding: 20px 10px;
+        }
+
+        .level-1,
+        .level-2 {
+          width: 100%;
+        }
+
+        .level-1 {
+          margin-bottom: 20px;
+        }
+
+        .level-1::before,
+        .level-2-wrapper > li::before {
+          display: none;
+        }
+
+        .level-2-wrapper,
+        .level-2-wrapper::after,
+        .level-2::after {
+          display: block;
+        }
+
+        .level-2-wrapper {
+          width: 90%;
+          margin-left: 10%;
+        }
+
+        .level-2-wrapper::before {
+          left: -20px;
+          width: 2px;
+          height: calc(100% + 40px);
+        }
+
+        .level-2-wrapper > li:not(:first-child) {
+          margin-top: 50px;
+        }
+      }
+
+      /* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+      .page-footer {
+        position: fixed;
+        right: 0;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+      }
+
+      .page-footer a {
+        margin-left: 4px;
+      }
+    </style>
   </head>
 
   <body class="g-sidenav-show bg-gray-100">
@@ -104,7 +367,7 @@
           target="_blank"
         >
           <img
-            src="./assets/img/logo-ct-dark.png"
+            src="../assets/img/logo-ct-dark.png"
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
@@ -115,7 +378,7 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="./dashboard.html">
+            <a class="nav-link active" href="../dashboard.html">
               <div
                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -125,7 +388,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pages/tables.html">
+            <a class="nav-link" href="../pages/tables.html">
               <div
                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -137,7 +400,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pages/billing.html">
+            <a class="nav-link" href="../pages/billing.html">
               <div
                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -149,7 +412,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pages/virtual-reality.html">
+            <a class="nav-link" href="../pages/virtual-reality.html">
               <div
                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -222,12 +485,14 @@
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
             id="navbar"
           >
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-              
-            </div>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
             <ul class="navbar-nav align-items-center ml-auto">
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <a
+                  href="javascript:;"
+                  class="nav-link text-white p-0"
+                  id="iconNavbarSidenav"
+                >
                   <div class="sidenav-toggler-inner">
                     <i class="sidenav-toggler-line bg-white"></i>
                     <i class="sidenav-toggler-line bg-white"></i>
@@ -235,10 +500,17 @@
                   </div>
                 </a>
               </li>
-              <li class="nav-item px-3 d-flex align-items-center profile-container">
-                <a class="nav-link" href="./pages/profile.html">
+              <li
+                class="nav-item px-3 d-flex align-items-center profile-container"
+              >
+                <a class="nav-link" href="../pages/profile.html">
                   <div class="profile-photo-small">
-                    <img src="path/to/profile-photo.jpg" alt="프로필 사진" class="rounded-circle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img
+                      src="path/to/profile-photo.jpg"
+                      alt="프로필 사진"
+                      class="rounded-circle"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
                     <i class="bi bi-person-circle default-icon"></i>
                   </div>
                 </a>
@@ -250,291 +522,93 @@
       <!-- End Navbar -->
 
       <div class="container-fluid py-4">
-        <div class="row">
-          <div class="col-12">
-            <div class="card mb-4">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-center mb-3">
-                <div class="d-flex justify-content-center" style="padding-left: 45%;">
-                <h5 class="mb-0">프로젝트 테이블</h5>
-                </div>
-                <a href="./pages/Project.html">
-                  <button
-                    id=""
-                    class="btn btn-outline-primary btn-sm"
-                    
-                  >
-                    더 보기
-                  </button>
-                </a>
-              </div>
-              <div class="card-body px-0 pt-0 pb-2">
-                <div class="table-responsive p-0">
-                  <table class="table align-items-center justify-content-center mb-0">
-                    <thead>
-                      <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">예산</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">상태</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">진행도</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2"> 
-                            <div>
-                              <img src="./assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                            </div>
-                            <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Spotify</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                        </td>
-                        <td>
-                          <span class="text-xs font-weight-bold">working</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">60%</span>
-                            <div>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <button class="btn btn-link text-secondary mb-0">
-                            <i class="fa fa-ellipsis-v text-xs"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2">
-                            <div>
-                              <img src="./assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                            </div>
-                            <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Invision</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                        </td>
-                        <td>
-                          <span class="text-xs font-weight-bold">done</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">100%</span>
-                            <div>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-ellipsis-v text-xs"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2">
-                            <div>
-                              <img src="./assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                            </div>
-                            <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Jira</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                        </td>
-                        <td>
-                          <span class="text-xs font-weight-bold">canceled</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">30%</span>
-                            <div>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-ellipsis-v text-xs"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2">
-                            <div>
-                              <img src="./assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                            </div>
-                            <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Slack</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">$1,000</p>
-                        </td>
-                        <td>
-                          <span class="text-xs font-weight-bold">canceled</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <div class="d-flex align-items-center justify-content-center">
-                            <span class="me-2 text-xs font-weight-bold">0%</span>
-                            <div>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-ellipsis-v text-xs"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="row mt-4">
           <div class="col-lg-7 mb-lg-0 mb-4">
-            <!-- 게시판 -->
-
-            <div class="card" >
-              <div class="card-header pb-0 p-3">
-                <h6 class="mb-0 text-center"> <a class="nav-link" href="./pages/tables.html">게시판</a></h6>
-              </div>
-              <div class="card-body p-3">
-                <ul class="list-group">
-                  <li
-                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-                  >
-                    <div class="d-flex align-items-center">
-                      <div
-                        class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                      >
-                        <i
-                          class="ni ni-notification-70 text-white opacity-10"
-                        ></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">공지사항</h6>
-                        <span class="text-xs">2024년 9월 회식 안내</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-sm">
-                      2024-09-10
-                      <button
-                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                      >
-                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li
-                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-                  >
-                    <div class="d-flex align-items-center">
-                      <div
-                        class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                      >
-                        <i
-                          class="ni ni-calendar-grid-58 text-white opacity-10"
-                        ></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">일정 공유</h6>
-                        <span class="text-xs">프로젝트 중간 발표 일정</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-sm">
-                      2024-09-08
-                      <button
-                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                      >
-                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li
-                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-                  >
-                    <div class="d-flex align-items-center">
-                      <div
-                        class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                      >
-                        <i
-                          class="ni ni-single-copy-04 text-white opacity-10"
-                        ></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">회의록</h6>
-                        <span class="text-xs">9월 첫째 주 팀 미팅 회의록</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-sm">
-                      2024-09-05
-                      <button
-                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                      >
-                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li
-                    class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg"
-                  >
-                    <div class="d-flex align-items-center">
-                      <div
-                        class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                      >
-                        <i class="ni ni-satisfied text-white opacity-10"></i>
-                      </div>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">자유게시판</h6>
-                        <span class="text-xs">주말 등산 모임 안내</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-sm">
-                      2024-09-03
-                      <button
-                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                      >
-                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div class="container">
+              <h1 class="level-1 rectangle">CEO</h1>
+              <ol class="level-2-wrapper">
+                <li>
+                  <h2 class="level-2 rectangle">Director A</h2>
+                  <ol class="level-3-wrapper">
+                    <li>
+                      <h3 class="level-3 rectangle">Manager A</h3>
+                      <ol class="level-4-wrapper">
+                        <li>
+                          <h4 class="level-4 rectangle">Person A</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person B</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person C</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person D</h4>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <h3 class="level-3 rectangle">Manager B</h3>
+                      <ol class="level-4-wrapper">
+                        <li>
+                          <h4 class="level-4 rectangle">Person A</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person B</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person C</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person D</h4>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <h2 class="level-2 rectangle">Director B</h2>
+                  <ol class="level-3-wrapper">
+                    <li>
+                      <h3 class="level-3 rectangle">Manager C</h3>
+                      <ol class="level-4-wrapper">
+                        <li>
+                          <h4 class="level-4 rectangle">Person A</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person B</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person C</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person D</h4>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <h3 class="level-3 rectangle">Manager D</h3>
+                      <ol class="level-4-wrapper">
+                        <li>
+                          <h4 class="level-4 rectangle">Person A</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person B</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person C</h4>
+                        </li>
+                        <li>
+                          <h4 class="level-4 rectangle">Person D</h4>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
             </div>
-            </div>
-            <!-- 게시판 끝 -->
-
-
+          </div>
+          <!-- 게시판 끝 -->
 
           <!-- 이번주 나의 업무 -->
 
@@ -556,53 +630,281 @@
               <div id="cardContent" class="card-body p-3">
                 <div class="table-responsive">
                   <table class="table align-items-center">
-                    <tbody id="taskList">
+                    <tbody id="taskList"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 업무 -->
+
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div
+                class="card-header pb-0 d-flex justify-content-between align-items-center mb-3"
+              >
+                <div
+                  class="d-flex justify-content-center"
+                  style="padding-left: 45%"
+                >
+                  <h5 class="mb-0">프로젝트 테이블</h5>
+                </div>
+                <a href="../pages/Project.html">
+                  <button id="" class="btn btn-outline-primary btn-sm">
+                    더 보기
+                  </button>
+                </a>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table
+                    class="table align-items-center justify-content-center mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          프로젝트
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          예산
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          상태
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2"
+                        >
+                          진행도
+                        </th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img
+                                src="../assets/img/small-logos/logo-spotify.svg"
+                                class="avatar avatar-sm rounded-circle me-2"
+                                alt="spotify"
+                              />
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Spotify</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">working</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div
+                            class="d-flex align-items-center justify-content-center"
+                          >
+                            <span class="me-2 text-xs font-weight-bold"
+                              >60%</span
+                            >
+                            <div>
+                              <div class="progress">
+                                <div
+                                  class="progress-bar bg-gradient-info"
+                                  role="progressbar"
+                                  aria-valuenow="60"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                  style="width: 60%"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button class="btn btn-link text-secondary mb-0">
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img
+                                src="../assets/img/small-logos/logo-invision.svg"
+                                class="avatar avatar-sm rounded-circle me-2"
+                                alt="invision"
+                              />
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Invision</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">done</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div
+                            class="d-flex align-items-center justify-content-center"
+                          >
+                            <span class="me-2 text-xs font-weight-bold"
+                              >100%</span
+                            >
+                            <div>
+                              <div class="progress">
+                                <div
+                                  class="progress-bar bg-gradient-success"
+                                  role="progressbar"
+                                  aria-valuenow="100"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                  style="width: 100%"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button
+                            class="btn btn-link text-secondary mb-0"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img
+                                src="../assets/img/small-logos/logo-jira.svg"
+                                class="avatar avatar-sm rounded-circle me-2"
+                                alt="jira"
+                              />
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Jira</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div
+                            class="d-flex align-items-center justify-content-center"
+                          >
+                            <span class="me-2 text-xs font-weight-bold"
+                              >30%</span
+                            >
+                            <div>
+                              <div class="progress">
+                                <div
+                                  class="progress-bar bg-gradient-danger"
+                                  role="progressbar"
+                                  aria-valuenow="30"
+                                  aria-valuemin="0"
+                                  aria-valuemax="30"
+                                  style="width: 30%"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button
+                            class="btn btn-link text-secondary mb-0"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div>
+                              <img
+                                src="../assets/img/small-logos/logo-slack.svg"
+                                class="avatar avatar-sm rounded-circle me-2"
+                                alt="slack"
+                              />
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm">Slack</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold">canceled</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <div
+                            class="d-flex align-items-center justify-content-center"
+                          >
+                            <span class="me-2 text-xs font-weight-bold"
+                              >0%</span
+                            >
+                            <div>
+                              <div class="progress">
+                                <div
+                                  class="progress-bar bg-gradient-success"
+                                  role="progressbar"
+                                  aria-valuenow="0"
+                                  aria-valuemin="0"
+                                  aria-valuemax="0"
+                                  style="width: 0%"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <button
+                            class="btn btn-link text-secondary mb-0"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i class="fa fa-ellipsis-v text-xs"></i>
+                          </button>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-
-            <!-- 업무 -->
-
-            
-
-        <footer class="footer pt-3">
-          <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-              <div class="col-lg-6 mb-lg-0 mb-4"></div>
-              <div class="col-lg-6">
-                <ul
-                  class="nav nav-footer justify-content-center justify-content-lg-end"
-                >
-                  <li class="nav-item">
-                    <a href="" class="nav-link text-muted" target="_blank"
-                      >2team</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link text-muted" target="_blank"
-                      >About Us</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link text-muted" target="_blank"
-                      >Githup</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link pe-0 text-muted" target="_blank"
-                      >License</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
+        </div>
       </div>
     </main>
+
     <div class="fixed-plugin">
       <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="bi bi-chat"></i>
@@ -751,11 +1053,11 @@
       </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
     <script>
       var ctx1 = document.getElementById("chart-line").getContext("2d");
 
@@ -874,28 +1176,62 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const toggleButton = document.getElementById('toggleButton');
-        const taskList = document.getElementById('taskList');
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggleButton");
+        const taskList = document.getElementById("taskList");
         const tasks = [
-          {task: '프로젝트 계획 수립', due_date: '2024-09-20', priority: '높음', status: '진행 중', icon: 'bi-clipboard-check text-primary'},
-          {task: '팀 미팅 준비', due_date: '2024-09-18', priority: '중간', status: '완료', icon: 'bi-people text-info'},
-          {task: '보고서 작성', due_date: '2024-09-22', priority: '높음', status: '시작 전', icon: 'bi-file-earmark-text text-warning'},
-          {task: '코드 리뷰', due_date: '2024-09-21', priority: '중간', status: '진행 중', icon: 'bi-code-square text-success'},
-          {task: '시스템 유지보수', due_date: '2024-09-23', priority: '낮음', status: '시작 전', icon: 'bi-gear text-secondary'}
+          {
+            task: "프로젝트 계획 수립",
+            due_date: "2024-09-20",
+            priority: "높음",
+            status: "진행 중",
+            icon: "bi-clipboard-check text-primary",
+          },
+          {
+            task: "팀 미팅 준비",
+            due_date: "2024-09-18",
+            priority: "중간",
+            status: "완료",
+            icon: "bi-people text-info",
+          },
+          {
+            task: "보고서 작성",
+            due_date: "2024-09-22",
+            priority: "높음",
+            status: "시작 전",
+            icon: "bi-file-earmark-text text-warning",
+          },
+          {
+            task: "코드 리뷰",
+            due_date: "2024-09-21",
+            priority: "중간",
+            status: "진행 중",
+            icon: "bi-code-square text-success",
+          },
+          {
+            task: "시스템 유지보수",
+            due_date: "2024-09-23",
+            priority: "낮음",
+            status: "시작 전",
+            icon: "bi-gear text-secondary",
+          },
         ];
-      
+
         // 중요도에 따른 정렬 순서 정의
-        const priorityOrder = {'높음': 1, '중간': 2, '낮음': 3};
-      
+        const priorityOrder = { 높음: 1, 중간: 2, 낮음: 3 };
+
         // 중요도에 따라 tasks 배열 정렬
-        tasks.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-      
+        tasks.sort(
+          (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
+        );
+
         function createTaskRow(task) {
-          const row = document.createElement('tr');
-          row.className = `task-row ${task.priority === '높음' ? 'high-priority' : ''}`;
+          const row = document.createElement("tr");
+          row.className = `task-row ${
+            task.priority === "높음" ? "high-priority" : ""
+          }`;
           row.innerHTML = `
             <td class="w-30">
               <div class="d-flex px-2 py-1 align-items-center">
@@ -929,18 +1265,19 @@
           `;
           return row;
         }
-      
+
         // 정렬된 tasks 배열을 이용해 행 생성
-        tasks.forEach(task => {
+        tasks.forEach((task) => {
           taskList.appendChild(createTaskRow(task));
         });
-      
-        toggleButton.addEventListener('click', function() {
-          const allTasks = document.querySelectorAll('.task-row');
-          allTasks.forEach(task => task.classList.toggle('show-all'));
-          toggleButton.textContent = toggleButton.textContent === '접기' ? '모두 보기' : '접기';
+
+        toggleButton.addEventListener("click", function () {
+          const allTasks = document.querySelectorAll(".task-row");
+          allTasks.forEach((task) => task.classList.toggle("show-all"));
+          toggleButton.textContent =
+            toggleButton.textContent === "접기" ? "모두 보기" : "접기";
         });
       });
-      </script>
+    </script>
   </body>
 </html>
