@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --bs-signiture: #1E74B1;
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
   --bs-purple: #6f42c1;
@@ -4666,6 +4667,8 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  /* 사이드바 하단 둥글게 */ 
+  border-bottom: 30px;
 }
 
 .navbar>.container,
@@ -11026,8 +11029,9 @@ fieldset:disabled .btn {
 }
 
 .min-height-300 {
-  min-height: 300px !important;
+  min-height: 300px !important; 
 }
+
 
 .min-height-400 {
   min-height: 400px !important;
@@ -22246,6 +22250,11 @@ hr.horizontal.gray-light {
   background-color: #172b4d;
 }
 
+/* 팀 시그니처 컬러 */
+.bg-signiture {
+  background-color: #1E74B1;
+}
+
 .card.card-profile-bottom {
   margin-top: 15rem;
 }
@@ -22490,11 +22499,12 @@ hr.horizontal.gray-light {
   letter-spacing: 0.04em;
 }
 
+/* 사이드 바 위아래 간격 */
 .navbar-vertical.navbar-expand-xs {
   display: block;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: 100px;
+  bottom: 100px;
   width: 100%;
   max-width: 15.625rem !important;
   overflow-y: auto;
@@ -23216,6 +23226,19 @@ hr.horizontal.gray-light {
 
 .sidenav {
   z-index: 999;
+}
+
+/* 사이드바 위에 로고 삽입 */
+.sidenav-logo-container {
+  position: absolute;
+  top: 10px;
+  left: 20px; /* 사이드바와 간격을 맞추기 위해 left 값 조정 */
+  z-index: 999; /* 사이드바보다 위에 나타나도록 z-index 설정 */
+}
+
+.sidenav-logo {
+  width: 120px;
+  height: auto;
 }
 
 .sidenav .navbar-brand,
