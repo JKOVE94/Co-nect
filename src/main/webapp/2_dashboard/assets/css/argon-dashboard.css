@@ -27559,5 +27559,55 @@ pre[class*="language-"] {
 .accordion-content.open {
   grid-template-rows: 1fr;
 }
+.profile-photo-small {
+  width: 40px;
+  height: 40px;
+}
+
+.task-row {
+  display: none;
+}
+.task-row.high-priority,
+.task-row.show-all {
+  display: table-row;
+}
+
+.profile-container {
+  margin-top: 8px; /* 위쪽 마진 추가 */
+}
+.profile-container {
+  margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
+}
+
+.profile-photo-small {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-photo-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-small .default-icon {
+  display: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: #f1f1f1;
+  background-color: transparent;
+}
+
+@media (max-width: 1199.98px) {
+  /* xl 브레이크포인트 미만에서 적용 */
+  .profile-container {
+    margin-right: 15px; /* 모바일에서 오른쪽 여백 추가 */
+  }
+}
 
 /*# sourceMappingURL=dashboard-free.css.map */
