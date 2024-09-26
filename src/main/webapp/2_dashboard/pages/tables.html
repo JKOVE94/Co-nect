@@ -55,231 +55,210 @@
 
   <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <div class="sidenav-logo-container">
+      <img src="../../0_asset/login/co-nect logo (w).svg" alt="Logo" class="sidenav-logo">
+    </div>
+
     <aside
-      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
-      id="sidenav-main"
-    >
+      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-4 "
+      id="sidenav-main">
+      <!-- 사이드바 제목(로고) -->
       <div class="sidenav-header">
-        <i
-          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-          aria-hidden="true"
-          id="iconSidenav"
-        ></i>
-        <a
-          class="navbar-brand m-0"
-          href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-          target="_blank"
-        >
-          <img
-            src="../assets/img/logo-ct-dark.png"
-            class="navbar-brand-img h-100"
-            alt="main_logo"
-          />
-          <span class="ms-1 font-weight-bold">2조 프로젝트 게시판</span>
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href=" ../dashboard.html "
+          target="_blank">
+          <img src="../../0_asset/login/co-nect logo (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
+          <span class="ms-1 font-weight-bold">(주)코난2조</span>
         </a>
       </div>
-      <hr class="horizontal dark mt-0" />
-      <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+
+      <!-- 사이드바 항목 -->
+       <!-- 구분선 -->
+      <hr class="horizontal dark mt-0"> 
+
+      <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <!-- 사이드 바 하위 항목 시작 -->
         <ul class="navbar-nav">
+          <!-- 1) 즐겨찾기 -->
           <li class="nav-item">
-            <a class="nav-link" href="../dashboard.html">
+            <a class="nav-link active" data-bs-toggle="collapse" 
+            data-bs-target="#favorites-collapse" aria-expanded="false" id="resourceManager">
               <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-star text-primary text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
+              <span class="nav-link-text ms-1">즐겨찾기</span>
             </a>
+
+            <!-- 즐겨찾기 하위 메뉴 ( 프로젝트 ) -->
+            <div class="collapse" id="favorites-collapse">
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link" href="./pages/Project.html">
+                      프로젝트       
+                    </a>
+                  </li>
+              </ul>
+            </div>
           </li>
+          
+          <!-- 2) 프로젝트 -->
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/tables.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i
-                  class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"
-                ></i>
-              </div>
-              <span class="nav-link-text ms-1">Tables</span>
-            </a>
+            <a class="nav-link active" href="./pages/virtual-reality.html" data-bs-toggle="collapse"
+            data-bs-target="#project-collapse" aria-expanded="false" id="resourceManager">
+            <div
+            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-app text-info text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">프로젝트</span>
+        </a>
+        <!-- 프로젝트 하위 메뉴 -->
+        <div class="collapse" id="project-collapse">
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="./pages/Project.html">
+                    프로젝트 개요    
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="collapse" id="project-collapse">
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="./pages/details.html">
+                    프로젝트 일정    
+                  </a>
+                </li>
+              </ul>
+            </div>          
           </li>
+          
+          <!-- 3) 게시판 -->
           <li class="nav-item">
-            <a class="nav-link" href="../pages/billing.html">
+            <a class="nav-link active" data-bs-toggle="collapse"
+            data-bs-target="#board-collapse" aria-expanded="false" id="resourceManager">
               <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i
-                  class="ni ni-credit-card text-success text-sm opacity-10"
-                ></i>
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1">Billing</span>
+              <span class="nav-link-text ms-1">게시판</span>
             </a>
+            <!-- 게시판 하위 메뉴 -->
+            <div class="collapse" id="board-collapse">
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="./pages/tables.html">
+                    사내 게시판    
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
           </li>
+          
+
+          <!-- 4) 업무 관리 -->
           <li class="nav-item">
-            <a class="nav-link" href="../pages/virtual-reality.html">
+            <a class="nav-link active" data-bs-toggle="collapse"
+              data-bs-target="#works-collapse" aria-expanded="false" id="resourceManager">
               <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1">Virtual Reality</span>
+              <span class="nav-link-text ms-1">업무 관리</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../pages/rtl.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">RTL</span>
-            </a>
-          </li>
-          <li class="nav-item mt-3">
-            <h6
-              class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6"
-            >
-              Account pages
-            </h6>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../pages/profile.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Profile</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../pages/sign-in.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i
-                  class="ni ni-single-copy-04 text-warning text-sm opacity-10"
-                ></i>
-              </div>
-              <span class="nav-link-text ms-1">Sign In</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../pages/sign-up.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-              >
-                <i class="ni ni-collection text-info text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Sign Up</span>
-            </a>
+              <!-- 업무관리 하위 메뉴 -->
+            <div class="collapse" id="works-collapse">
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link">
+                      일정 관리      
+                    </a>
+                  </li>
+              </ul>
+            </div>
           </li>
         </ul>
-      </div>
-      <div class="sidenav-footer mx-3">
-        <div class="card card-plain shadow-none" id="sidenavCard">
-          <img
-            class="w-50 mx-auto"
-            src="../assets/img/illustrations/icon-documentation.svg"
-            alt="sidebar_illustration"
-          />
-          <div class="card-body text-center p-3 w-100 pt-0">
-            <div class="docs-info">
-              <h6 class="mb-0">Need help?</h6>
-              <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
-            </div>
-          </div>
-        </div>
-        <a
-          href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard"
-          target="_blank"
-          class="btn btn-dark btn-sm w-100 mb-3"
-          >Documentation</a
-        >
-        <a
-          class="btn btn-primary btn-sm mb-0 w-100"
-          href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree"
-          type="button"
-          >Upgrade to pro</a
-        >
       </div>
     </aside>
     <main class="main-content position-relative border-radius-lg">
       <!-- Navbar -->
-      <nav
-      class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-      id="navbarBlur"
-      data-scroll="false"
-    >
-      <div class="container-fluid py-1 px-3">
-        <div
-          class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-          id="navbar"
-        >
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            
-          </div>
-          <ul class="navbar-nav align-items-center ml-auto">
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                </div>
-              </a>
-            </li>
-            <li class="nav-item px-3 d-flex align-items-center profile-container">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="profile-photo-small">
-                  <img src="path/to/profile-photo.jpg" alt="프로필 사진" class="rounded-circle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <i class="bi bi-person-circle default-icon"></i>
-                </div>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="./pages/profile.html">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <i class="bi bi-person-circle avatar avatar-sm bg-white text-dark me-3"></i>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">마이 페이지</span>
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="bi bi-bell me-1"></i>
-                          1 new
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <i class="bi bi-gear-fill avatar avatar-sm bg-white text-dark me-3"></i>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">관리자 페이지</span>
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="bi bi-bell me-1"></i>
-                          1 new
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+      <nav style="padding-top: 17px;"
+        class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+        id="navbarBlur"
+        data-scroll="false"
+      >
+        <div  class="container-fluid py-1 px-3">
+          <div 
+            class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+            id="navbar"
+          >
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               
+            </div>
+            <ul class="navbar-nav align-items-center ml-auto">
+              <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                  <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item px-3 d-flex align-items-center profile-container">
+                <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile-photo-small">
+                    <img src="path/to/profile-photo.jpg" alt="프로필 사진" class="rounded-circle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <i class="bi bi-person-circle default-icon"></i>
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="./pages/profile.html">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="bi bi-person-circle avatar avatar-sm bg-white text-dark me-3"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">마이 페이지</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">
+                            <i class="bi bi-bell me-1"></i>
+                            1 new
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <i class="bi bi-gear-fill avatar avatar-sm bg-white text-dark me-3"></i>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">관리자 페이지</span>
+                          </h6>
+                          <p class="text-xs text-secondary mb-0">
+                            <i class="bi bi-bell me-1"></i>
+                            1 new
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
       <!-- End Navbar -->
-      <div class="container-fluid py-4">
+      <div style="margin-top: -8px;" class="container-fluid py-4">
         <div class="row">
           <div class="col-12">
             <div class="card mb-4">
