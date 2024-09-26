@@ -54,7 +54,7 @@
       <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
           aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" ../dashboard.html "
+        <a class="navbar-brand m-0" href=" ./dashboard.html "
           target="_blank">
           <img src="../0_asset/login/co-nect logo (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
           <span class="ms-1 font-weight-bold">(주)코난2조</span>
@@ -259,7 +259,7 @@
                   <button
                     id=""
                     class="btn btn-outline-primary btn-sm"
-                    
+
                   >
                     더 보기
                   </button>
@@ -424,8 +424,21 @@
 
             <div class="card" >
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0 text-center"> <a class="nav-link" href="./pages/tables.html">게시판</a></h6>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h6 class="mb-0 ms-4">게시판</h6>
+                  <a href="./pages/tables.html">
+                  <button
+                    id=""
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    더 보기
+                  </button>
+                </a>
+                </div>
               </div>
+              
               <div class="card-body p-3">
                 <ul class="list-group">
                   <li
@@ -537,18 +550,20 @@
           <!-- 이번주 나의 업무 -->
 
           <div class="col-lg-5">
-            <div class="card">
+            <div style="height: 100%;" class="card">
               <div class="card-header pb-0 p-3">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h6 class="mb-0 ms-4">이번 주 나의 업무</h6>
+                  <a href="./pages/details.html">
                   <button
-                    id="toggleButton"
+                    id=""
                     class="btn btn-outline-primary btn-sm"
                   >
-                    모두 보기
+                    더 보기
                   </button>
+                </a>
                 </div>
               </div>
               <div id="cardContent" class="card-body p-3">
