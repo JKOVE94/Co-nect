@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Icommand;
+import model.dashboard.factory.FactoryDash;;
+
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet{
 
@@ -23,27 +26,13 @@ public class DashboardServlet extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		String url = "";
 		String fn = req.getParameter("fn");
-		
-		/* 여기를 수정해주세요
-		if (fn.equals("")) {
-			url = "";	
-		}
-		
-		else if (fn.equals("")) {
-			url = "";
-		}
-		
-		else if (fn.equals("")) {
-			url = "";
-		}
-		
-		else if (fn.equals("")) {
-			url = "";
-		}
-		*/
-		
+
+		Icommand icmd = null;
+		FactoryDash factory = FactoryDash.newInstance();
+		icmd = factory.createInstance(fn);
+		url = (String) icmd.method(req,resp);
+
 		RequestDispatcher view = req.getRequestDispatcher(url);
 		view.forward(req, resp);
 	}
-
 }

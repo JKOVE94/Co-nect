@@ -5,7 +5,6 @@ import db.dbcp.DBConnectionMgr;
 import db.dto.UserDTO;
 
 public class Admin_userSet {
-	
 	public void setUser(UserDTO user) {
 		DBConnectionMgr pool =null;
 		Connection conn = null;
@@ -47,9 +46,4 @@ public class Admin_userSet {
 			}
 		}
 	}
-	
-	
-	
-	
-	
 }

@@ -1,26 +1,24 @@
 package db.dto;
 
-import java.util.Date;
-
 public class PostDTO {
 	private int post_pk_num;
 	private int post_kind;
 	private String post_targetnum;
 	private String post_name;
-	private Date post_regdate;
+	private String post_regdate;
 	private String post_import;
 	private String post_content;
 	private String post_tag;
-	private int post_fk_dpart_num; //게시글 작성자
-	private int post_fk_comp_num; 
+	private int post_fk_dpart_num;
+	private int post_fk_comp_num;
 	private int post_fk_user_num;
-	private int post_depth;
-	
-	public int getPost_depth() {
-		return post_depth;
+	private int post_view;
+
+	public int getPost_view() {
+		return post_view;
 	}
-	public void setPost_depth(int post_depth) {
-		this.post_depth = post_depth;
+	public void setPost_view(int post_view) {
+		this.post_view = post_view;
 	}
 	public int getPost_pk_num() {
 		return post_pk_num;
@@ -46,10 +44,10 @@ public class PostDTO {
 	public void setPost_name(String post_name) {
 		this.post_name = post_name;
 	}
-	public Date getPost_regdate() {
+	public String getPost_regdate() {
 		return post_regdate;
 	}
-	public void setPost_regdate(Date post_regdate) {
+	public void setPost_regdate(String post_regdate) {
 		this.post_regdate = post_regdate;
 	}
 	public String getPost_import() {
@@ -87,5 +85,5 @@ public class PostDTO {
 	}
 	public void setPost_fk_user_num(int post_fk_user_num) {
 		this.post_fk_user_num = post_fk_user_num;
-	} 
+	}
 }

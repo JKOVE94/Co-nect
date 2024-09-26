@@ -19,6 +19,7 @@ public class UserDTO {
 	private int user_trynum;
 	private boolean user_locked;
 	
+	
 	public boolean isUser_locked() {
 		return user_locked;
 	}
