@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./asset/login/login.css">
+  <link rel="stylesheet" href="./asset/1_landing/login.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Orbit&display=swap"
@@ -41,8 +41,8 @@
       <!-- END SIGN UP -->
       <!-- SIGN IN -->
       <div class="col align-items-center flex-col sign-in">
-        <img src="./asset/login/images.png" alt="error" width="170" height="100" />
-		<form method="post" action="${pageContext.request.contextPath}/landing?fn=LOGIN">
+        <img src="./asset/1_landing/images.png" alt="error" width="170" height="100" />
+		<form method="post" action="${pageContext.request.contextPath}/landing?fn=MAIN">
         <div class="form-wrapper align-items-center">
           <div class="form sign-in">
             <div class="input-group">
@@ -108,7 +108,7 @@
     <!-- END CONTENT SECTION -->
   </div>
 
-  <script src="./asset/login/login.js"></script>
+  <script src="./asset/1_landing/login.js"></script>
 </body>
 
 </html>
