@@ -738,7 +738,7 @@ progress {
 
 .row {
   --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
+  --bs-gutter-y: -1rem;
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
@@ -23654,6 +23654,10 @@ hr.horizontal.gray-light {
   z-index: 999;
 }
 
+#sidenav-main {
+  height: calc(85.7vh); /* 뷰포트 높이에 100px 추가 */
+}
+
 /* 사이드바 위에 로고 삽입 */
 .sidenav-logo-container {
   position: absolute;
@@ -27601,6 +27605,10 @@ pre[class*="language-"] {
   font-size: 36px;
   color: #f1f1f1;
   background-color: transparent;
+}
+
+.bi-star {
+  transform: translateY(-3px);
 }
 
 @media (max-width: 1199.98px) {
