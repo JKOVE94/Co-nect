@@ -27615,6 +27615,11 @@ pre[class*="language-"] {
   margin-right: 0.5rem;
 }
 
+.footer2team{
+
+  position: relative; right: 78%;
+}
+
 @media (max-width: 1199.98px) {
   /* xl 브레이크포인트 미만에서 적용 */
   .profile-container {
