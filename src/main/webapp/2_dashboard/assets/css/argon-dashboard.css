@@ -4080,19 +4080,18 @@ fieldset:disabled .btn {
 .dropdown-menu {
   --bs-dropdown-min-width: 11rem;
   --bs-dropdown-padding-x: 0;
-  --bs-dropdown-padding-y: 0.5rem;
+  --bs-dropdown-padding-y: 0rem;
   --bs-dropdown-spacer: 1.625rem;
   --bs-dropdown-font-size: 0.875rem;
   --bs-dropdown-color: #67748e;
-  --bs-dropdown-bg: #fff;
+  --bs-dropdown-bg: #e9eef6;
   --bs-dropdown-border-color: transparent;
   --bs-dropdown-border-radius: 0.5rem;
   --bs-dropdown-border-width: 0;
   --bs-dropdown-inner-border-radius: 0.5rem;
   --bs-dropdown-divider-bg: transparent;
   --bs-dropdown-divider-margin-y: 0.5rem;
-  --bs-dropdown-box-shadow: 0 8px 26px -4px rgba(20, 20, 20, 0.15),
-    0 8px 9px -5px rgba(20, 20, 20, 0.06);
+  --bs-dropdown-box-shadow: 5px 5px 5px gray;
   --bs-dropdown-link-color: #67748e;
   --bs-dropdown-link-hover-color: #344767;
   --bs-dropdown-link-hover-bg: #e9ecef;
@@ -4118,11 +4117,13 @@ fieldset:disabled .btn {
   background-clip: padding-box;
   border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
   border-radius: var(--bs-dropdown-border-radius);
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.644);
 }
 
 .dropdown-menu[data-bs-popper] {
-  top: 100%;
+  top: 65%;
   left: 0;
+  right: 10%;
   margin-top: var(--bs-dropdown-spacer);
 }
 
