@@ -37,15 +37,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
     />
-    <style>
-      .task-row {
-        display: none;
-      }
-      .task-row.high-priority,
-      .task-row.show-all {
-        display: table-row;
-      }
-    </style>
+    
     <style>
       .profile-container {
         margin-top: 8px; /* 위쪽 마진 추가 */
@@ -161,6 +153,137 @@
         }
       }
     </style>
+     <style>
+      #tree {
+        display: inline-block;
+        padding: 10px;
+        
+      }
+      
+      #tree * {
+        box-sizing: border-box;
+      }
+      
+      #tree .branch {
+        padding: 5px 0 5px 20px;
+      }
+      
+      #tree .branch:not(:first-child) {
+        margin-left: 170px;
+      }
+      
+      #tree .branch:not(:first-child):after {
+        content: "";
+        width: 20px;
+        border-top: 1px solid #ccc;
+        position: absolute;
+        left: 150px;
+        top: 50%;
+        margin-top: 1px;
+      }
+      
+      .entry {
+        position: relative;
+        min-height: 42px;
+        display: block;
+      }
+      
+      .entry:before {
+        content: "";
+        height: 100%;
+        border-left: 1px solid #ccc;
+        position: absolute;
+        left: -20px;
+      }
+      
+      .entry:first-child:after {
+        height: 10px;
+        border-radius: 10px 0 0 0;
+      }
+      
+      .entry:first-child:before {
+        width: 10px;
+        height: 50%;
+        top: 50%;
+        margin-top: 1px;
+        border-radius: 10px 0 0 0;
+      }
+      
+      .entry:after {
+        content: "";
+        width: 20px;
+        transition: border 0.5s;
+        border-top: 1px solid #ccc;
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        margin-top: 1px;
+      }
+      
+      /* 기존 CSS 코드 */
+      
+      #tree > .branch > .entry:first-child:after {
+        content: none;
+      }
+      
+      .entry:last-child:before {
+        width: 10px;
+        height: 50%;
+        border-radius: 0 0 0 10px;
+      }
+      .entry:last-child:after {
+        height: 10px;
+        border-top: none;
+        transition: border 0.5s;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0 0 0 10px;
+        margin-top: -9px;
+      }
+      
+      .entry:only-child:after {
+        width: 10px;
+        height: 0px;
+        margin-top: 1px;
+        border-radius: 0px;
+      }
+      
+      .entry:only-child:before {
+        display: none;
+      }
+      
+      .entry span {
+        border: 1px solid #ccc;
+        display: block;
+        min-width: 150px;
+        padding: 5px 10px;
+        line-height: 20px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -15px;
+        color: #666;
+        font-family: arial, verdana, tahoma;
+        font-size: 14px;
+        display: inline-block;
+        border-radius: 5px;
+        transition: all 0.5s;
+      }
+      
+      #tree .entry span:hover,
+      #tree .entry span:hover + .branch .entry span {
+        background: #e6e6e6;
+        color: #000;
+        border-color: #a6a6a6;
+      }
+      
+      #tree .entry span:hover + .branch .entry::after,
+      #tree .entry span:hover + .branch .entry::before,
+      #tree .entry span:hover + .branch::before,
+      #tree .entry span:hover + .branch .branch::before {
+        border-color: #a6a6a6;
+      }
+          </style>
   </head>
 
   <body class="g-sidenav-show bg-gray-100">
@@ -175,7 +298,7 @@
     </div>
     <div class="sidenav-logo-container">
       <img
-        src="../../0_asset/login/co-nect logo (w).svg"
+        src="../../0_asset/login/co-nect logo + text (w).svg"
         alt="Logo"
         class="sidenav-logo"
       />
@@ -194,7 +317,7 @@
         ></i>
         <a class="navbar-brand m-0" href=" ../dashboard.html " target="_blank">
           <img
-            src="../../0_asset/login/co-nect logo (1E74B1).svg"
+            src="../../0_asset/login/co-nect logo + text (1E74B1).svg"
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
@@ -412,7 +535,6 @@
       </div>
     </nav>
       <!-- End Navbar -->
-
       <div style="margin-top: -15px;" class="container-fluid py-4">
         <div class="row mt-4">
           <div class="col-lg-7 mb-lg-0 mb-4">
@@ -424,51 +546,46 @@
                   <h6 class="mb-0 ms-4">스포티파이 코딩 작업</h6>
                 </div>
               </div>
-              <div id="cardContent" class="card-body p-3">
-                <div class="tree">
-                  <ul>
-                    <li>
-                      <span class="toggle-item">프론트엔드</span>
-                      <ul style="display: none">
-                        <li>
-                          <span class="toggle-item">리액트</span>
-                          <ul style="display: none">
-                            <li>
-                              <span>컴포넌트</span>
-                            </li>
-                            <li>
-                              <span>상태 관리</span>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <span>자바스크립트</span>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="toggle-item">백엔드</span>
-                      <ul style="display: none">
-                        <li>
-                          <span>노드.js</span>
-                        </li>
-                        <li>
-                          <span>익스프레스</span>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span class="toggle-item">데이터베이스</span>
-                      <ul style="display: none">
-                        <li>
-                          <span>MySQL</span>
-                        </li>
-                        <li>
-                          <span>MongoDB</span>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+              <div style="overflow: auto;" id="cardContent" class="card-body p-3">
+                <div style="margin-left: 3rem; margin-top: -1.5rem; margin-bottom: -1.3rem;"  id="tree">
+                  <div class="branch">
+                    <div class="entry"><span>프로젝트</span>
+                      <div class="branch">
+                        <div class="entry"><span>프론트엔드</span>
+                          <div class="branch">
+                            <div class="entry"><span>리액트</span>
+                              <div class="branch">
+                                <div class="entry"><span>컴포넌트</span></div>
+                                <div class="entry"><span>상태관리</span></div>
+                              </div>
+                            </div>
+                            <div class="entry"><span>자바스크립트</span>
+                              <div class="branch">
+                                <div class="entry"><span>ES6+</span></div>
+                                <div class="entry"><span>DOM 조작</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="entry"><span>백엔드</span>
+                          <div class="branch">
+                            <div class="entry"><span>데이터베이스</span>
+                              <div class="branch">
+                                <div class="entry"><span>MySQL</span></div>
+                                <div class="entry"><span>MongoDB</span></div>
+                              </div>
+                            </div>
+                            <div class="entry"><span>서버</span>
+                              <div class="branch">
+                                <div class="entry"><span>Node.js</span></div>
+                                <div class="entry"><span>Express</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -480,29 +597,174 @@
           <div class="col-lg-5">
             <div class="card">
               <div class="card-header pb-0 p-3">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <h6 class="mb-0 ms-4">이번 주 나의 업무</h6>
-                  <button
-                    id="toggleButton"
-                    class="btn btn-outline-primary btnview btn-sm"
-                  >
-                    모두 보기
-                  </button>
-                </div>
+                <h6 class="mb-0 ms-4">이번 주 나의 업무</h6>
               </div>
-              <div style=" margin-top: -2rem;" id="cardContent" class="card-body p-3">
-                <div class="table-responsive">
+              <div class="card-body p-6">
                   <table class="table align-items-center">
-                    <tbody id="taskList"></tbody>
+                    <tbody>
+                      <tr class="task-row high-priority">
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div>
+                              <i class="bi bi-clipboard-check text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">업무:</p>
+                              <h6 class="text-sm mb-0">프로젝트 계획 수립</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">마감일:</p>
+                            <h6 class="text-sm mb-0">2024-09-20</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">중요도:</p>
+                            <h6 class="text-sm mb-0">높음</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">진행상태:</p>
+                            <h6 class="text-sm mb-0">진행 중</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="task-row">
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div>
+                              <i class="bi bi-people text-info" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">업무:</p>
+                              <h6 class="text-sm mb-0">팀 미팅 준비</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">마감일:</p>
+                            <h6 class="text-sm mb-0">2024-09-18</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">중요도:</p>
+                            <h6 class="text-sm mb-0">중간</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">진행상태:</p>
+                            <h6 class="text-sm mb-0">완료</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="task-row high-priority">
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div>
+                              <i class="bi bi-file-earmark-text text-warning" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">업무:</p>
+                              <h6 class="text-sm mb-0">보고서 작성</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">마감일:</p>
+                            <h6 class="text-sm mb-0">2024-09-22</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">중요도:</p>
+                            <h6 class="text-sm mb-0">높음</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">진행상태:</p>
+                            <h6 class="text-sm mb-0">시작 전</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="task-row">
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div>
+                              <i class="bi bi-code-square text-success" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">업무:</p>
+                              <h6 class="text-sm mb-0">코드 리뷰</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">마감일:</p>
+                            <h6 class="text-sm mb-0">2024-09-21</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">중요도:</p>
+                            <h6 class="text-sm mb-0">중간</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">진행상태:</p>
+                            <h6 class="text-sm mb-0">진행 중</h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="task-row">
+                        <td class="w-30">
+                          <div class="d-flex px-2 py-1 align-items-center">
+                            <div>
+                              <i class="bi bi-gear text-secondary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="ms-4">
+                              <p class="text-xs font-weight-bold mb-0">업무:</p>
+                              <h6 class="text-sm mb-0">시스템 유지보수</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">마감일:</p>
+                            <h6 class="text-sm mb-0">2024-09-23</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="text-center">
+                            <p class="text-xs font-weight-bold mb-0">중요도:</p>
+                            <h6 class="text-sm mb-0">낮음</h6>
+                          </div>
+                        </td>
+                        <td class="align-middle text-sm">
+                          <div class="col text-center">
+                            <p class="text-xs font-weight-bold mb-0">진행상태:</p>
+                            <h6 class="text-sm mb-0">시작 전</h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
-                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
+
 
       <!-- 업무 -->
 
@@ -803,133 +1065,11 @@
         },
       });
     </script>
-    <script>
-      var win = navigator.platform.indexOf("Win") > -1;
-      if (win && document.querySelector("#sidenav-scrollbar")) {
-        var options = {
-          damping: "0.5",
-        };
-        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
-      }
-
-      const content = document.querySelector(".accordion-content");
-      const height = content.scrollHeight;
-
-      content.style.height = "0px";
-      content.style.transition = "height 0.3s ease-out";
-
-      // 열 때
-      content.style.height = height + "px";
-
-      // 닫을 때
-      content.style.height = "0px";
-    </script>
+    
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("toggleButton");
-        const taskList = document.getElementById("taskList");
-        const tasks = [
-          {
-            task: "프로젝트 계획 수립",
-            due_date: "2024-09-20",
-            priority: "높음",
-            status: "진행 중",
-            icon: "bi-clipboard-check text-primary",
-          },
-          {
-            task: "팀 미팅 준비",
-            due_date: "2024-09-18",
-            priority: "중간",
-            status: "완료",
-            icon: "bi-people text-info",
-          },
-          {
-            task: "보고서 작성",
-            due_date: "2024-09-22",
-            priority: "높음",
-            status: "시작 전",
-            icon: "bi-file-earmark-text text-warning",
-          },
-          {
-            task: "코드 리뷰",
-            due_date: "2024-09-21",
-            priority: "중간",
-            status: "진행 중",
-            icon: "bi-code-square text-success",
-          },
-          {
-            task: "시스템 유지보수",
-            due_date: "2024-09-23",
-            priority: "낮음",
-            status: "시작 전",
-            icon: "bi-gear text-secondary",
-          },
-        ];
-
-        // 중요도에 따른 정렬 순서 정의
-        const priorityOrder = { 높음: 1, 중간: 2, 낮음: 3 };
-
-        // 중요도에 따라 tasks 배열 정렬
-        tasks.sort(
-          (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
-        );
-
-        function createTaskRow(task) {
-          const row = document.createElement("tr");
-          row.className = `task-row ${
-            task.priority === "높음" ? "high-priority" : ""
-          }`;
-          row.innerHTML = `
-            <td class="w-30">
-              <div class="d-flex px-2 py-1 align-items-center">
-                <div>
-                  <i class="bi ${task.icon}" style="font-size: 1.5rem;"></i>
-                </div>
-                <div class="ms-4">
-                  <p class="text-xs font-weight-bold mb-0">업무:</p>
-                  <h6 class="text-sm mb-0">${task.task}</h6>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <p class="text-xs font-weight-bold mb-0">마감일:</p>
-                <h6 class="text-sm mb-0">${task.due_date}</h6>
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <p class="text-xs font-weight-bold mb-0">중요도:</p>
-                <h6 class="text-sm mb-0">${task.priority}</h6>
-              </div>
-            </td>
-            <td class="align-middle text-sm">
-              <div class="col text-center">
-                <p class="text-xs font-weight-bold mb-0">진행상태:</p>
-                <h6 class="text-sm mb-0">${task.status}</h6>
-              </div>
-            </td>
-          `;
-          return row;
-        }
-
-        // 정렬된 tasks 배열을 이용해 행 생성
-        tasks.forEach((task) => {
-          taskList.appendChild(createTaskRow(task));
-        });
-
-        toggleButton.addEventListener("click", function () {
-          const allTasks = document.querySelectorAll(".task-row");
-          allTasks.forEach((task) => task.classList.toggle("show-all"));
-          toggleButton.textContent =
-            toggleButton.textContent === "접기" ? "모두 보기" : "접기";
-        });
-      });
-    </script>
     <script>
       function createChart(e) {
         const days = document.querySelectorAll(".chart-values li");

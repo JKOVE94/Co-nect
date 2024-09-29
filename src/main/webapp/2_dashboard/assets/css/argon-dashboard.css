@@ -23670,6 +23670,7 @@ hr.horizontal.gray-light {
 .sidenav-logo {
   width: 120px;
   height: auto;
+  width: 130%; margin-left: -1.5rem; margin-top: 0.5rem;
 }
 
 .sidenav .navbar-brand,
@@ -27569,14 +27570,6 @@ pre[class*="language-"] {
   height: 40px;
 }
 
-.task-row {
-  display: none;
-}
-.task-row.high-priority,
-.task-row.show-all {
-  display: table-row;
-}
-
 .profile-container {
   margin-top: 8px; /* 위쪽 마진 추가 */
 }
@@ -27624,13 +27617,13 @@ pre[class*="language-"] {
 }
 
 .footer2team {
-  position: absolute;
+  position: relative;
   width: 50rem;
 }
 
 .footer2con {
   position: relative;
-  right: 58%;
+  right: 12rem;
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
