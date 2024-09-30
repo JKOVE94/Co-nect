@@ -78,7 +78,9 @@
 			</select>
 			
 			<button type="submit">회원 등록</button>
-		</form>
+
+			<a href="${pageContext.request.contextPath}/manage?fn=ADMIN_MANAGE" class="btn btn-primary">관리자 페이지로 돌아가기</a>
+
 	</div>
 </body>
 

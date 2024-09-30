@@ -2,6 +2,9 @@ package model.manage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -25,14 +28,21 @@ public class UserImage {
 		String userName = multi.getParameter("user_name");
 		String userPw = multi.getParameter("user_pw");
 		String userMail = multi.getParameter("user_mail");
-		String userRegDate = multi.getParameter("user_regdate");
+		String userRegDateStr = multi.getParameter("user_regdate");
 		String userRank = multi.getParameter("user_rank");
 		int userFkJobNum = Integer.parseInt(multi.getParameter("user_fk_job_num"));
 		int userFkDpartNum = Integer.parseInt(multi.getParameter("user_fk_dpart_num"));
 		int userFkAccAuthornum = Integer.parseInt(multi.getParameter("user_fk_acc_authornum"));
 		int userFkCompNum = Integer.parseInt(multi.getParameter("user_fk_comp_num"));
 
-		// DTO에 값 저장
+        Date userRegDate = null;
+        try {
+            userRegDate = new SimpleDateFormat("yyyy-MM-dd").parse(userRegDateStr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        // DTO에 값 저장
 		dto.setUser_name(userName);
 		dto.setUser_pk_num(userPkNum);
 		dto.setUser_pw(userPw);
