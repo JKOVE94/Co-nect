@@ -30,7 +30,7 @@
 					<tr>
 						<td>${l.post_pk_num}</td>
 						<!-- post_pk_num -->
-						<td><a href="Read.jsp?b_num=${l.post_pk_num}">${l.post_name}</a></td>
+						<td><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_num=${l.post_pk_num}">${l.post_name}</a></td>
 						<!-- post_name -->
 						<td>${l.post_fk_user_num}</td>
 						<!-- post_fk_user_num -->
@@ -43,6 +43,7 @@
 			</tbody>
 		</table>
 		<a href="freePostWrite.jsp" class="btn btn-primary mt-3">새 게시글 작성</a>
+		<a href="<%=request.getContextPath()%>/dashboard?fn=HOME" class="btn btn-primary mt-3">메인으로 돌아가기</a>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

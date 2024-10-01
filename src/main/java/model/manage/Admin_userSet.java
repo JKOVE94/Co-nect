@@ -23,7 +23,7 @@ public class Admin_userSet {
 		
 			//몇번째 ?에 값을 넣을것인가.
 			stmt.setInt(1, user.getUser_pk_num()); //사번
-			stmt.setString(2, user.getUser_regdate()); //입사일
+			stmt.setDate(2, (Date) user.getUser_regdate()); //입사일
 			stmt.setString(3, user.getUser_pw()); //패스워드ㅋ
 			stmt.setString(4, user.getUser_name()); //이름
 			stmt.setString(5, user.getUser_mail()); // 이메일
@@ -35,8 +35,7 @@ public class Admin_userSet {
 			stmt.setInt(11, user.getUser_fk_comp_num()); //직원 회사 번호
 			
 			stmt.executeUpdate(); //DML명령어 때 사용
-			
-			//response.sendRedirect("dashboard.jsp");
+
 			
 		} catch (Exception e) {
 			System.out.println("setUser : "+e);

@@ -31,7 +31,7 @@ public class Free_List {
                 dto.setPost_pk_num(rs.getInt("post_pk_num"));
                 dto.setPost_name(rs.getString("post_name"));
                 dto.setPost_fk_user_num(rs.getInt("post_fk_user_num"));
-                dto.setPost_regdate(rs.getString("post_regdate"));
+                dto.setPost_regdate(rs.getDate("post_regdate"));
                 dto.setPost_view(rs.getInt("post_view"));
             	list.add(dto);
             }
