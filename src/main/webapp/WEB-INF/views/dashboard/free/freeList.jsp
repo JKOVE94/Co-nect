@@ -23,6 +23,7 @@
 					<th>작성자</th>
 					<th>등록일</th>
 					<th>조회수</th>
+					<th>즐겨찾기</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,6 +39,14 @@
 						<!-- post_regdate -->
 						<td>${l.post_view}</td>
 						<!-- post_view -->
+						<td>
+							<input type="checkbox" id="favorite" class="favorite" value="${l.post_pk_num }"
+							<c:if test="${l.favoriteCheck == true}">
+						 	 checked
+						  	</c:if>>
+						</td>
+						
+						
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -52,4 +61,16 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+const favoriteToggle = document.querySelectorAll('#favorite');
+	for(let i=0; i<favoriteToggle.length; i++){
+	favoriteToggle[i].addEventListener('click',() => {
+		if (favoriteToggle[i].checked){
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&post_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		} else {
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		}
+	})
+}
+</script>
 </html>

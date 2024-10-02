@@ -24,7 +24,7 @@ public class Proj_ReadCheck {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
 
-            String sql = "SELECT proj_pk_num, proj_name, proj_desc,  proj_startdate, proj_enddate, proj_status, proj_members, proj_created,proj_updated, proj_import, proj_tag, proj_tagcol, proj_fk_dpart_num, proj_fk_user_num, proj_fk_comp_num, proj_fk_post_num  FROM project WHERE proj_pk_num=?";
+            String sql = "SELECT proj_pk_num, proj_name, proj_desc,  proj_startdate, proj_enddate, proj_status, proj_members, proj_created,proj_updated, proj_import, proj_tag, proj_tagcol, proj_fk_dpart_num, proj_fk_user_num, proj_fk_comp_num  FROM project WHERE proj_pk_num=?";
 
             //몇번째 ?에 값을 넣을것인가.
             stmt = conn.prepareStatement(sql);
@@ -50,7 +50,6 @@ public class Proj_ReadCheck {
                 dto.setProj_fk_dpart_num(rs.getInt("proj_fk_dpart_num"));
                 dto.setProj_fk_user_num(rs.getInt("proj_fk_user_num"));
                 dto.setProj_fk_comp_num(rs.getInt("proj_fk_comp_num"));
-                dto.setProj_fk_post_num(rs.getInt("proj_fk_post_num"));
             }
         }
             catch (Exception e) {

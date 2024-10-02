@@ -36,7 +36,6 @@ public class ProjCreateCmd implements Icommand{
 		dto.setProj_fk_user_num(Integer.parseInt(req.getParameter("proj_fk_user_num")));
 		dto.setProj_fk_dpart_num(Integer.parseInt(req.getParameter("proj_fk_dpart_num")));
 		dto.setProj_fk_comp_num(Integer.parseInt(req.getParameter("proj_fk_comp_num")));
-		dto.setProj_fk_post_num(Integer.parseInt(req.getParameter("proj_fk_post_num")));
 		
 		DBConnectionMgr pool =null;
 		Connection conn = null;
@@ -48,7 +47,7 @@ public class ProjCreateCmd implements Icommand{
 					
 			String sql = "INSERT INTO project(proj_name, proj_desc,"+
 					"proj_status, proj_members, Proj_import, proj_tag, proj_tagcol,"+
-					"proj_fk_user_num, proj_fk_dpart_num, proj_fk_comp_num, proj_fk_post_num) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+					"proj_fk_user_num, proj_fk_dpart_num, proj_fk_comp_num) VALUES(?,?,?,?,?,?,?,?,?,?)";
 			
 			//connection에 prepareStatement로 query
 			stmt = conn.prepareStatement(sql);
@@ -63,7 +62,6 @@ public class ProjCreateCmd implements Icommand{
 			stmt.setInt(8, dto.getProj_fk_user_num());
 			stmt.setInt(9, dto.getProj_fk_dpart_num());
 			stmt.setInt(10, dto.getProj_fk_comp_num());
-			stmt.setInt(11, dto.getProj_fk_post_num());
 			
 			stmt.executeUpdate(); //DML명령어 때 사용
 			

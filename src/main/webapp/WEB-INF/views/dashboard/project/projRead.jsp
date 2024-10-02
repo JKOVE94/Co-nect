@@ -44,7 +44,26 @@
                     <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/dashboard?fn=PROJ_UPDATE&proj_pk_num=${dto.proj_pk_num}'">수정</button>
                     <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/dashboard?fn=PROJ_DELETE&proj_pk_num=${dto.proj_pk_num}'" >삭제</button>
                       <a href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST" class="btn btn-secondary">리스트로 돌아가기</a>
+                      <div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="" id="favorite" 
+					  <c:if test="${dto.favoriteCheck == true}">
+					 	 checked
+					  </c:if>>
+					  <label class="form-check-label" for="favorite">
+					    즐겨찾기
+					  </label>
+					</div>
         </form>
     </div>
 </body>
+<script>
+	const favoriteToggle = document.getElementById('favorite');
+	favoriteToggle.addEventListener('click',() => {
+		if (favoriteToggle.checked){
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&proj_pk_num=${dto.proj_pk_num}&url=READ`;
+		} else {
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=${dto.proj_pk_num}&url=READ`;
+		}
+	})
+</script>
 </html>

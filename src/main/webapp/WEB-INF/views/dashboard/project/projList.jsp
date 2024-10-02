@@ -26,6 +26,7 @@
 					<th>종료일</th>
 					<th>우선순위</th>
 					<th>상태</th>
+					<th>즐겨찾기</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,6 +46,12 @@
 						<!-- proj_import -->
 						<td>${p.proj_status}</td>
 						<!-- proj_status -->
+						<td>
+							<input type="checkbox" id="favorite" class="favorite" value="${p.proj_pk_num }"
+							<c:if test="${p.favoriteCheck == true}">
+						 	 checked
+						  	</c:if>>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -59,4 +66,16 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+const favoriteToggle = document.querySelectorAll('#favorite');
+	for(let i=0; i<favoriteToggle.length; i++){
+	favoriteToggle[i].addEventListener('click',() => {
+		if (favoriteToggle[i].checked){
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&proj_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		} else {
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		}
+	})
+}
+</script>
 </html>

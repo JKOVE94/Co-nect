@@ -18,15 +18,8 @@ public class ProjectDTO {
 	private int proj_fk_dpart_num;
 	private int proj_fk_user_num;
 	private int proj_fk_comp_num;
-	private int proj_fk_post_num;
+	private boolean favoriteCheck;
 	
-	
-	public int getProj_fk_post_num() {
-		return proj_fk_post_num;
-	}
-	public void setProj_fk_post_num(int proj_fk_post_num) {
-		this.proj_fk_post_num = proj_fk_post_num;
-	}
 	public int getProj_pk_num() {
 		return proj_pk_num;
 	}
@@ -117,4 +110,11 @@ public class ProjectDTO {
 	public void setProj_fk_comp_num(int proj_fk_comp_num) {
 		this.proj_fk_comp_num = proj_fk_comp_num;
 	}
+	public boolean isFavoriteCheck() {
+		return favoriteCheck;
+	}
+	public void setFavoriteCheck(boolean favoriteCheck) {
+		this.favoriteCheck = favoriteCheck;
+	}
+	
 }

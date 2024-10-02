@@ -14,6 +14,7 @@
 -->
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,175 +273,6 @@
   <!-- End Navbar -->
 
   <div style="margin-top: -8px;"class="container-fluid py-4">
-    <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="card-header pb-0 d-flex justify-content-between align-items-center mb-3">
-            <div class="d-flex justify-content-center" style="padding-left: 45%;">
-              <h5 class="mb-0">프로젝트 테이블</h5>
-            </div>
-            <a href="<%=request.getContextPath()%>/prototype/Project.jsp">
-              <button
-                      id=""
-                      class="btn btn-outline-primary btn-sm"
-
-              >
-                더 보기
-              </button>
-            </a>
-          </div>
-          <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-              <table class="table align-items-center justify-content-center mb-0">
-                <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">예산</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">상태</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">진행도</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Spotify</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">working</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">60%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Invision</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">done</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">100%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Jira</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">canceled</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">30%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Slack</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$1,000</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">canceled</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">0%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="row mt-4">
       <div class="col-lg-7 mb-lg-0 mb-4">
@@ -448,160 +280,42 @@
 
         <div class="card" >
           <div class="card-header pb-0 p-3">
-            <div
-                    class="d-flex justify-content-between align-items-center mb-3"
-            >
-              <h6 class="mb-0 ms-4">게시판</h6>
-              <a href="<%=request.getContextPath()%>/prototype/tables.jsp">
-                <button style="margin-top: 0.5rem "
-                        id=""
-                        class="btn btn-outline-primary btnview  btn-sm"
-                >
-                  더 보기
-                </button>
-              </a>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0 ms-4">즐겨찾기 목록</h6>
             </div>
           </div>
 
           <div style="margin-left: 1rem; margin-top: -1rem;" class="card-body p-3">
             <ul style="margin-top: -1rem; margin-bottom: 1rem;" class="list-group">
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-notification-70 text-white opacity-10"
-                    ></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">공지사항</h6>
-                    <span class="text-xs">2024년 9월 회식 안내</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-10
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
+            <c:forEach items="${list}" var="list">
+              <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg" >
+	                <div class="d-flex align-items-center">
+	                  <div class="d-flex flex-column" style="margin-right:10px;">
+	                    ${list.number}
+	                  </div>
+	                  <div class="d-flex flex-column" style="width: 200px;" >
+	                  	 <c:if test="${list.type eq 'post'}">
+	                  		<a href="${pageContext.request.contextPath}/dashboard?fn=FREE_READ&post_num=${list.number}">${list.name}</a>
+	                  	 </c:if>
+		                 <c:if test="${list.type eq 'proj'}">
+		                  	<a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_READ&proj_pk_num=${list.number}">${list.name}</a>
+		                 </c:if>
+	                  </div>
+	                  <c:if test="${list.type eq 'post'}">
+	                  	<a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=${list.number}&url=FLIST">del</a>
+	                  </c:if>
+	                  <c:if test="${list.type eq 'proj'}">
+	                  	<a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=${list.number}&url=FLIST">del</a>
+	                  </c:if>
+	                  
+	                </div>
               </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-calendar-grid-58 text-white opacity-10"
-                    ></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">일정 공유</h6>
-                    <span class="text-xs">프로젝트 중간 발표 일정</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-08
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-single-copy-04 text-white opacity-10"
-                    ></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">회의록</h6>
-                    <span class="text-xs">9월 첫째 주 팀 미팅 회의록</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-05
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i class="ni ni-satisfied text-white opacity-10"></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">자유게시판</h6>
-                    <span class="text-xs">주말 등산 모임 안내</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-03
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
+           </c:forEach>
             </ul>
           </div>
         </div>
       </div>
       <!-- 게시판 끝 -->
-
-
-
-      <!-- 이번주 나의 업무 -->
-
-      <div class="col-lg-5">
-        <div style="height: 100%;" class="card">
-          <div class="card-header pb-0 p-3">
-            <div
-                    class="d-flex justify-content-between align-items-center mb-3"
-            >
-              <h6 class="mb-0 ms-4">이번 주 나의 업무</h6>
-              <a href="<%=request.getContextPath()%>/prototype/details.jsp">
-                <button
-
-                        class="btn btn-outline-primary btnview btn-sm"
-                >
-                  더 보기
-                </button>
-              </a>
-            </div>
-          </div>
-          <div style="margin-top: -1rem;" id="cardContent" class="card-body p-3">
-            <div class="table-responsive">
-              <table class="table align-items-center">
-                <tbody id="taskList">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 업무 -->
 
     </div>
 </main>
