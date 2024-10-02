@@ -294,20 +294,9 @@
 	                    ${list.number}
 	                  </div>
 	                  <div class="d-flex flex-column" style="width: 200px;" >
-	                  	 <c:if test="${list.type eq 'post'}">
-	                  		<a href="${pageContext.request.contextPath}/dashboard?fn=FREE_READ&post_num=${list.number}">${list.name}</a>
-	                  	 </c:if>
-		                 <c:if test="${list.type eq 'proj'}">
-		                  	<a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_READ&proj_pk_num=${list.number}">${list.name}</a>
-		                 </c:if>
+	                  	<a href="${pageContext.request.contextPath}/dashboard?fn=FREE_READ&post_num=${list.number}">${list.name}</a>
 	                  </div>
-	                  <c:if test="${list.type eq 'post'}">
-	                  	<a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=${list.number}&url=FLIST">del</a>
-	                  </c:if>
-	                  <c:if test="${list.type eq 'proj'}">
-	                  	<a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=${list.number}&url=FLIST">del</a>
-	                  </c:if>
-	                  
+	                  <a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=${list.number}&url=FLIST">del</a>
 	                </div>
               </li>
            </c:forEach>

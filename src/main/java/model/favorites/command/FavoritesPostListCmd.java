@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import db.dto.FavoritesDTO;
 import model.Icommand;
-import model.favorites.Favorites_List;
+import model.favorites.Favorites_PostList;
 import model.landing.AES;
 
-public class FavoritesListCmd implements Icommand{
+public class FavoritesPostListCmd implements Icommand{
 
 	@Override
 	public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,12 +25,13 @@ public class FavoritesListCmd implements Icommand{
 			sessionID = AES.Decode((String)session.getAttribute("sessionID"));
 		} catch (Exception e) { System.out.println("FavoritesListCmd" + e); }
 		
-		Favorites_List favor = new Favorites_List();
-		ArrayList list = favor.FavoritesList(Integer.parseInt(sessionID));
+		
+		Favorites_PostList favor = new Favorites_PostList();
+		ArrayList list = favor.FavoritesPostList(Integer.parseInt(sessionID));
 		
 		req.setAttribute("list", list);
 
-		return "/WEB-INF/views/favorites/favoriteslist.jsp";
+		return "/WEB-INF/views/favorites/favoritespostlist.jsp";
 	}
 
 }

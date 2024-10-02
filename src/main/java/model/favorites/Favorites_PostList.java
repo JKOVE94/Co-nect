@@ -10,9 +10,9 @@ import java.util.HashMap;
 import db.dbcp.DBConnectionMgr;
 import db.dto.FavoritesDTO;
 
-public class Favorites_List {
+public class Favorites_PostList {
 	
-	public ArrayList<FavoritesDTO> FavoritesList(int user_pk_num) {
+	public ArrayList<FavoritesDTO> FavoritesPostList(int user_pk_num) {
 		
 		DBConnectionMgr pool = null;
 		Connection conn = null;
@@ -25,10 +25,9 @@ public class Favorites_List {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
 			
-			String sql = "SELECT post_pk_num, post_name, proj_pk_num, proj_name FROM favorites"
-					+ "	LEFT JOIN post ON favor_fk_post_num = post_pk_num"
-					+ "	LEFT JOIN project ON favor_fk_proj_num = proj_pk_num"
-					+ "	WHERE favor_fk_user_num = ?";
+			String sql = " SELECT post_pk_num, post_name FROM (SELECT * FROM favorites"
+					+ " 	WHERE favor_fk_post_num IS NOT NULL AND favor_fk_user_num = ? ) AS favorites"
+					+ "		LEFT JOIN post ON favor_fk_post_num = post_pk_num";
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, user_pk_num);
@@ -39,16 +38,10 @@ public class Favorites_List {
 				
 				FavoritesDTO dto = new FavoritesDTO();
 				
-				if(rs.getString("post_pk_num")!= null) {
-					dto.setNumber(rs.getInt("post_pk_num"));
-					dto.setName(rs.getString("post_name"));
-					dto.setType("post");
-				} else if (rs.getString("proj_pk_num")!= null) {
-					dto.setNumber(rs.getInt("proj_pk_num"));
-					dto.setName(rs.getString("proj_name"));
-					dto.setType("proj");
-				}
-				
+				dto.setNumber(rs.getInt("post_pk_num"));
+				dto.setName(rs.getString("post_name"));
+				dto.setType("post");
+
 				list.add(dto);
 			}
 

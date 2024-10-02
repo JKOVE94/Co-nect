@@ -14,7 +14,8 @@ import model.dashboard.command.ProjDeleteCmd;
 import model.dashboard.command.ProjListCmd;
 import model.favorites.command.FavoritesCreateCmd;
 import model.favorites.command.FavoritesDeleteCmd;
-import model.favorites.command.FavoritesListCmd;
+import model.favorites.command.FavoritesPostListCmd;
+import model.favorites.command.FavoritesProjListCmd;
 
 public class FactoryFavor {
 	private FactoryFavor() {}
@@ -28,8 +29,10 @@ public class FactoryFavor {
 			return new FavoritesCreateCmd();
 		} else if (fn.equals("FAVOR_DEL")) {
 			return new FavoritesDeleteCmd();
-		} else if (fn.equals("FAVOR_LIST")) {
-			return new FavoritesListCmd();
+		} else if (fn.equals("FAVOR_POSTLIST")) {
+			return new FavoritesPostListCmd();
+		} else if (fn.equals("FAVOR_PROJLIST")) {
+			return new FavoritesProjListCmd();
 		}
 
 		return null;
