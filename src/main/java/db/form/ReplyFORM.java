@@ -1,11 +1,11 @@
-package db.dto;
+package db.form;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ReplyDTO {
+public class ReplyFORM {
 	private int reply_pk_num; //댓글 번호 [PK, INT]
 	private String reply_cont; //댓글 내용 {TEXT]
 	private int reply_fk_post_num; //게시글 번호 [FK, INT]

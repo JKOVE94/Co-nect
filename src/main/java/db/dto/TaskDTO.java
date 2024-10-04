@@ -1,119 +1,27 @@
 package db.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class TaskDTO {
-	private int task_pk_num;
-	private String task_title;
-	private String task_desc;
-	private Date task_startdate;
-	private Date task_deadline;
-	private Date task_enddate;
-	private int task_duration;
-	private int task_progress;
-	private String task_status;
-	private int task_priority;
-	private Date task_created;
-	private Date task_updated;
-	private int task_version;
-	private int task_fk_user_num;
-	private int task_fk_proj_num;
-	private int task_fk_task_num;
-	
-	public int getTask_pk_num() {
-		return task_pk_num;
-	}
-	public void setTask_pk_num(int task_pk_num) {
-		this.task_pk_num = task_pk_num;
-	}
-	public int getTask_fk_proj_num() {
-		return task_fk_proj_num;
-	}
-	public void setTask_fk_proj_num(int task_fk_proj_num) {
-		this.task_fk_proj_num = task_fk_proj_num;
-	}
-	public int getTask_fk_task_num() {
-		return task_fk_task_num;
-	}
-	public void setTask_fk_task_num(int task_fk_task_num) {
-		this.task_fk_task_num = task_fk_task_num;
-	}
-	public String getTask_title() {
-		return task_title;
-	}
-	public void setTask_title(String task_title) {
-		this.task_title = task_title;
-	}
-	public String getTask_desc() {
-		return task_desc;
-	}
-	public void setTask_desc(String task_desc) {
-		this.task_desc = task_desc;
-	}
-	public Date getTask_startdate() {
-		return task_startdate;
-	}
-	public void setTask_startdate(Date task_startdate) {
-		this.task_startdate = task_startdate;
-	}
-	public Date getTask_deadline() {
-		return task_deadline;
-	}
-	public void setTask_deadline(Date task_deadline) {
-		this.task_deadline = task_deadline;
-	}
-	public Date getTask_enddate() {
-		return task_enddate;
-	}
-	public void setTask_enddate(Date task_enddate) {
-		this.task_enddate = task_enddate;
-	}
-	public int getTask_duration() {
-		return task_duration;
-	}
-	public void setTask_duration(int task_duration) {
-		this.task_duration = task_duration;
-	}
-	public int getTask_progress() {
-		return task_progress;
-	}
-	public void setTask_progress(int task_progress) {
-		this.task_progress = task_progress;
-	}
-	public String getTask_status() {
-		return task_status;
-	}
-	public void setTask_status(String task_status) {
-		this.task_status = task_status;
-	}
-	public int getTask_priority() {
-		return task_priority;
-	}
-	public void setTask_priority(int task_priority) {
-		this.task_priority = task_priority;
-	}
-	public int getTask_fk_user_num() {
-		return task_fk_user_num;
-	}
-	public void setTask_fk_user_num(int task_fk_user_num) {
-		this.task_fk_user_num = task_fk_user_num;
-	}
-	public Date getTask_created() {
-		return task_created;
-	}
-	public void setTask_created(Date task_created) {
-		this.task_created = task_created;
-	}
-	public Date getTask_updated() {
-		return task_updated;
-	}
-	public void setTask_updated(Date task_updated) {
-		this.task_updated = task_updated;
-	}
-	public int getTask_version() {
-		return task_version;
-	}
-	public void setTask_version(int task_version) {
-		this.task_version = task_version;
-	}
+	private int task_pk_num; //업무 고유 식별자 [PK, INT, INCREMENT]
+	private String task_title; //업무 제목 [VARCHAR]
+	private String task_desc; //업무 설명 {TEXT]
+	private Date task_startdate; //업무 시작일 {DATETIME]
+	private Date task_deadline; //마감 기한일 [DATETIME]
+	private Date task_enddate; //업무 종료일 [DATETIME]
+	private int task_duration; //업무 기간 (일 단위) [INT]
+	private int task_progress; //진행률 (%) [INT]
+	private String task_status; //업무 상태 [VARCHAR] (예정, 진행중, 완료)
+	private int task_priority; //우선순위 [INT]
+	private Date task_created; //업무 생성 일시 [DATETIME]
+	private Date task_updated; //업무 정보 최종 수정 일시 [DATETIME]
+	private double task_version; //업무 버전 번호 [FLOAT]
+	private int task_fk_user_num; //담당자 사번 [FK, INT]
+	private int task_fk_proj_num; //연관된 프로젝트 번호 [FK, INT]
+	private int task_fk_task_num; //상위 업무 번호 [FK, INT]
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties resource="db/mybatis/db.properties" />
+    <typeAliases>
+        <typeAlias type="db.dto.AccountDTO" alias="accDto"/>
+        <typeAlias type="db.dto.CompanyDTO" alias="compDto"/>
+        <typeAlias type="db.dto.DepartmentDTO" alias="depDto"/>
+        <typeAlias type="db.dto.FavoritesDTO" alias="favorDto"/>
+        <typeAlias type="db.dto.FileDTO" alias="fileDto"/>
+        <typeAlias type="db.dto.JobDTO" alias="jobDto"/>
+        <typeAlias type="db.dto.PostDTO" alias="postDto"/>
+        <typeAlias type="db.dto.ProjectDTO" alias="projDto"/>
+        <typeAlias type="db.dto.ReplyDTO" alias="repDto"/>
+        <typeAlias type="db.dto.ReplyDTO" alias="repDto"/>
+        <typeAlias type="db.dto.TaskDTO" alias="taskDto"/>
+        <typeAlias type="db.dto.TodoDTO" alias="todoDto"/>
+        <typeAlias type="db.dto.UserDTO" alias="userDto"/>
+    </typeAliases>
+
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="db/mybatis/PostDataMapper.xml" />
+        <mapper resource="db/mybatis/ProjDataMapper.xml" />
+    </mappers>
+</configuration>

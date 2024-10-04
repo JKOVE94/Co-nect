@@ -1,4 +1,4 @@
-package db.dto;
+package db.form;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class UserDTO {
+public class UserFORM {
 
 	private int user_pk_num; //사용자 사번 [INT, PK]
 	private Date user_regdate; //입사일 [DATETIME]
