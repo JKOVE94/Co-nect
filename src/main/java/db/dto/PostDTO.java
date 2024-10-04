@@ -16,6 +16,8 @@ public class PostDTO {
 	private int post_fk_user_num;
 	private int post_depth;
 	private int post_view;
+	private boolean favoriteCheck; 
+	//즐겨찾기에 등록되어있는지 확인하기 위한 변수 추가
 
 	public int getPost_view() {
 		return post_view;
@@ -97,4 +99,10 @@ public class PostDTO {
     public void setPost_depth(int post_depth) {
         this.post_depth = post_depth;
     }
+	public boolean isFavoriteCheck() {
+		return favoriteCheck;
+	}
+	public void setFavoriteCheck(boolean favoriteCheck) {
+		this.favoriteCheck = favoriteCheck;
+	}
 }

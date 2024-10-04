@@ -22,7 +22,8 @@ public class Locked_userList {
 		try {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
-
+			
+			//계정이 잠긴 상태인 유저 출력하는 sql문
 			String sql = "SELECT * FROM user WHERE user_locked = 1";
 			stmt = conn.prepareStatement(sql);
 			

@@ -10,7 +10,7 @@ import db.dbcp.DBConnectionMgr;
 import db.dto.UserDTO;
 
 public class Admin_userList {
-	public ArrayList<UserDTO> userList(int user_fk_comp_num) throws Exception {
+	public ArrayList<UserDTO> userList(String sessionID) throws Exception {
 		DBConnectionMgr pool =null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -22,8 +22,17 @@ public class Admin_userList {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
 			
-			//데이터 불러오기
-			String sql = "SELECT * FROM user WHERE user_fk_comp_num = ?";
+			//로그인한 유저의 회사 넘버 확인
+			String sql = "SELECT user_fk_comp_num FROM user WHERE user_pk_num = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, Integer.parseInt(sessionID));
+			rs = stmt.executeQuery();
+			rs.next();
+			int user_fk_comp_num = rs.getInt("user_fk_comp_num");
+			
+			
+			//해당 회사의 직원 불러오기
+			sql = "SELECT * FROM user WHERE user_fk_comp_num = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, user_fk_comp_num); //사용자 회사 고유번호
 			

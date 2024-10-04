@@ -1,33 +1,33 @@
-package model.manage.command;
+package model.favorites.command;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import db.dto.FavoritesDTO;
 import model.Icommand;
-import model.manage.Admin_userList;
+import model.favorites.Favorites_PostList;
+import model.favorites.Favorites_ProjList;
 
-public class AdminUserListProcCmd implements Icommand {
+public class FavoritesProjListCmd implements Icommand{
 
 	@Override
 	public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList list = new ArrayList();
-		Admin_userList userList = new Admin_userList();
-		
 		HttpSession session = req.getSession();
-		String sessionID = (String)session.getAttribute("sessionID");
-		try {
-			list = userList.userList(sessionID);
-		} catch (Exception e) {
-			System.out.println("AdminUserListCmd :" +e);
-		}
 		
-		session.setAttribute("userList", list);
-		return "/WEB-INF/views/manage/userList/userListTest.jsp";
+		String sessionID = (String)session.getAttribute("sessionID");
+		
+		Favorites_ProjList favor = new Favorites_ProjList();
+		ArrayList list = favor.FavoritesProjList(Integer.parseInt(sessionID));
+		
+		req.setAttribute("list", list);
+
+		return "/WEB-INF/views/favorites/favoritesprojlist.jsp";
 	}
 
 }

@@ -1,5 +1,9 @@
 package model.manage;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 
 import db.dbcp.DBConnectionMgr;
 import db.dto.UserDTO;
@@ -20,15 +24,19 @@ public class Admin_userSet {
 			
 			//connection에 prepareStatement로 query
 			stmt = conn.prepareStatement(sql);
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String date = dateFormat.format(user.getUser_regdate());
+			java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 		
 			//몇번째 ?에 값을 넣을것인가.
 			stmt.setInt(1, user.getUser_pk_num()); //사번
-			stmt.setDate(2, (Date) user.getUser_regdate()); //입사일
-			stmt.setString(3, user.getUser_pw()); //패스워드ㅋ
+			stmt.setDate(2, sqlDate); //입사일
+			stmt.setString(3, user.getUser_pw()); //패스워드
 			stmt.setString(4, user.getUser_name()); //이름
 			stmt.setString(5, user.getUser_mail()); // 이메일
 			stmt.setString(6, user.getUser_pic()); //사진경로
-			stmt.setString(7, user.getUser_rank()); //사진경로
+			stmt.setString(7, user.getUser_rank()); //직급
 			stmt.setInt(8, user.getUser_fk_job_num()); //직무 번호
 			stmt.setInt(9, user.getUser_fk_dpart_num()); //부서 번호
 			stmt.setInt(10, user.getUser_fk_acc_authornum()); //직원 계정권한 번호

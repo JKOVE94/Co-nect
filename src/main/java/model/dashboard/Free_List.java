@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 import db.dbcp.DBConnectionMgr;
 import db.dto.PostDTO;
+import model.favorites.Favorites_Check;
 
 public class Free_List {
 
-	public ArrayList<PostDTO> getPost() {
+	public ArrayList<PostDTO> getPost(String sessionID) {
         DBConnectionMgr pool =null;
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -19,11 +20,14 @@ public class Free_List {
         try {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
+            
+            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 SQL문
+            String sql ="SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM post "
+            		+ "LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ?) AS favor "
+            		+ "ON post.post_pk_num = favor.favor_fk_post_num;";
 
-            String sql = "SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view FROM post";
-
-            //몇번째 ?에 값을 넣을것인가.
             stmt = conn.prepareStatement(sql);
+            stmt.setString(1, sessionID); //로그인한 사용자 사번 전달
             rs = stmt.executeQuery();
             
             while (rs.next()) {
@@ -33,11 +37,18 @@ public class Free_List {
                 dto.setPost_fk_user_num(rs.getInt("post_fk_user_num"));
                 dto.setPost_regdate(rs.getDate("post_regdate"));
                 dto.setPost_view(rs.getInt("post_view"));
+                
+               	if(rs.getString("favor_fk_post_num") != null) { 
+               		//값이 null이 아니라면, 즐겨찾기 저장된 항목이므로 true
+               		dto.setFavoriteCheck(true);
+               	} else {
+               		dto.setFavoriteCheck(false);
+               	}
             	list.add(dto);
             }
         }
             catch (Exception e) {
-            System.out.println("setUser : "+e);
+            System.out.println("getPost : "+e);
 
         } finally {
             if (conn != null) {

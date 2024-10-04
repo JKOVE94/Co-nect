@@ -45,7 +45,6 @@ public class getAllProj {
                     dto.setProj_fk_dpart_num(rs.getInt("proj_fk_dpart_num"));
                     dto.setProj_fk_user_num(rs.getInt("proj_fk_user_num"));
                     dto.setProj_fk_comp_num(rs.getInt("proj_fk_comp_num"));
-                    dto.setProj_fk_post_num(rs.getInt("proj_fk_post_num"));
 
                     map.put(proj_pk_num,dto);
                 }
