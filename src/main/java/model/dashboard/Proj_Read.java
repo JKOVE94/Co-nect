@@ -1,7 +1,6 @@
 package model.dashboard;
 
 import db.dbcp.DBConnectionMgr;
-import db.dto.PostDTO;
 import db.dto.ProjectDTO;
 
 import java.sql.Connection;
@@ -46,7 +45,7 @@ public class Proj_Read {
 				post.setProj_fk_dpart_num(rs.getInt("proj_fk_dpart_num"));
 				post.setProj_fk_user_num(rs.getInt("proj_fk_user_num"));
 				post.setProj_fk_comp_num(rs.getInt("proj_fk_comp_num"));
-				post.setProj_fk_post_num(rs.getInt("proj_fk_post_num"));
+				post.setProj_icon(rs.getString("proj_icon"));
 			}
 		} catch (Exception e) {
 			System.out.println("getProjById error: " + e);

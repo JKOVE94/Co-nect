@@ -1,15 +1,14 @@
 package model.manage.command;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import db.dto.UserDTO;
+import model.Icommand;
+import model.manage.Locked_unlock;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import db.dto.UserDTO;
-import model.Icommand;
-import model.manage.Locked_unlock;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class AdminLockUserProcCmd implements Icommand {
 

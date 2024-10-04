@@ -1,16 +1,12 @@
 package model.dashboard.command;
 
+import db.dto.ProjectDTO;
 import model.Icommand;
-import model.dashboard.Free_Update;
 import model.dashboard.Proj_Update;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import db.dto.PostDTO;
-import db.dto.ProjectDTO;
-
 import java.io.IOException;
 
 public class ProjUpdateCmd implements Icommand {

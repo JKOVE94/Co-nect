@@ -1,15 +1,14 @@
 package model.manage.command;
 
-import java.io.IOException;
+import db.dto.UserDTO;
+import model.Icommand;
+import model.manage.Admin_userInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import db.dto.UserDTO;
-import model.Icommand;
-import model.manage.Admin_userInfo;
+import java.io.IOException;
 
 public class AdminUserInfoProcCmd implements Icommand{
 

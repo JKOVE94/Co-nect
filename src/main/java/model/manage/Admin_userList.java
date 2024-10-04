@@ -1,13 +1,12 @@
 package model.manage;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.UserDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.UserDTO;
 
 public class Admin_userList {
 	public ArrayList<UserDTO> userList(int user_fk_comp_num) throws Exception {

@@ -1,12 +1,12 @@
 package model.dashboard;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.PostDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.PostDTO;
 
 public class Free_List {
 

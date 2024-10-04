@@ -1,15 +1,14 @@
 package model.dashboard.command;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import db.dto.PostDTO;
 import model.Icommand;
 import model.dashboard.Free_Read;
 import model.dashboard.Free_ReadCheck;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class FreeReadCmd implements Icommand {
 

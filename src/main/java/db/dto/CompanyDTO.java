@@ -1,26 +1,12 @@
 package db.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class CompanyDTO {
-	private int comp_pk_num;
-	private String comp_name;
-	private String comp_pic;
-	
-	public String getComp_pic() {
-		return comp_pic;
-	}
-	public void setComp_pic(String comp_pic) {
-		this.comp_pic = comp_pic;
-	}
-	public int getComp_pk_num() {
-		return comp_pk_num;
-	}
-	public void setComp_pk_num(int comp_pk_num) {
-		this.comp_pk_num = comp_pk_num;
-	}
-	public String getComp_name() {
-		return comp_name;
-	}
-	public void setComp_name(String comp_name) {
-		this.comp_name = comp_name;
-	}
+	private int comp_pk_num; //회사 고유번호 [PK, INT]
+	private String comp_name; //회사 명 [VARCHAR]
+	private String comp_pic; //회사 로고사진 경로 [VARCHAR] ( 0_asset/emp_pic)
 }

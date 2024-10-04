@@ -1,33 +1,13 @@
 package db.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ReplyDTO {
-	private int reply_pk_num;
-	private String reply_cont;
-	private int reply_fk_post_num;
-	private int reply_fk_user_num;
-	
-	public int getReply_pk_num() {
-		return reply_pk_num;
-	}
-	public void setReply_pk_num(int reply_pk_num) {
-		this.reply_pk_num = reply_pk_num;
-	}
-	public String getReply_cont() {
-		return reply_cont;
-	}
-	public void setReply_cont(String reply_cont) {
-		this.reply_cont = reply_cont;
-	}
-	public int getReply_fk_post_num() {
-		return reply_fk_post_num;
-	}
-	public void setReply_fk_post_num(int reply_fk_post_num) {
-		this.reply_fk_post_num = reply_fk_post_num;
-	}
-	public int getReply_fk_user_num() {
-		return reply_fk_user_num;
-	}
-	public void setReply_fk_user_num(int reply_fk_user_num) {
-		this.reply_fk_user_num = reply_fk_user_num;
-	}
+	private int reply_pk_num; //댓글 번호 [PK, INT]
+	private String reply_cont; //댓글 내용 {TEXT]
+	private int reply_fk_post_num; //게시글 번호 [FK, INT]
+	private int reply_fk_user_num; //댓글 작성자 사번 [FK, INT]
 }

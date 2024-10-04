@@ -1,16 +1,16 @@
 package model.dashboard.command;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.PostDTO;
+import model.Icommand;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.PostDTO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import model.Icommand;
-import javax.servlet.ServletException;
 
 public class FreeCreateCmd implements Icommand{
 

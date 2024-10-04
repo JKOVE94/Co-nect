@@ -1,81 +1,26 @@
 package db.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class UserDTO {
 
-	private int user_pk_num;
-	private Date user_regdate;
-	private String user_name;
-	private String user_mail;
-	private String user_pw;
-	private String user_pic;
-	private String user_rank;
-	private Date user_lastlogin;
-	private int user_fk_job_num;
-	private int user_fk_dpart_num;
-	private int user_fk_acc_authornum;
-	private int user_fk_comp_num;
-	private int user_trynum;
-	private int user_locked;
-	
-	
-	public int getUser_locked() {
-		return user_locked;
-	}
-	public void setUser_locked(int user_locked) {
-		this.user_locked = user_locked;
-	}
-	public int getUser_trynum() {
-		return user_trynum;
-	}
-	public void setUser_trynum(int user_trynum) {
-		this.user_trynum = user_trynum;
-	}
-	public String getUser_pw() {
-		return user_pw;
-	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
-	}
-	public Date getUser_lastlogin() {
-		return user_lastlogin;
-	}
-    public void setUser_lastlogin(Date user_lastlogin) {
-		this.user_lastlogin = user_lastlogin;
-	}
-	public int getUser_fk_comp_num() {return user_fk_comp_num;}
-	public void setUser_fk_comp_num(int user_fk_acc_comp_num) {this.user_fk_comp_num = user_fk_acc_comp_num;}
-	public int getUser_pk_num() {return user_pk_num;}
-	public void setUser_pk_num(int user_pk_num) {this.user_pk_num = user_pk_num;}
-	public Date getUser_regdate() {return user_regdate;}
-	public void setUser_regdate(Date user_regdate) {this.user_regdate = user_regdate;}
-	public String getUser_name() {return user_name;}
-	public void setUser_name(String user_name) {this.user_name = user_name;}
-	public String getUser_mail() {return user_mail;}
-	public void setUser_mail(String user_mail) {this.user_mail = user_mail;}
-	public String getUser_pic() {return user_pic;}
-	public void setUser_pic(String user_pic) {this.user_pic = user_pic;}
-	public String getUser_rank() {return user_rank;}
-	public void setUser_rank(String user_rank) {
-		this.user_rank = user_rank;
-	}
-	public int getUser_fk_job_num() {
-		return user_fk_job_num;
-	}
-	public void setUser_fk_job_num(int user_fk_job_num) {
-		this.user_fk_job_num = user_fk_job_num;
-	}
-	public int getUser_fk_dpart_num() {
-		return user_fk_dpart_num;
-	}
-	public void setUser_fk_dpart_num(int user_fk_dpart_num) {
-		this.user_fk_dpart_num = user_fk_dpart_num;
-	}
-	public int getUser_fk_acc_authornum() {
-		return user_fk_acc_authornum;
-	}
-	public void setUser_fk_acc_authornum(int user_fk_acc_authornum){
-			this.user_fk_acc_authornum = user_fk_acc_authornum;
-		}
+	private int user_pk_num; //사용자 사번 [INT, PK]
+	private Date user_regdate; //입사일 [DATETIME]
+	private String user_pw; //사용자 패스워드 [VARCHAR, NN]
+	private String user_name; //사용자 이름 [VARCHAR]
+	private String user_mail; //사용자 이메일 [VARCHAR]
+	private String user_pic; //사용자 사진 경로 [VARCHAR] (상대경로 사용 0_asset/emp_pic)
+	private String user_rank; //사용자 직급 [VARCHAR]
+	private Date user_lastlogin; //사용자 마지막 로그인 일시 [DATETIME]
+	private int user_trynum; //사용자 로그인 시도 횟수 [INT] (로그인 실패 시 증가)
+	private int user_locked; //사용자 계정 잠김 여부 [TINYINT] (false 0, true 1)
+	private int user_fk_job_num; //사용자 직무 번호 [FK, INT]
+	private int user_fk_dpart_num; //사용자 부서번호 [FK, INT]
+	private int user_fk_acc_authornum; //사용자 계정 권한 번호 [FK, INT]
+	private int user_fk_comp_num; //사용자 회사 고유번호 [FK, INT] (랜딩 페이지에서 입력한 회사 번호가 모든 페이지에서 따라다닐수 있게 input type=hidden으로 설정, 관리자가 설정시에 해당 데이터는 자동 전송)
 }

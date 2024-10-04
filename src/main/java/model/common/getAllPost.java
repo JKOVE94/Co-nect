@@ -45,7 +45,7 @@ public class getAllPost {
                 }
             }
             catch (Exception e) {
-                System.out.println("setUser : "+e);
+                System.out.println("getAllPost : "+e);
 
             } finally {
                 if (conn != null) {

@@ -1,38 +1,34 @@
 package model.dashboard;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
 import db.dbcp.DBConnectionMgr;
 import db.dto.ProjectDTO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class Proj_ReadCheck {
-	public ProjectDTO projDtoReturn(String proj_num){
-		int proj_pk_num = Integer.parseInt(proj_num);
-	    ProjectDTO dto = null;
-	    
-	    DBConnectionMgr pool =null;
+    public ProjectDTO projDtoReturn(String proj_num){
+        int proj_pk_num = Integer.parseInt(proj_num);
+        ProjectDTO dto = null;
+
+        DBConnectionMgr pool =null;
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
-
             String sql = "SELECT proj_pk_num, proj_name, proj_desc,  proj_startdate, proj_enddate, proj_status, proj_members, proj_created,proj_updated, proj_import, proj_tag, proj_tagcol, proj_fk_dpart_num, proj_fk_user_num, proj_fk_comp_num, proj_fk_post_num  FROM project WHERE proj_pk_num=?";
 
             //몇번째 ?에 값을 넣을것인가.
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, proj_pk_num);
             rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
-            	dto = new ProjectDTO();
+                dto = new ProjectDTO();
                 dto.setProj_pk_num(rs.getInt("proj_pk_num"));
                 dto.setProj_name(rs.getString("proj_name"));
                 dto.setProj_desc(rs.getString("proj_name"));
@@ -50,19 +46,18 @@ public class Proj_ReadCheck {
                 dto.setProj_fk_dpart_num(rs.getInt("proj_fk_dpart_num"));
                 dto.setProj_fk_user_num(rs.getInt("proj_fk_user_num"));
                 dto.setProj_fk_comp_num(rs.getInt("proj_fk_comp_num"));
-                dto.setProj_fk_post_num(rs.getInt("proj_fk_post_num"));
             }
         }
-            catch (Exception e) {
-            	System.out.println("Proj_ReadCheck : "+e);
+        catch (Exception e) {
+            System.out.println("Proj_ReadCheck : "+e);
         } finally {
             if (conn != null) {
                 pool.freeConnection(conn,stmt);
             }
         }
-	    return dto;
-	}
-	  
+        return dto;
+    }
+
 }
 
 

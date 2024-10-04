@@ -128,7 +128,7 @@
             <div class="collapse" id="project-collapse">
               <ul>
                 <li style="list-style: none; text-align: center;">
-                  <a class="nav-link" href="details.jsp">
+                  <a class="nav-link" href="../WEB-INF/views/dashboard/project/projRead.jsp">
                     프로젝트 일정    
                   </a>
                 </li>

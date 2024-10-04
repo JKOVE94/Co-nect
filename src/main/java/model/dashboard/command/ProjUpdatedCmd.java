@@ -1,14 +1,12 @@
 package model.dashboard.command;
 
+import db.dto.ProjectDTO;
 import model.Icommand;
 import model.dashboard.Proj_Update;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import db.dto.ProjectDTO;
-
 import java.io.IOException;
 
 public class ProjUpdatedCmd implements Icommand {
@@ -32,6 +30,6 @@ public class ProjUpdatedCmd implements Icommand {
 
 		req.getSession().setAttribute("dto",proju);
 
-    	return "/WEB-INF/views/dashboard/project/projRead.jsp?proj_pk_num=" + proj;
+    	return "/WEB-INF/views/dashboard/project/projRead1.jsp?proj_pk_num=" + proj;
     }
 }

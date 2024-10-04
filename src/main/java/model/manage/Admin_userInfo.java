@@ -1,12 +1,12 @@
 package model.manage;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.UserDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.UserDTO;
 
 public class Admin_userInfo {
 	public UserDTO userInfo(int user_pk_num) throws Exception {

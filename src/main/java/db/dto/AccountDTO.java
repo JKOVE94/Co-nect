@@ -1,19 +1,11 @@
 package db.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class AccountDTO {
-	private int acc_pk_authornum;
-	private String acc_author;
-	
-	public int getAcc_pk_authornum() {
-		return acc_pk_authornum;
-	}
-	public void setAcc_pk_authornum(int acc_pk_authornum) {
-		this.acc_pk_authornum = acc_pk_authornum;
-	}
-	public String getAcc_author() {
-		return acc_author;
-	}
-	public void setAcc_author(String acc_author) {
-		this.acc_author = acc_author;
-	}
+	private int acc_pk_authornum; //계정 권한 고유번호 [PK, INT] (1, 2, 3)
+	private String acc_author; //계정 권한 [VARCHAR] (일반사용자, 매니저, 관리자)
 }

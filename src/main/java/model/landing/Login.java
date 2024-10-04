@@ -1,13 +1,12 @@
 package model.landing;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.UserDTO;
+
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.servlet.http.HttpServletRequest;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.UserDTO;
 
 public class Login {
     private DBConnectionMgr pool;

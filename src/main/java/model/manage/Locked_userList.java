@@ -1,14 +1,12 @@
 package model.manage;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.UserDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.UserDTO;
 
 public class Locked_userList {
 	public ArrayList<UserDTO> userList() throws Exception {

@@ -1,12 +1,12 @@
 package model.dashboard;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.ProjectDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.ProjectDTO;
 
 public class Proj_List {
 
@@ -20,7 +20,7 @@ public class Proj_List {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
 
-            String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status FROM project";
+            String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, proj_icon, proj_tagcol FROM project";
 
             //몇번째 ?에 값을 넣을것인가.
             stmt = conn.prepareStatement(sql);
@@ -35,6 +35,8 @@ public class Proj_List {
                 dto.setProj_enddate(rs.getDate("proj_enddate"));
                 dto.setProj_import(rs.getString("proj_import"));
                 dto.setProj_status(rs.getString("proj_status"));
+                dto.setProj_icon(rs.getString("proj_icon"));
+                dto.setProj_tagcol(rs.getString("proj_tagcol"));
             	list.add(dto);
             }
         }
