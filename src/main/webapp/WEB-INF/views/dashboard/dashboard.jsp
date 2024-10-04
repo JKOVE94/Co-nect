@@ -190,8 +190,13 @@
         <div class="collapse" id="works-collapse">
           <ul>
             <li style="list-style: none; text-align: center;">
-              <a class="nav-link">
+              <a class="nav-link" href="${pageContext.request.contextPath}/dashboard?fn=">
                 일정 관리
+              </a>
+            </li>
+            <li style="list-style: none; text-align: center;">
+              <a class="nav-link" href="${pageContext.request.contextPath}/calendar">
+                캘린더
               </a>
             </li>
           </ul>
