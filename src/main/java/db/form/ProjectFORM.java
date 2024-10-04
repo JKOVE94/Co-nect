@@ -1,4 +1,4 @@
-package db.dto;
+package db.form;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class ProjectDTO {
+public class ProjectFORM {
 	private int proj_pk_num; //프로젝트 번호 [PK, INT]
 	private String proj_name; //프로젝트 이름 [VARCHAR]
 	private String proj_desc; //프로젝트 설명 [TEXT]

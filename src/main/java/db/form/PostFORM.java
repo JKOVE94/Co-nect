@@ -1,4 +1,4 @@
-package db.dto;
+package db.form;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class PostDTO {
+public class PostFORM {
 	private int post_pk_num; //게시글 번호 [PK, INT, INCREMENT]
 	private int post_kind; //게시글 유형 [INT]
 	private String post_targetnum; //게시글 대상 사원번호 [VARCHAR] => String으로 작성 이후 데이터사용은 String tokenizer 사용
@@ -22,5 +22,4 @@ public class PostDTO {
 	private int post_fk_comp_num; //게시글 회사 고유번호 [FK, INT]
 	private int post_fk_post_num; //게시글 답글 기준 게시글 번호 [FK, INT]
 	private int post_fk_user_num; //게시글 작성자 사번 [FK, INT]
-
 }
