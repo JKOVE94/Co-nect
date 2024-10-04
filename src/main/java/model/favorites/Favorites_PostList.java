@@ -25,6 +25,7 @@ public class Favorites_PostList {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
 			
+			//현재 로그인한 유저가 즐겨찾기한 자유게시글의 num과 name을 불러오는 sql문
 			String sql = " SELECT post_pk_num, post_name FROM (SELECT * FROM favorites"
 					+ " 	WHERE favor_fk_post_num IS NOT NULL AND favor_fk_user_num = ? ) AS favorites"
 					+ "		LEFT JOIN post ON favor_fk_post_num = post_pk_num";
@@ -34,7 +35,6 @@ public class Favorites_PostList {
 			
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				PreparedStatement stmt2 = null;
 				
 				FavoritesDTO dto = new FavoritesDTO();
 				

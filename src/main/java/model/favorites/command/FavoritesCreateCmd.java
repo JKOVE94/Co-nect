@@ -10,26 +10,23 @@ import javax.servlet.jsp.PageContext;
 
 import model.Icommand;
 import model.favorites.Favorites_Create;
-import model.landing.AES;
 
 public class FavoritesCreateCmd implements Icommand{
 
 	@Override
 	public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//post_num
 		String post_pk_num = req.getParameter("post_pk_num");
 		String proj_pk_num = req.getParameter("proj_pk_num");
 		String url = req.getParameter("url");
 				
 		HttpSession session = req.getSession();
-		String sessionID = null;
-		try { sessionID = (String)AES.Decode((String) session.getAttribute("sessionID")); } 
-		catch (Exception e) { System.out.println("FavoritesCreateCmd"+e); }
+		String sessionID = (String) session.getAttribute("sessionID");
 		
 		Favorites_Create favor = new Favorites_Create();
-		
 		favor.FavoritesCreate(Integer.parseInt(sessionID), post_pk_num, proj_pk_num);
-		
+	
 		if(post_pk_num != null && url.equals("LIST")) {
 			return "/dashboard?fn=FREE_LIST";
 		} else if(post_pk_num != null && url.equals("READ")) {

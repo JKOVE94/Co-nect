@@ -23,16 +23,20 @@ import org.json.JSONObject;
 
 import db.dbcp.DBConnectionMgr;
 
-import model.landing.AES;
-
 @WebServlet("/calendar")
 public class CalendarServlet extends HttpServlet{
+	
+	//get방식 요청이 오면 페이지 이동
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/views/business/calendar.jsp");
 		view.forward(req, resp);
 	}
 	
+	//작업중
+	//post방식 요청이 오면 DB작업
+	//fn = GET : DB에서 데이터를 꺼내와 JSON 형태로 전달
+	//fn = SET : DB에 데이터 추가 (todo)
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -52,7 +56,7 @@ public class CalendarServlet extends HttpServlet{
 			String sql = "SELECT * FROM project WHERE proj_members REGEXP ?";
 			
 			try {
-				String sessionID = AES.Decode((String)session.getAttribute("sessionID"));
+				String sessionID = (String)session.getAttribute("sessionID");
 				
 				pool  = DBConnectionMgr.getInstance();
 				conn = pool.getConnection();
@@ -116,7 +120,7 @@ public class CalendarServlet extends HttpServlet{
 			
 			try {
 				
-				String sessionID = AES.Decode((String)session.getAttribute("sessionID"));
+				String sessionID = (String)session.getAttribute("sessionID");
 				
 				pool  = DBConnectionMgr.getInstance();
 				conn = pool.getConnection();

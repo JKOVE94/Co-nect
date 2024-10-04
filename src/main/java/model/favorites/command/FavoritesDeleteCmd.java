@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import model.Icommand;
 import model.favorites.Favorites_Del;
-import model.landing.AES;
 
 public class FavoritesDeleteCmd implements Icommand{
 
@@ -21,13 +20,9 @@ public class FavoritesDeleteCmd implements Icommand{
 		String url = req.getParameter("url");
 		
 		HttpSession session = req.getSession();
-		String sessionID = null;
-		try {
-			sessionID = AES.Decode((String) session.getAttribute("sessionID"));
-		} catch (Exception e) { System.out.println("FavoritesDeleteCmd"+e); }
+		String sessionID = (String) session.getAttribute("sessionID");
 		
 		Favorites_Del favor = new Favorites_Del();
-		
 		favor.FavoritesDel(Integer.parseInt(sessionID), post_pk_num, proj_pk_num);
 		
 		if(post_pk_num != null && url.equals("LIST")) {

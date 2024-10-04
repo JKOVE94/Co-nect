@@ -17,6 +17,7 @@ public class AdminLockUserCmd implements Icommand {
 
 		Locked_userList user = new Locked_userList();
 		ArrayList userList = null;
+		
 		try {
 			userList = user.userList();
 		} catch (Exception e) {

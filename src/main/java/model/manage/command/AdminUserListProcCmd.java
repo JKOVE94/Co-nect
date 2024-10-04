@@ -18,12 +18,13 @@ public class AdminUserListProcCmd implements Icommand {
 		ArrayList list = new ArrayList();
 		Admin_userList userList = new Admin_userList();
 		
+		HttpSession session = req.getSession();
+		String sessionID = (String)session.getAttribute("sessionID");
 		try {
-			list = userList.userList(1);
+			list = userList.userList(sessionID);
 		} catch (Exception e) {
 			System.out.println("AdminUserListCmd :" +e);
 		}
-		HttpSession session = req.getSession();
 		
 		session.setAttribute("userList", list);
 		return "/WEB-INF/views/manage/userList/userListTest.jsp";

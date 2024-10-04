@@ -21,7 +21,7 @@ public class Free_List {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
             
-            //전체 글 목록과 로그인한 사용자가 즐겨찾기에 등록했는지 확인하는 SQL문
+            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 SQL문
             String sql ="SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM post "
             		+ "LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ?) AS favor "
             		+ "ON post.post_pk_num = favor.favor_fk_post_num;";

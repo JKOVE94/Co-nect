@@ -1,6 +1,7 @@
 package model.manage;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import db.dbcp.DBConnectionMgr;
 import db.dto.UserDTO;
@@ -20,11 +21,15 @@ public class Admin_userUpdate {
 					+ "user_fk_acc_authornum=? WHERE user_pk_num = ?";
 			stmt = conn.prepareStatement(sql);
 			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String date = dateFormat.format(user.getUser_regdate());
+			java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+			
 			stmt.setString(1, user.getUser_pw()); //pw
 			stmt.setString(2, user.getUser_name()); //name
 			stmt.setString(3, user.getUser_mail()); //mail
 			stmt.setString(4, user.getUser_pic()); //사진경로
-			stmt.setDate(5, (Date)user.getUser_regdate()); //가입일자
+			stmt.setDate(5, sqlDate); //가입일자
 			stmt.setString(6, user.getUser_rank()); //직급
 			stmt.setInt(7, user.getUser_fk_job_num()); //사용자 직무 번호
 			stmt.setInt(8, user.getUser_fk_dpart_num()); //사용자 부서 번호

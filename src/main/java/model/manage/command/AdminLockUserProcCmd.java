@@ -15,11 +15,13 @@ public class AdminLockUserProcCmd implements Icommand {
 
 	@Override
 	public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		ArrayList<UserDTO> list = new ArrayList<UserDTO>(); 
 		String [] userPkNum = req.getParameterValues("user_pk_num");
 		String [] userLocked = req.getParameterValues("user_locked");
 		
 		for(int i=0; i<userPkNum.length; i++) {
+			//유저와 잠김상태(잠금 or 해제)를 dto에 저장
 			UserDTO user = new UserDTO();
 			user.setUser_pk_num(Integer.parseInt(userPkNum[i]));
 			user.setUser_locked(Integer.parseInt(userLocked[i]));

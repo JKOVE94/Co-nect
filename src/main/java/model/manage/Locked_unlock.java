@@ -22,6 +22,7 @@ public class Locked_unlock {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
 			
+			//전달받은 유저 수 & 잠긴 상태 만큼 sql문 돌리기
 			for(int i=0; i<list.size(); i++) {
 				UserDTO user = (UserDTO) list.get(i);
 				

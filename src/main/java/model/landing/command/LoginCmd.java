@@ -1,7 +1,6 @@
 package model.landing.command;
 
 import model.Icommand;
-import model.landing.AES;
 import model.landing.Login;
 
 import javax.servlet.ServletException;
@@ -20,14 +19,13 @@ public class LoginCmd implements Icommand {
 
         HttpSession session = req.getSession(true); 
     	String user_pk_num = req.getParameter("user_pk_num");
-    	String sessionID = null;
     	
         try {
             message = dao.LoginMessage(req);
             
-            //user_pk_num을 암호화하여 session에 저장합니다(즐겨찾기 관련 코드)
-            sessionID = AES.Encode(user_pk_num);
-			session.setAttribute("sessionID", sessionID);
+            //유저별로 즐겨찾기 목록이 다르기 때문에
+            //user_pk_num을 sessionID에 저장하여 전달합니다.
+			session.setAttribute("sessionID", user_pk_num);
 			
         } catch (Exception e) {
             e.printStackTrace();

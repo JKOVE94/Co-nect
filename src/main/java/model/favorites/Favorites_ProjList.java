@@ -25,6 +25,7 @@ public class Favorites_ProjList {
 			pool = DBConnectionMgr.getInstance();
 			conn = pool.getConnection();
 			
+			//현재 로그인한 유저가 즐겨찾기한 프로젝트게시글의 num과 name을 불러오는 sql문
 			String sql = " SELECT proj_pk_num, proj_name FROM (SELECT * FROM favorites"
 					+ " 	WHERE favor_fk_proj_num IS NOT NULL AND favor_fk_user_num = ? ) AS favorites"
 					+ "		LEFT JOIN project ON favor_fk_proj_num = proj_pk_num";
@@ -34,8 +35,6 @@ public class Favorites_ProjList {
 			
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				PreparedStatement stmt2 = null;
-				
 				FavoritesDTO dto = new FavoritesDTO();
 				
 				dto.setNumber(rs.getInt("proj_pk_num"));

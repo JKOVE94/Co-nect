@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import db.dbcp.DBConnectionMgr;
 
 public class Favorites_Check {
+	
+	//로그인한 유저의 즐겨찾기에 등록된 자유게시글인지 확인
 	public Boolean FavoritesPostCheck(String ID, int post_num) {
 		DBConnectionMgr pool = null;
 		Connection conn = null;
@@ -36,6 +38,7 @@ public class Favorites_Check {
 		
 	}
 	
+	//로그인한 유저의 즐겨찾기에 등록된 프로젝트인지 확인
 	public Boolean FavoritesProjCheck(String ID, int proj_num) {
 		DBConnectionMgr pool = null;
 		Connection conn = null;

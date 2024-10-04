@@ -13,7 +13,6 @@ import db.dto.FavoritesDTO;
 import model.Icommand;
 import model.favorites.Favorites_PostList;
 import model.favorites.Favorites_ProjList;
-import model.landing.AES;
 
 public class FavoritesProjListCmd implements Icommand{
 
@@ -21,11 +20,7 @@ public class FavoritesProjListCmd implements Icommand{
 	public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		String sessionID = null;
-		try {
-			sessionID = AES.Decode((String)session.getAttribute("sessionID"));
-		} catch (Exception e) { System.out.println("FavoritesListCmd" + e); }
-		
+		String sessionID = (String)session.getAttribute("sessionID");
 		
 		Favorites_ProjList favor = new Favorites_ProjList();
 		ArrayList list = favor.FavoritesProjList(Integer.parseInt(sessionID));

@@ -20,7 +20,7 @@ public class Proj_List {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
 
-            //전체 글 목록과 로그인한 사용자가 즐겨찾기에 등록했는지 확인하는 SQL문
+            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 SQL문
             String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num FROM project"
             		+ " LEFT OUTER JOIN (SELECT favor_fk_proj_num FROM favorites WHERE favor_fk_user_num = ?) AS favor"
             		+ "	ON project.proj_pk_num = favor.favor_fk_proj_num;";
@@ -41,6 +41,7 @@ public class Proj_List {
                 dto.setProj_status(rs.getString("proj_status"));
                 
                 if(rs.getString("favor_fk_proj_num")!=null) {
+                	//값이 null이 아니라면, 즐겨찾기 저장된 항목이므로 true
                 	dto.setFavoriteCheck(true);
                 } else {
                 	dto.setFavoriteCheck(false);
