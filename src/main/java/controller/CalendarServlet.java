@@ -136,11 +136,6 @@ public class CalendarServlet extends HttpServlet{
 			} catch (Exception e) { System.out.println("CalendarServlet"+e);}
 			
 			
-			
-			
-		
-			
-			
 		}
 		
 		
