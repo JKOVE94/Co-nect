@@ -43,6 +43,7 @@
           src="https://kit.fontawesome.com/42d5adcbca.js"
           crossorigin="anonymous"
   ></script>
+  <script class="cssdesk" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js" type="text/javascript"></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -52,14 +53,16 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
-		  footerToolbar:{
-			center:'addEventButton'
+		  headerToolbar:{
+			start : 'today prev,next',
+			center : 'title',
+			end :'addEventButton'
 		  },
 		  eventSources : [{
 				events : function(info, successCallback, failureCallback){
 					$.ajax({
 							url : '${pageContext.request.contextPath}/calendar?fn=GET',
-							type : 'POST',
+							type : 'GET',
 							dataType : 'json',
 							success: function(data) {
 								successCallback(data);
@@ -72,10 +75,12 @@
 				text:'일정추가',
 				click: function(){
 					const titleText = document.getElementById('title').value;
+					const content = document.getElementById('content').value;
 					const startDate = document.getElementById('startDate').value;
 					const endDate = document.getElementById('endDate').value;
 					const requestData = {
 											title:titleText, 
+											content : content,
 											start : startDate, 
 											end : endDate
 										};
@@ -86,22 +91,67 @@
 					});
 
 					$.ajax({
-						url : '${pageContext.request.contextPath}/calendar?fn=SET',
+						url : '${pageContext.request.contextPath}/calendar',
 						type:'POST',
 						data : JSON.stringify(requestData),
 						contentType: 'application/json; charset=utf-8'
 					})
 
 					document.getElementById('title').value = '';
+					document.getElementById('content').value = '';
 					document.getElementById('startDate').value = '';
 					document.getElementById('endDate').value = '';
 				}
 			 }
 		  },
+		eventClick: function(info){
+			const num = info.event._def.extendedProps.num;
+			const content = info.event._def.extendedProps.content;
+			const requestData = {
+									pknum : num
+								};
+			
+			if(confirm("일정명 : " + info.event.title +"\n내용 : "+ content
+					+ "\n\n해당 일정을 삭제하시겠습니까?"))
+				{
+				info.event.remove();
+
+				
+				$.ajax({
+					url : '${pageContext.request.contextPath}/calendar',
+					type:'DELETE',
+					dataType:'json',
+					data : JSON.stringify(requestData),
+					contentType: 'application/json; charset=utf-8'
+				})
+			}
+		},
+		eventDrop : function(info){
+			console.log(info);
+			const num = info.event._def.extendedProps.num;
+			const start = info.event._instance.range.start;
+			const end = info.event._instance.range.end;
+			const requestData = {
+   				pknum : num,
+				startDate : moment(start).format('YYYY-mm-DD hh:mm:ss'),
+				endDate : moment(end).format('YYYY-mm-DD hh:mm:ss')
+			};
+
+			$.ajax({
+					url : '${pageContext.request.contextPath}/calendar',
+					type:'PUT',
+					dataType:'json',
+					data : JSON.stringify(requestData),
+					contentType: 'application/json; charset=utf-8'
+			})
+			
+		},
+		  editable : true,
 		  dayMaxEventRows: true,
         });
         calendar.render();
       });
+
     </script>
   <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
@@ -355,17 +405,21 @@
 	          <div  id='calendar' style="width:800px;height:800px;">
 	    	
 			   </div>
-			   <div >
+			   <div style="margin-left:10px;">
 				    <label for="title">제목  </label>
-				    <input type="text" id="title"/><br>
-				    	
+				    <input type="text" class="form-control" id="title"/><br>
+				    
+				    <label for="content">내용  </label>
+				    <textarea class="form-control" id="content" ></textarea><br>
+				    
 				    <label for="startDate">시작날짜</label>
-				    <input type="datetime-local" id="startDate"/><br>
+				    <input type="datetime-local" class="form-control" id="startDate"/><br>
 				    	
 				    <label for="endDate">종료날짜</label>
-				    <input type="datetime-local" id="endDate"/><br>
+				    <input type="datetime-local" class="form-control" id="endDate"/><br>
 	          </div>
           </div>
+          
         </div>
       </div>
     </div>

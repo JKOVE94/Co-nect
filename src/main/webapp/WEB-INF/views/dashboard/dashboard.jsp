@@ -195,7 +195,7 @@
               </a>
             </li>
             <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="${pageContext.request.contextPath}/calendar">
+              <a class="nav-link" href="${pageContext.request.contextPath}/calendar?fn=PAGE">
                 캘린더
               </a>
             </li>
