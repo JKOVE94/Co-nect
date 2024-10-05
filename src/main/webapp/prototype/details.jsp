@@ -247,8 +247,9 @@
 	/* 작업(Task) 스타일 */
 	.Task {
 		max-width: 20%; /* 최대 너비 20%로 설정 */
-		margin-top: 50px; /* 상단 여백 50px */
+		margin-top: 10px; /* 상단 여백 50px */
 		font-size: 15px; /* 글꼴 크기 설정 */
+		transform: scale(0.91);
 	}
 	/* 작업(Task) 내부의 입력, 선택, 버튼 스타일 */
 	.Task input, .Task select, .Task button {
@@ -256,6 +257,8 @@
 		margin-bottom: 10px; /* 요소 간의 하단 여백 추가 */
 		padding: 8px; /* 패딩 추가하여 터치 영역 개선 */
 		box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
+		border: 1px solid #4f6ef7; /* 파란 테두리 */
+    	border-radius: 10px; /* 둥근 모서리 */
 	}
 </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -752,7 +755,7 @@
 
 
 <!-- 간트차트 시작 -->
-<div class="col-lg-11">
+<div style="margin-top : -1rem; margin-left : -3rem; width: calc(100% + 3rem);" class="container-fluid py-4">	
 	<!-- 카드 컴포넌트 시작 -->
     <div style="margin-left: 3rem" class="card"> 
         <div class="row">
@@ -783,7 +786,7 @@
                 </select><br>
                 
                 <!-- 작업 추가 버튼: 클릭 시 addTask 함수 호출 -->
-                <button onclick="addTask()">View Task</button><br>
+                <button style="font-weight: bold; border: 2px solid #4f6ef7;" onclick="addTask()">View Task</button><br>
 
 				<!-- 최소 작업 선택: 변경 시 showTask 함수 호출 -->
                 <select id="minTask" onchange="showTask()">
