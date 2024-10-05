@@ -112,15 +112,9 @@
   <!-- END CONTENT SECTION -->
 </div>
 
-<<<<<<< Updated upstream:src/main/webapp/index.html
-<<<<<<< Updated upstream
-<script src=./asset/1_landing/login.js"></script>
-=======
+
 <script src="./asset/1_landing/login.js"></script>
->>>>>>> Stashed changes
-=======
-<script src="./asset/1_landing/login.js"></script>
->>>>>>> Stashed changes:src/main/webapp/index.jsp
+
 </body>
 
 </html>

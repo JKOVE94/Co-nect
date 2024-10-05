@@ -931,5 +931,5 @@
   });
 </script>
 </body>
-<jsp:include page="/asset/2_dashboard/page/footer.jsp"></jsp:include>
+<%--<jsp:include page="/asset/2_dashboard/page/footer.jsp"></jsp:include>--%>
 </html>

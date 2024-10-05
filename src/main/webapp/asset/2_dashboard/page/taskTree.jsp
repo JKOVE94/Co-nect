@@ -42,10 +42,11 @@
     </tr>
     <c:set var="map" value="${sessionScope.getUserMap}"/>
     <c:forEach var="t" items="${getTaskList}">
-        <tr>
+    <c:choose>
+        <c:when test="${t.task_fk_task_num > 0}">
+        <tr class="hidden">
             <td>
-                <c:if test="${t.task_fk_task_num > 0}">&nbsp;&nbsp;</c:if>
-                    ${t.task_title}
+                &nbsp;&nbsp;<span>${t.task_title}
             </td>
             <td>
                ${map[t.task_fk_user_num.toString()]}
@@ -60,6 +61,27 @@
                 ${t.task_deadline}
             </td>
         </tr>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td>
+                    <span>${t.task_title}
+                </td>
+                <td>
+                        ${map[t.task_fk_user_num.toString()]}
+                </td>
+                <td>
+                        ${t.task_status}
+                </td>
+                <td>
+                        ${t.task_startdate}
+                </td>
+                <td>
+                        ${t.task_deadline}
+                </td>
+            </tr>
+        </c:otherwise>
+        </c:choose>
     </c:forEach>
 
 </table>

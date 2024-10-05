@@ -42,7 +42,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="freePostWrite.jsp" class="btn btn-primary mt-3">새 게시글 작성</a>
+		<a href="<%=request.getContextPath()%>/dashboard?fn=FREE_CREATE" class="btn btn-primary mt-3">새 게시글 작성</a>
 		<a href="<%=request.getContextPath()%>/dashboard?fn=HOME" class="btn btn-primary mt-3">메인으로 돌아가기</a>
 	</div>
 
