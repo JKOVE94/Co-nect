@@ -2,6 +2,8 @@ package controller;
 
 import model.Icommand;
 import model.dashboard.factory.FactoryDash;
+import model.dashboard.Proj_TagColor;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +34,21 @@ public class DashboardServlet extends HttpServlet{
 		FactoryDash factory = FactoryDash.newInstance();
 		icmd = factory.createInstance(fn);
 		url = (String) icmd.method(req,resp);
+		
+		
+		
+		//프로젝트 tagcolor 값
+		String tagColor = req.getParameter("proj_tagcol");
+		
+		//Proj_TagColor 객체 생성 후 메서드 호출
+		Proj_TagColor tagManager = new Proj_TagColor();
+		String tagCode = tagManager.TagCodeReturn(tagColor);
+		
+		System.out.println("태그컬러코드(servlet):"+ tagCode);
+		//이후 태그컬로 코드 EL로 출력
+		
+		
+		
 
 		RequestDispatcher view = req.getRequestDispatcher(url);
 		view.forward(req, resp);

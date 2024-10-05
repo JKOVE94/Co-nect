@@ -12,7 +12,6 @@
         <h2>프로젝트 작성</h2>
         <form action="${pageContext.request.contextPath}/dashboard?fn=PROJ_CREATE" method="post"> 
         <input type="hidden" name="proj_tag" value="red"/>
-        <input type="hidden" name="proj_tagcol" value="red"/>
         <input type="hidden" name="proj_fk_comp_num" value="1"/>
         <input type="hidden" name="proj_fk_post_num" value="26"/>
             <div class="form-group">
@@ -63,8 +62,27 @@
                 <label for="proj_desc">프로젝트 설명:</label>
                 <textarea class="form-control" id="proj_desc" name="proj_desc" required></textarea>
             </div>
+            
+            <div class="form-group">
+			<input type="hidden" name="command" value="colorChange" />
+				<label for="proj_tagcol">프로젝트 색상:</label> <select
+					class="form-control" id="proj_tagcol" name="proj_tagcol" required>
+					<option value="" disabled selected>색상 선택</option>
+					<option value="blue">blue</option>
+					<option value="red">red</option>
+					<option value="green">green</option>
+					<option value="orange">orange</option>
+					<option value="black">black</option>
+				</select>
+		</div>
             <button type="submit" class="btn btn-primary">저장</button>
             <a href="projList1.jsp" class="btn btn-secondary">목록</a>
+             
+              <!-- 프로젝트 색상 선택 추가 -->
+      
+            
+            
+            
         </form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
