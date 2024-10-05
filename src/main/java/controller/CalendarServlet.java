@@ -214,6 +214,8 @@ public class CalendarServlet extends HttpServlet{
 		DBConnectionMgr pool = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		JSONObject resJson = new JSONObject();
 			
 		try {
 			//현재 로그인한 사용자의 pk num
@@ -233,9 +235,23 @@ public class CalendarServlet extends HttpServlet{
 			stmt.setString(5, endDate);
 				
 			stmt.executeUpdate();
-				
+			
+			sql = "SELECT todo_pk_num FROM todo WHERE todo_title = ? AND todo_fk_user_num = ?";
+			stmt=conn.prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setInt(2, Integer.parseInt(sessionID));
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				resJson.put("num", rs.getInt("todo_pk_num"));
+			}
 				
 		} catch (Exception e) { System.out.println("CalendarServlet"+e);}
+		
+		resp.setContentType("application/json");
+		PrintWriter out = resp.getWriter();
+		out.print(resJson);
+		out.flush();
 	}
 		
 }

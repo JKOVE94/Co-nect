@@ -26,6 +26,6 @@ public class FreeUpdatedCmd implements Icommand {
 
 	    req.getSession().setAttribute("dto", updatedto);
     	
-    	return "/WEB-INF/views/dashboard/free/freeRead.jsp?post_pk_num=" + postNo;
+    	return "/dashboard?fn=FREE_READ&post_num=" + postNo;
     }
 }

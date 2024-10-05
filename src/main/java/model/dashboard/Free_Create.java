@@ -11,27 +11,8 @@ import db.dto.PostDTO;
 
 public class Free_Create{
 	
-	public void setPost(HttpServletRequest req, HttpServletResponse resp) {
+	public void setPost(PostDTO dto) {
 	
-		try {
-			req.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		resp.setCharacterEncoding("utf-8");
-		
-		PostDTO dto = new PostDTO();
-		
-		dto.setPost_kind(Integer.parseInt(req.getParameter("post_kind")));
-		dto.setPost_targetnum(req.getParameter("post_targetnum"));
-		dto.setPost_name(req.getParameter("post_name"));
-		dto.setPost_import(req.getParameter("post_import"));
-		dto.setPost_content(req.getParameter("post_content"));
-		dto.setPost_tag(req.getParameter("post_tag"));
-		dto.setPost_fk_dpart_num(Integer.parseInt(req.getParameter("post_fk_dpart_num")));
-		dto.setPost_fk_user_num(Integer.parseInt(req.getParameter("post_fk_user_num")));
-		dto.setPost_fk_comp_num(Integer.parseInt(req.getParameter("post_fk_comp_num")));
-		
 		DBConnectionMgr pool =null;
 		Connection conn = null;
 		PreparedStatement stmt = null;

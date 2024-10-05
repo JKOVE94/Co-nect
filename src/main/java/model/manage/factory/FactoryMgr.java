@@ -11,8 +11,6 @@ public class FactoryMgr {
     }
     public Icommand createInstance(String fn) {
 
-        //일반유저
-
         //관리자
         if (fn.equals("ADMIN_MANAGE")) {
             return new AdminMain();

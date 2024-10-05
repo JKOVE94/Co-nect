@@ -98,12 +98,7 @@
         <div class="collapse" id="favorites-collapse">
           <ul>
             <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
-                자유게시판
-              </a>
-            </li>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_PROJLIST">
+              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/Project.jsp">
                 프로젝트
               </a>
             </li>
@@ -141,6 +136,15 @@
             </li>
           </ul>
         </div>
+         <div class="collapse" id="project-collapse">
+        	 <ul>
+	        <li style="list-style: none; text-align: center;">
+	          <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
+	            프로젝트 리스트
+	          </a>
+	        </li>
+	      </ul>   
+	    </div>
       </li>
 
       <!-- 3) 게시판 -->
@@ -165,10 +169,6 @@
               <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=FREE_LIST">
                 자유 게시판
               </a>
-            </li><li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
-                프로젝트 게시판
-              </a>
             </li>
           </ul>
         </div>
@@ -189,11 +189,6 @@
         <!-- 업무관리 하위 메뉴 -->
         <div class="collapse" id="works-collapse">
           <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="${pageContext.request.contextPath}/dashboard?fn=">
-                일정 관리
-              </a>
-            </li>
             <li style="list-style: none; text-align: center;">
               <a class="nav-link" href="${pageContext.request.contextPath}/calendar?fn=PAGE">
                 캘린더

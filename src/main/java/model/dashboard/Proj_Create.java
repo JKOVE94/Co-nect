@@ -11,27 +11,7 @@ import db.dto.ProjectDTO;
 
 public class Proj_Create {
 	
-	public void setPost(HttpServletRequest req, HttpServletResponse resp) {
-	
-		try {
-			req.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		resp.setCharacterEncoding("utf-8");
-		
-		ProjectDTO dto = new ProjectDTO();
-		
-		dto.setProj_name(req.getParameter("proj_name"));
-		dto.setProj_desc(req.getParameter("proj_desc"));
-		dto.setProj_status(req.getParameter("proj_status"));
-		dto.setProj_members(req.getParameter("proj_members"));
-		dto.setProj_import(req.getParameter("proj_import"));
-		dto.setProj_tag(req.getParameter("proj_tag"));
-		dto.setProj_tagcol(req.getParameter("proj_tagcol"));
-		dto.setProj_fk_user_num(Integer.parseInt(req.getParameter("proj_fk_user_num")));
-		dto.setProj_fk_dpart_num(Integer.parseInt(req.getParameter("proj_fk_dpart_num")));
-		dto.setProj_fk_comp_num(Integer.parseInt(req.getParameter("proj_fk_comp_num")));
+	public void setPost(ProjectDTO dto) {
 		
 		DBConnectionMgr pool =null;
 		Connection conn = null;

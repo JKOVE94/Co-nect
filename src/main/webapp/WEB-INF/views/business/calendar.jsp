@@ -86,20 +86,21 @@
 											start : startDate, 
 											end : endDate
 										};
-					//캘린더에 이벤트 추가
-					calendar.addEvent({
-						title : titleText,
-						start : startDate, 
-						content : content,
-						num : num,
-						end : endDate
-					});
 					//DB 데이터 저장
 					$.ajax({
 						url : '${pageContext.request.contextPath}/calendar',
 						type:'POST',
 						data : JSON.stringify(requestData),
-						contentType: 'application/json; charset=utf-8'
+						contentType: 'application/json; charset=utf-8',
+						success : function(data){
+							calendar.addEvent({
+								title : titleText,
+								start : startDate, 
+								content : content,
+								end : endDate,
+								num : data.num
+							});
+						}
 					})
 
 					document.getElementById('title').value = '';
@@ -140,7 +141,7 @@
 			const num = info.event._def.extendedProps.num;
 			const start = info.event._instance.range.start;
 			const end = info.event._instance.range.end;
-			//pknum이 없다면 proj일정이므로 수정불가하게 해줌
+			//pknum이 없다면 proj일정이므로 수정불가하게 해줌S
 			if(num==null){
 				alert('프로젝트 일정은 수정할 수 없습니다');
 				//이벤트 원래 자리로 돌아가기
