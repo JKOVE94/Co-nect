@@ -27,20 +27,24 @@ public class ProjReadCmd implements Icommand {
 		Proj_ReadCheck check = new Proj_ReadCheck();
 		ProjectDTO getProjDTO = null;
 		ArrayList<TaskDTO> getTaskList = null;
-		HashMap<String,String> getUserMap = null;
+		HashMap<String,String> getUserNameMap = null;
+		HashMap<String,String> getUserMailMap = null;
+
 		getAllProj proj = new getAllProj();
 		getAllTask task = new getAllTask();
 		getAllUser user = new getAllUser();
 		
 		getProjDTO = proj.getAllProjInfo(proj_pk_num);
 		getTaskList = task.getAllTaskInfo(proj_pk_num);
-		getUserMap = user.getAllUserName();
+		getUserNameMap = user.getAllUserName();
+		getUserMailMap = user.getAllUserEmail();
 
 		req.getSession().setAttribute("getProjDTO", getProjDTO);
 		req.getSession().setAttribute("getTaskList", getTaskList);
-		req.getSession().setAttribute("getUserMap", getUserMap);
+		req.getSession().setAttribute("getUserNameMap", getUserNameMap);
+		req.getSession().setAttribute("getUserMailMap", getUserMailMap);
 
-		return "asset/2_dashboard/page/taskTree.jsp";
-		//return "/WEB-INF/views/dashboard/project/projRead.jsp";
+		//return "asset/2_dashboard/page/taskTree.jsp";
+		return "/WEB-INF/views/dashboard/project/projRead.jsp";
 	}
 }
