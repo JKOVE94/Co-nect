@@ -19,45 +19,45 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="asset/2_dashboard/img/apple-icon.png"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="apple-touch-icon"sizes="76x76" href="asset/2_dashboard/img/apple-icon.png"/>
   <link rel="icon" type="image/png" href="asset/2_dashboard/img/favicon.png" />
   <title>2조 프로젝트</title>
+  
   <!--     Fonts and icons     -->
-  <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-          rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
   <!-- Nucleo Icons -->
   <link href="asset/2_dashboard/css/nucleo-icons.css" rel="stylesheet" />
   <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script
-          src="https://kit.fontawesome.com/42d5adcbca.js"
-          crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  
+  <!-- 캘린더 관련 moment:날짜형식, fuulcalendar:캘린더라이브러리, jquery:ajax -->
   <script class="cssdesk" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js" type="text/javascript"></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="module">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  
+  <!-- 캘린더 툴팁 관련 -->
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  
+  <!-- 캘린더 관련 js코드 -->
+  <script type="module">
 	
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+ 
+		//캘린더 초기화 - body> div id=calendar 에 캘린더 들어감 426줄
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
+          initialView: 'dayGridMonth', 
+		  //today버튼, 이전달, 다음달 조회 버튼, 제목, 일정추가 버튼 추가
 		  headerToolbar:{
 			start : 'today prev,next',
 			center : 'title',
 			end :'addEventButton'
 		  },
+		  timeZone : 'local',
+		 // 서블릿에서 db정보를 json으로 받아와 event 추가
 		  eventSources : [{
 				events : function(info, successCallback, failureCallback){
 					$.ajax({
@@ -67,9 +67,10 @@
 							success: function(data) {
 								successCallback(data);
 							}
-					});
+					})
 				}
 		  }],
+		 //input박스에 값을 넣고 일정추가 버튼을 누르면 todo db에 저장되고 이벤트 추가됨
 		  customButtons : {
 			addEventButton: {
 				text:'일정추가',
@@ -78,18 +79,22 @@
 					const content = document.getElementById('content').value;
 					const startDate = document.getElementById('startDate').value;
 					const endDate = document.getElementById('endDate').value;
+					//json형식으로 만들기
 					const requestData = {
 											title:titleText, 
 											content : content,
 											start : startDate, 
 											end : endDate
 										};
+					//캘린더에 이벤트 추가
 					calendar.addEvent({
 						title : titleText,
 						start : startDate, 
+						content : content,
+						num : num,
 						end : endDate
 					});
-
+					//DB 데이터 저장
 					$.ajax({
 						url : '${pageContext.request.contextPath}/calendar',
 						type:'POST',
@@ -104,47 +109,64 @@
 				}
 			 }
 		  },
+		//이벤트를 클릭할 경우 실행
 		eventClick: function(info){
 			const num = info.event._def.extendedProps.num;
 			const content = info.event._def.extendedProps.content;
 			const requestData = {
 									pknum : num
 								};
-			
-			if(confirm("일정명 : " + info.event.title +"\n내용 : "+ content
+			//pknum이 null이 아닐경우 (proj이벤트가 아닌 todo이벤트일 경우 실행)
+			if(num!=null){
+				if(confirm("일정명 : " + info.event.title +"\n내용 : "+ content
 					+ "\n\n해당 일정을 삭제하시겠습니까?"))
-				{
-				info.event.remove();
-
-				
+				{	
+					//캘린더 내 이벤트 삭제
+					info.event.remove();
+					//DB에서 데이터 삭제
+					$.ajax({
+						url : '${pageContext.request.contextPath}/calendar',
+						type:'DELETE',
+						dataType:'json',
+						data : JSON.stringify(requestData),
+						contentType: 'application/json; charset=utf-8'
+					})
+				}
+			}
+		},
+		//이벤트를 끌어다 다른 날짜로 옮길 경우 실행
+		eventDrop : function(info){
+			
+			const num = info.event._def.extendedProps.num;
+			const start = info.event._instance.range.start;
+			const end = info.event._instance.range.end;
+			//pknum이 없다면 proj일정이므로 수정불가하게 해줌
+			if(num==null){
+				alert('프로젝트 일정은 수정할 수 없습니다');
+				//이벤트 원래 자리로 돌아가기
+				info.revert();
+			} else {
+				const requestData = {
+   					pknum : num,
+					startDate : moment(start).format('YYYY-MM-DD hh:mm:ss'),
+					endDate : moment(end).format('YYYY-MM-DD hh:mm:ss')
+				};
+				//DB에서 데이터 수정
 				$.ajax({
 					url : '${pageContext.request.contextPath}/calendar',
-					type:'DELETE',
+					type:'PUT',
 					dataType:'json',
 					data : JSON.stringify(requestData),
 					contentType: 'application/json; charset=utf-8'
 				})
 			}
 		},
-		eventDrop : function(info){
-			console.log(info);
-			const num = info.event._def.extendedProps.num;
-			const start = info.event._instance.range.start;
-			const end = info.event._instance.range.end;
-			const requestData = {
-   				pknum : num,
-				startDate : moment(start).format('YYYY-mm-DD hh:mm:ss'),
-				endDate : moment(end).format('YYYY-mm-DD hh:mm:ss')
-			};
-
-			$.ajax({
-					url : '${pageContext.request.contextPath}/calendar',
-					type:'PUT',
-					dataType:'json',
-					data : JSON.stringify(requestData),
-					contentType: 'application/json; charset=utf-8'
-			})
-			
+		//이벤트에 마우스 올릴 경우 해당 이벤트의 content(내용)을 툴팁으로 표시
+		eventDidMount:function(info){
+			//tippy.js 사용
+			tippy(info.el,{
+				content: info.event._def.extendedProps.content
+			});
 		},
 		  editable : true,
 		  dayMaxEventRows: true,
@@ -402,10 +424,10 @@
             </div>
           </div>
           <div class="card-body px-0 pt-0 pb-2 d-flex justify-content-center">
-	          <div  id='calendar' style="width:800px;height:800px;">
+	          <div  id='calendar' style="width:800px;height:800px;margin-bottom:100px;">
 	    	
 			   </div>
-			   <div style="margin-left:10px;">
+			   <div style="margin-left:30px;">
 				    <label for="title">제목  </label>
 				    <input type="text" class="form-control" id="title"/><br>
 				    
