@@ -1,9 +1,12 @@
 package model.manage;
 
-import java.sql.*;
-
 import db.dbcp.DBConnectionMgr;
 import db.dto.UserDTO;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Admin_userUpdate {
 	public void userUpdate(UserDTO user) throws Exception {

@@ -41,7 +41,7 @@
 
   <style>
     .profile-container {
-      margin-top: 8px; /* 위쪽 마진 추가 */
+      margin-top:2px; /* 위쪽 마진 추가 */
     }
     .profile-container {
       margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
@@ -78,82 +78,7 @@
       }
     }
   </style>
-  <style>
-    :root {
-      --white: #fff;
-      --divider: lightgrey;
-      --body: #f5f7f8;
-    }
 
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .chart-wrapper {
-      max-width: 1150px;
-      padding: 0 10px;
-      margin: 0 auto;
-    }
-
-    /* CHART-VALUES
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    .chart-wrapper .chart-values {
-      position: relative;
-      display: flex;
-      margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .chart-wrapper .chart-values li {
-      flex: 1;
-      min-width: 140px; /* 너비 증가 */
-      text-align: center;
-    }
-    .chart-wrapper .chart-values li:not(:last-child) {
-      position: relative;
-    }
-
-    .chart-wrapper .chart-values li:not(:last-child)::before {
-      content: "";
-      position: absolute;
-      right: 0;
-      height: 600px;
-      border-right: 1px solid var(--divider);
-    }
-
-    /* CHART-BARS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    .chart-wrapper .chart-bars li {
-      position: relative;
-      color: var(--white);
-      margin-bottom: 15px;
-      font-size: 16px;
-      border-radius: 20px;
-      padding: 10px 20px;
-      width: 100%; /* 너비 100%로 설정 */
-      opacity: 1; /* 투명도 1로 설정 */
-      transition: all 0.65s linear 0.2s;
-    }
-
-    @media screen and (max-width: 600px) {
-      .chart-wrapper .chart-bars li {
-        padding: 10px;
-        width: 100%; /* 너비 100%로 설정 */
-      }
-    }
-  </style>
   <style>
     #tree {
       display: inline-block;
@@ -265,7 +190,7 @@
       margin-top: -15px;
       color: #666;
       font-family: arial, verdana, tahoma;
-      font-size: 14px;
+      font-size: 10px;
       display: inline-block;
       border-radius: 5px;
       transition: all 0.5s;
@@ -285,6 +210,54 @@
       border-color: #a6a6a6;
     }
   </style>
+  <!-- 간트차트 스타일 -->
+  <style>
+  		* {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        .chartMenu {
+            width: 100vw;
+            height: 80px;
+            color: rgba(54, 162, 235, 1);
+        }
+        .chartMenu p {
+            padding: 10px;
+            font-size: 20px;
+        }
+          .chartCard {
+        margin-left: -1rem; /* Adjust this value if necessary */
+        width: calc(100% + 15rem); /* Make the width responsive */
+        max-width: 80%; /* Prevent overflow */
+        height: 60vh; /* Set chart height */
+        overflow: hidden; /* Prevent content overflow */
+        transform: scale(0.9);
+    }
+		.chartBox {
+    		width: 80%;
+    		padding: 0px;
+    		border-radius: 20px;
+    		border: solid 3px rgba(255,0,0,0);
+    		background: white;
+		}
+
+    .Task {
+        max-width: 20%;
+        margin-top: 50px;
+        font-size: 15px;
+    }
+    .Task input, .Task select, .Task button {
+        width: 70%; /* Make inputs and buttons full width */
+        margin-bottom: 10px; /* Add some space between elements */
+        padding: 8px; /* Add padding for better touch targets */
+        box-sizing: border-box; /* Ensure padding doesn't affect width */
+    }
+
+</style>
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -776,56 +749,51 @@
   </div>
 
 
-  <!-- 업무 -->
+<!-- 간트차트 시작 -->
 
-  <div style="margin-top: -1rem;"  class="container-fluid py-4">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="chart-wrapper">
-            <ul class="chart-values">
-              <li>일</li>
-              <li>월</li>
-              <li>화</li>
-              <li>수</li>
-              <li>목</li>
-              <li>금</li>
-              <li>토</li>
-            </ul>
-            <ul class="chart-bars">
-              <li data-duration="화½-수" data-color="#b03532">
-                스포티파이 기능 구현
-              </li>
-              <li data-duration="수-토" data-color="#33a8a5">
-                스포티파이 API 통합
-              </li>
-              <li data-duration="일-화" data-color="#30997a">
-                스포티파이 데이터 분석
-              </li>
-              <li data-duration="화½-목" data-color="#6a478f">
-                스포티파이 UI 디자인
-              </li>
-              <li data-duration="월-화½" data-color="#da6f2b">
-                스포티파이 버그 수정
-              </li>
-              <li data-duration="수-수" data-color="#3d8bb1">
-                스포티파이 테스트
-              </li>
-              <li data-duration="목-금½" data-color="#e03f3f">
-                스포티파이 최적화
-              </li>
-              <li data-duration="월½-수½" data-color="#59a627">
-                스포티파이 문서화
-              </li>
-              <li data-duration="금-토" data-color="#4464a1">
-                스포티파이 리뷰
-              </li>
-            </ul>
-          </div>
+<div class="col-lg-11">
+    <div style="margin-left: 3rem" class="card">
+        <div class="row">
+            <div class="chartCard">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="Task">
+                <input type="month" onchange="chartFilter(this)" /><br>
+                <input type="text" id="nameTask" placeholder="Task Name" /><br>
+                <input type="date" id="startDateTask" /><br>
+                <input type="date" id="endDateTask" /><br>
+                <input type="text" id="teamMemberTask" list="names" placeholder="Team Member" /><br>
+                <datalist id="names"></datalist>
+
+                <select id="statusTask">
+                    <option value="0">Delayed</option>
+                    <option value="1">Pending</option>
+                    <option value="2">Complete</option>
+                </select><br>
+
+                <button onclick="addTask()">View Task</button><br>
+
+                <select id="minTask" onchange="showTask()">
+                    <option selected value="0">Task 1</option>
+                    <option value="1">Task 2</option>
+                    <option value="2">Task 3</option>
+                    <option value="3">Task 4</option>
+                </select>
+
+                <select id="maxTask" onchange="showTask()">
+                    <option value="4">Task 5</option>
+                    <option value="5">Task 6</option>
+                    <option value="6">Task 7</option>
+                    <option selected value="7">Task 8</option>
+                </select>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+	<script src="assets/js/gantt.js"></script>
+<!-- 간트차트 끝 -->
 </main>
 
 <div class="fixed-plugin">

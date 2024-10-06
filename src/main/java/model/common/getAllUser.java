@@ -6,7 +6,6 @@ import db.dto.UserDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 import java.util.HashMap;
 
 public class getAllUser {
@@ -48,7 +47,7 @@ public class getAllUser {
                 }
             }
             catch (Exception e) {
-                System.out.println("setUser : "+e);
+                System.out.println("getAllUser : "+e);
 
             } finally {
                 if (conn != null) {
@@ -56,5 +55,69 @@ public class getAllUser {
                 }
             }
             return map;
+    }
+    public HashMap<String,String> getAllUserName(){
+        DBConnectionMgr pool =null;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HashMap<String,String> map = new HashMap<String,String>();
+        try {
+            pool = DBConnectionMgr.getInstance();
+            conn = pool.getConnection();
+
+            String sql = "SELECT user_pk_num, user_name FROM user";
+
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String user_pk_num = rs.getString("user_pk_num");
+                String user_name = rs.getString("user_name");
+
+                map.put(user_pk_num,user_name);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("getAllUser : "+e);
+
+        } finally {
+            if (conn != null) {
+                pool.freeConnection(conn,stmt);
+            }
+        }
+        return map;
+    }
+    public HashMap<String,String> getAllUserEmail(){
+        DBConnectionMgr pool =null;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        HashMap<String,String> map = new HashMap<String,String>();
+        try {
+            pool = DBConnectionMgr.getInstance();
+            conn = pool.getConnection();
+
+            String sql = "SELECT user_pk_num, user_mail FROM user";
+
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String user_pk_num = rs.getString("user_pk_num");
+                String user_name = rs.getString("user_mail");
+
+                map.put(user_pk_num,user_name);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("getAllUser : "+e);
+
+        } finally {
+            if (conn != null) {
+                pool.freeConnection(conn,stmt);
+            }
+        }
+        return map;
     }
 }

@@ -22,5 +22,5 @@ public class PostDTO {
 	private int post_fk_comp_num; //게시글 회사 고유번호 [FK, INT]
 	private int post_fk_post_num; //게시글 답글 기준 게시글 번호 [FK, INT]
 	private int post_fk_user_num; //게시글 작성자 사번 [FK, INT]
-
+	private boolean favoriteCheck; 
 }

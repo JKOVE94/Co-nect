@@ -417,7 +417,7 @@
                 >
                   <h5 class="mb-0">프로젝트 테이블</h5>
                 </div>
-                <a href="Project.jsp">
+                <a href="../WEB-INF/views/dashboard/project/projList.jsp">
                   <button id="" class="btn btn-outline-primary btn-sm">
                     더 보기
                   </button>

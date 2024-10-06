@@ -1,14 +1,12 @@
 package model.dashboard.command;
 
+import db.dto.PostDTO;
 import model.Icommand;
 import model.dashboard.Free_Update;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import db.dto.PostDTO;
-
 import java.io.IOException;
 
 public class FreeUpdateCmd implements Icommand {

@@ -1,7 +1,15 @@
 package model.manage.factory;
 
 import model.Icommand;
-import model.manage.command.*;
+import model.manage.command.AdminLockUserCmd;
+import model.manage.command.AdminLockUserProcCmd;
+import model.manage.command.AdminMain;
+import model.manage.command.AdminUserDelProcCmd;
+import model.manage.command.AdminUserInfoProcCmd;
+import model.manage.command.AdminUserListProcCmd;
+import model.manage.command.AdminUserSetCmd;
+import model.manage.command.AdminUserSetProcCmd;
+import model.manage.command.AdminUserUpdateProcCmd;
 
 public class FactoryMgr {
     private FactoryMgr(){}

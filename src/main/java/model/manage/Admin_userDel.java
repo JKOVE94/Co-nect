@@ -1,9 +1,9 @@
 package model.manage;
 
-import java.sql.*;
-
 import db.dbcp.DBConnectionMgr;
-import db.dto.UserDTO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 public class Admin_userDel {
 	public void userDel(int user_pk_num) throws Exception {

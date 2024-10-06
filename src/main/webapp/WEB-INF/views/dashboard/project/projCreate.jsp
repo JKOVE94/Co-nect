@@ -31,6 +31,14 @@
                 <label for="proj_fk_dpart_num">프로젝트 부서 번호:</label>
                 <input type="text" class="form-control" id="proj_fk_dpart_num" name="proj_fk_dpart_num" required>
             </div>
+            <div class="form-group">
+                <label for="proj_startdate">프로젝트 생성일:</label>
+                <input type="date" class="form-control" id="proj_startdate" name="proj_startdate" required>
+            </div>
+            <div class="form-group">
+                <label for="proj_enddate">프로젝트 종료일:</label>
+                <input type="date" class="form-control" id="proj_enddate" name="proj_enddate" required>
+            </div>
          
             <div class="form-group">
                 <label for="proj_status">프로젝트 상태:</label>
@@ -56,11 +64,12 @@
                 <textarea class="form-control" id="proj_desc" name="proj_desc" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">저장</button>
-            <a href="projList.jsp" class="btn btn-secondary">목록</a>
+            <a href="projList1.jsp" class="btn btn-secondary">목록</a>
         </form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<jsp:include page="/asset/2_dashboard/page/footer.jsp"></jsp:include>
 </html>

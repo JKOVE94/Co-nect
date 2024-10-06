@@ -1,17 +1,12 @@
 package model.manage;
 
+import com.oreilly.servlet.MultipartRequest;
+import db.dto.UserDTO;
+
 import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import db.dto.UserDTO;
 
 //spring 이후 적용
 public class UserImage {

@@ -52,7 +52,7 @@
         <div class="form sign-in">
           <div class="input-group">
             <i class='bx bxs-com-num'></i>
-            <input type="number" placeholder="Company Number" name="user_fk_comp_num" required>
+            <input type="number" placeholder="Company Number" name="comp_pk_num" required>
           </div>
           <div class="input-group">
             <i class='bx bxs-user'></i>
@@ -112,15 +112,9 @@
   <!-- END CONTENT SECTION -->
 </div>
 
-<<<<<<< Updated upstream:src/main/webapp/index.html
-<<<<<<< Updated upstream
-<script src=./asset/1_landing/login.js"></script>
-=======
+
 <script src="./asset/1_landing/login.js"></script>
->>>>>>> Stashed changes
-=======
-<script src="./asset/1_landing/login.js"></script>
->>>>>>> Stashed changes:src/main/webapp/index.jsp
+
 </body>
 
 </html>

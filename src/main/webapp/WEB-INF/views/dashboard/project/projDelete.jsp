@@ -27,4 +27,5 @@
         <button type="button" onclick="cancelDelete()">취소</button>
     </form>
 </body>
+<jsp:include page="/asset/2_dashboard/page/footer.jsp"></jsp:include>
 </html>

@@ -1,10 +1,9 @@
 package model.dashboard;
 
+import db.dbcp.DBConnectionMgr;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import db.dbcp.DBConnectionMgr;
 
 
 public class Free_Delete {

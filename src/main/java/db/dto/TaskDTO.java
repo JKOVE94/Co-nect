@@ -20,6 +20,8 @@ public class TaskDTO {
 	private int task_priority; //우선순위 [INT]
 	private Date task_created; //업무 생성 일시 [DATETIME]
 	private Date task_updated; //업무 정보 최종 수정 일시 [DATETIME]
+	private String task_tag; //임의로 부여하는 프로젝트 태그 [VARCHAR] => 검색용
+	private String task_tagcol; //프로젝트 태그 컬러 [VARCHAR]
 	private double task_version; //업무 버전 번호 [FLOAT]
 	private int task_fk_user_num; //담당자 사번 [FK, INT]
 	private int task_fk_proj_num; //연관된 프로젝트 번호 [FK, INT]

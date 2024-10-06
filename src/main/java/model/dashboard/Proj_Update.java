@@ -1,11 +1,11 @@
 package model.dashboard;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.ProjectDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.ProjectDTO;
 
 public class Proj_Update {
 
@@ -40,7 +40,6 @@ public class Proj_Update {
             	proj.setProj_fk_user_num(Integer.parseInt(rs.getString("proj_fk_user_num")));
             	proj.setProj_fk_dpart_num(Integer.parseInt(rs.getString("proj_fk_dpart_num")));
             	proj.setProj_fk_comp_num(Integer.parseInt(rs.getString("proj_fk_comp_num")));
-            	proj.setProj_fk_post_num(Integer.parseInt(rs.getString("proj_fk_post_num")));
         		
             }
         }
@@ -52,7 +51,6 @@ public class Proj_Update {
                 if (stmt != null) try { stmt.close(); } catch (Exception e) {}
                 if (conn != null) try { conn.close(); } catch (Exception e) {}
         }
-    
         return proj; 
     }
 

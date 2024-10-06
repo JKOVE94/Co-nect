@@ -24,4 +24,5 @@ public class ProjectDTO {
 	private int proj_fk_dpart_num; //프로젝트 부서 번호 [FK, INT]
 	private int proj_fk_user_num; //프로젝트 담당자 사번 [FK, INT]
 	private int proj_fk_comp_num; //프로젝트 회사 고유번호 [FK, INT]
+	private boolean favoriteCheck; //즐겨찾기에 등록되어있는지 확인하기 위한 변수 추가
 }

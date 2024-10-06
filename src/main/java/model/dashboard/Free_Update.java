@@ -1,14 +1,11 @@
 package model.dashboard;
 
+import db.dbcp.DBConnectionMgr;
+import db.dto.PostDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import db.dbcp.DBConnectionMgr;
-import db.dto.PostDTO;
 
 public class Free_Update {
 
@@ -58,8 +55,7 @@ public class Free_Update {
         DBConnectionMgr pool = null; 
         Connection conn = null; 
         PreparedStatement stmt = null; 
-        System.out.println("saveUpdatePost 실행중");
-        System.out.println("post_pk_num :"+post_pk_num + ", post_name : "+post_name+" , post_content: "+post_content+" , post_import:"+post_import);
+
         try {
             pool = DBConnectionMgr.getInstance(); 
             conn = pool.getConnection(); 
@@ -82,7 +78,6 @@ public class Free_Update {
             if (stmt != null) try { stmt.close(); } catch (Exception e) {}
             if (conn != null) try { conn.close(); } catch (Exception e) {}
         }
-
 
         return updatedto; 
     }

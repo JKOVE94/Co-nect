@@ -20,6 +20,6 @@ public class ProjDeleteCmd implements Icommand {
         }
 
         // 삭제 후 목록 페이지로 리다이렉트
-        return "/WEB-INF/views/dashboard/project/projList.jsp"; // 리다이렉트 할 때는 null을 반환
+        return "/WEB-INF/views/dashboard/project/projList1.jsp"; // 리다이렉트 할 때는 null을 반환
     }
 }
