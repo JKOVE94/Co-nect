@@ -33,9 +33,11 @@ public class FavoritesDeleteCmd implements Icommand{
 			return "/dashboard?fn=PROJ_LIST";
 		} else if(proj_pk_num != null && url.equals("READ")){
 			return "/dashboard?fn=PROJ_READ&proj_num="+proj_pk_num;
+		} else if(url.equals("FLIST")){
+			return "/favorites?fn=FAVOR_POSTLIST";
 		} else {
-			return "/favorites?fn=FAVOR_LIST";
-		} 
+			return "/favorites?fn=FAVOR_PROJLIST";
+		}
 		
 	}
 
