@@ -36,7 +36,7 @@ public class ProjListCmd implements Icommand {
         // 리스트 저장
         if (projectList != null) {
         	session.setAttribute("list", projectList);
-            url = "/WEB-INF/views/dashboard/project/projList.jsp";
+           url = "/WEB-INF/views/dashboard/project/projList.jsp";
         } else {
             // 만약 프로젝트 리스트가 비어있거나 null일 경우
             req.setAttribute("message", "프로젝트를 불러오는 데 실패했습니다.");
@@ -46,3 +46,4 @@ public class ProjListCmd implements Icommand {
         return url;
     }
 }
+

@@ -22,7 +22,7 @@ public class FreeListCmd implements Icommand {
 
 	@Override
     public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Free_List list = new Free_List();
+		    Free_List list = new Free_List();
         String url = "";
         
         // sessionID를 사용해 프로젝트 리스트를 가져옴
