@@ -290,7 +290,6 @@
             <div class="d-flex justify-content-center" style="padding-left: 0%;">
               <h5 class="mb-0">프로젝트 리스트</h5>
             </div>
-            <a  href="<%=request.getContextPath()%>/prototype/Project.jsp">
             <%
 		request.setCharacterEncoding("utf-8");
 		
@@ -304,11 +303,7 @@
 		int totalBlock = 0;		// 총 블럭 수
 		int nowBlock = 0;		// 현재 블럭
 		
-		String sessionID = (String)session.getAttribute("sessionID");
-		String keyField = request.getParameter("keyField");
-		String keyWord = request.getParameter("keyWord");
-		
-		ArrayList<ProjectDTO> list = (ArrayList)dao.getPost(sessionID);
+		ArrayList<ProjectDTO> list = (ArrayList)session.getAttribute("list");
 		
 		// 총 글의 수 계산 
 		totalRecord = list.size();
@@ -333,33 +328,31 @@
 		
 	
 		// 현재 블록의 페이지 목록을 세팅
+		if(list.size()>=1){
 		 ArrayList<ProjectDTO> currentPageList = new ArrayList<>(list.subList(beginPerPage, Math.min(beginPerPage + numPerPage, totalRecord)));
 		 session.setAttribute("list", currentPageList);
-		
+		}
 	
 	%>
 		<!-- 검색 기능 구현 -->
-		<form action="projList.jsp" name="search" method="post">
+		<form action="${pageContext.request.contextPath}/dashboard?fn=PROJ_LIST" name="search" method="post">
 		<table border=0 width=527 align=right cellpadding=4 cellspacing=0>
 		<tr>
 			<td align=right valign=bottom>
 				<select name="keyField" size="1">
 					<option value="proj_name"> 프로젝트명
-					<option value="user_name"> 작성자
-					<option value="task_priority"> 우선순위
+					<option value="proj_fk_user_num"> 작성자
 				</select>
 	
-				<input type="text" size="20" name="keyWord" placeholder="검색어를 입력하세요" required="required" >
+				<input type="text" size="20" name="keyWord" placeholder="검색어를 입력하세요" >
 				<!-- input type="submit" value="검색" onClick="check()"-->
-				<button class="search-btn" type="submit">
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</button>
+				<button type="submit" class="btn btn-secondary">검색</button>
 				
 			</td>
 		</tr>
 		</table>
 	</form>
-            </a>
+           
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -373,18 +366,18 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">종료일</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">우선순위</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">상태</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">즐겨찾기</th>
                 </tr>
                 </thead>
                 <%
-			
-			for(int i=beginPerPage; i < beginPerPage + numPerPage; i++) { //시작 페이지 + 한 페이지당 보여질 개수
+			if(list.size()>=1){
+				for(int i=beginPerPage; i < beginPerPage + numPerPage; i++) { //시작 페이지 + 한 페이지당 보여질 개수
 				// 마지막 페이지는 에러 (글이 5개 아니기 때문)
 				if(i == totalRecord) { // 페이지 시작 번호가 총 글의 갯수와 같아지면 break;
 					break;
 				}
-				ProjectDTO board = list.get(i);
-		%>
-				<%
+					ProjectDTO board = list.get(i);
+					}
 				}
 				%>	
                 <tbody>
@@ -405,6 +398,13 @@
 						<!-- proj_import -->
 						<td>${p.proj_status}</td>
 						<!-- proj_status -->
+						<td>
+							<input type="checkbox" id="favorite" class="favorite" value="${p.proj_pk_num }"
+							<c:if test="${p.favoriteCheck == true}">
+						 	 checked
+						  	</c:if>>
+						</td>
+						<!-- 즐겨찾기 등록여부 확인 -->
 					</tr>
                  </c:forEach>
                 </tbody>
@@ -649,6 +649,18 @@
 <script src="asset/2_dashboard/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/chartjs.min.js"></script>
 <script>
+//즐겨찾기 관련 script
+const favoriteToggle = document.querySelectorAll('#favorite');
+	for(let i=0; i<favoriteToggle.length; i++){
+	favoriteToggle[i].addEventListener('click',() => {
+		if (favoriteToggle[i].checked){
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&proj_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		} else {
+			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
+		}
+	})
+}
+//
   var ctx1 = document.getElementById("chart-line").getContext("2d");
 
   var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

@@ -1,32 +1,19 @@
-<!--
-=========================================================
-* Argon Dashboard 2 - v2.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-
+<%@page import="db.dto.ProjectDTO"%>
+<%@ page language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="asset/2_dashboard/img/apple-icon.png"
-  />
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+ <link
+     rel="apple-touch-icon"
+     sizes="76x76"
+     href="asset/2_dashboard/img/apple-icon.png"
+/>
   <link rel="icon" type="image/png" href="asset/2_dashboard/img/favicon.png" />
   <title>2조 프로젝트</title>
   <!--     Fonts and icons     -->
@@ -49,6 +36,7 @@
           href="asset/2_dashboard/css/argon-dashboard.css?v=2.0.4"
           rel="stylesheet"
   />
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
   <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
@@ -57,149 +45,13 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-<div class="min-height-300 bg-primary position-absolute w-100"></div>
 
-<div class="sidenav-logo-container">
-  <img src="asset/1_landing/co-nect logo + text (w).svg" alt="Logo" class="sidenav-logo" style="margin-top:-0.75rem">
-</div>
+<!-- 사이드바 -->
+<div id="sidebar">
+  <jsp:include page="/WEB-INF/views/dashboard/sidebar.jsp" />
+  </div> 
 
-<aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-4 "
-        id="sidenav-main">
-  <!-- 사이드바 제목(로고) -->
-  <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-       aria-hidden="true" id="iconSidenav"></i>
-    <a class="navbar-brand m-0" href="<%=request.getContextPath()%>/dashboard?fn=HOME">
-      <img src="asset/1_landing/co-nect logo + text (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
-      <span class="ms-1 font-weight-bold">(주)코난2조</span>
-    </a>
-  </div>
-
-  <!-- 사이드바 항목 -->
-  <!-- 구분선 -->
-  <hr class="horizontal dark mt-0">
-
-  <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-    <!-- 사이드 바 하위 항목 시작 -->
-    <ul class="navbar-nav">
-      <!-- 1) 즐겨찾기 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#favorites-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="bi bi-star text-primary text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">즐겨찾기</span>
-        </a>
-
-        <!-- 즐겨찾기 하위 메뉴 ( 프로젝트 ) -->
-        <div class="collapse" id="favorites-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/Project.jsp">
-                프로젝트
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-      <!-- 2) 프로젝트 -->
-      <li class="nav-item">
-        <a class="nav-link active" href="<%=request.getContextPath()%>/prototype/virtual-reality.html" data-bs-toggle="collapse"
-           data-bs-target="#project-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-app text-info text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">프로젝트</span>
-        </a>
-        <!-- 프로젝트 하위 메뉴 -->
-        <div class="collapse" id="project-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/Project.jsp">
-                프로젝트 개요
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="collapse" id="project-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/details.jsp">
-                프로젝트 일정
-              </a>
-            </li>
-          </ul>
-        </div>
-         <div class="collapse" id="project-collapse">
-        	 <ul>
-	        <li style="list-style: none; text-align: center;">
-	          <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
-	            프로젝트 리스트
-	          </a>
-	        </li>
-	      </ul>   
-	    </div>
-      </li>
-
-      <!-- 3) 게시판 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#board-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">게시판</span>
-        </a>
-        <!-- 게시판 하위 메뉴 -->
-        <div class="collapse" id="board-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/tables.jsp">
-                사내 게시판
-              </a>
-            </li>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=FREE_LIST">
-                자유 게시판
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </li>
-
-
-      <!-- 4) 업무 관리 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#works-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">업무 관리</span>
-        </a>
-        <!-- 업무관리 하위 메뉴 -->
-        <div class="collapse" id="works-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="${pageContext.request.contextPath}/calendar?fn=PAGE">
-                캘린더
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-</aside>
+ 
 <main class="main-content position-relative border-radius-lg">
   <!-- Navbar -->
   <nav style="padding-top: 17px;"
@@ -270,13 +122,17 @@
                 </a>
               </li>
             </ul>
-
+		</li>
+		</ul>
       </div>
     </div>
   </nav>
+  
   <!-- End Navbar -->
 
-  <div style="margin-top: -8px;"class="container-fluid py-4">
+  <div style=
+  	"margin-top: -8px; margin-left: 250px; height: 100vh; padding: 40px; width: calc(100% - 250px);"
+  	class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
@@ -284,12 +140,10 @@
             <div class="d-flex justify-content-center" style="padding-left: 45%;">
               <h5 class="mb-0">프로젝트 테이블</h5>
             </div>
-            <a href="<%=request.getContextPath()%>/prototype/Project.jsp">
+            <a href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
               <button
                       id=""
-                      class="btn btn-outline-primary btn-sm"
-
-              >
+                      class="btn btn-outline-primary btn-sm">
                 더 보기
               </button>
             </a>
@@ -299,147 +153,31 @@
               <table class="table align-items-center justify-content-center mb-0">
                 <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">예산</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">상태</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">진행도</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                  프로젝트</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                  작성자</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                  상태</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                  진행도</th>
                   <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                 <!-- sessionScope.list가 잘 전달되었는지 확인하기 위한 출력 -->
+  				<!-- <c:out value="${sessionScope.list}" /> -->
+                <tbody>             
+                <c:forEach var="p" items="${sessionScope.list}">
                 <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Spotify</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">working</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">60%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
+	                 <td>
+	                   <a href="<%=request.getContextPath()%>/dashboard?fn=PROJ_READ&proj_pk_num=${p.proj_pk_num}">${p.proj_name}</a>
+	                 </td>
+	                 <td>${p.proj_fk_user_num}</td>
+	                 <td>${p.proj_startdate}</td>
+	                 <td>${p.proj_status}</td>
                 </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Invision</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">done</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">100%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Jira</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">canceled</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">30%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="asset/2_dashboard/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-sm">Slack</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-sm font-weight-bold mb-0">$1,000</p>
-                  </td>
-                  <td>
-                    <span class="text-xs font-weight-bold">canceled</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center justify-content-center">
-                      <span class="me-2 text-xs font-weight-bold">0%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
+                </c:forEach>
+                </tbody>  
               </table>
             </div>
           </div>
@@ -452,126 +190,71 @@
         <!-- 게시판 -->
 
         <div class="card" >
-          <div class="card-header pb-0 p-3">
+          <div class="table-responsive p-0">
+          <!-- 게시판 제목 -->
             <div
-                    class="d-flex justify-content-between align-items-center mb-3"
-            >
+                    class="d-flex justify-content-between align-items-center mb-3">
               <h6 class="mb-0 ms-4">게시판</h6>
+              <!-- 더보기 링크 -->
               <a href="<%=request.getContextPath()%>/prototype/tables.jsp">
-                <button style="margin-top: 0.5rem "
+                <button style="margin-top: 1rem "
                         id=""
-                        class="btn btn-outline-primary btnview  btn-sm"
-                >
+                        class="btn btn-outline-primary btnview  btn-sm">
                   더 보기
                 </button>
               </a>
-            </div>
+           	</div>
           </div>
-
+          
+          <!-- 게시판 내용 -->
           <div style="margin-left: 1rem; margin-top: -1rem;" class="card-body p-3">
             <ul style="margin-top: -1rem; margin-bottom: 1rem;" class="list-group">
               <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
+                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                 <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-notification-70 text-white opacity-10"
-                    ></i>
-                  </div>
+                  
+                  <!-- 내용 -->
                   <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">공지사항</h6>
-                    <span class="text-xs">2024년 9월 회식 안내</span>
+                  <table class="table align-items-center mb-0">
+                  	<thead>
+                  		<tr>
+                  			<th
+                        	class="text-center text-secondary text-xxs font-weight-bolder opacity-7">
+                        	제목
+                      		</th>
+                      		<th
+                        	class="text-center text-secondary text-xxs font-weight-bolder opacity-7">
+                        	작성자
+                      		</th>
+                      		<th
+                        	class="text-center text-secondary text-xxs font-weight-bolder opacity-7">
+                        	등록일
+                      		</th>
+                  		</tr>
+                  	</thead>                 	
+               		<tbody>
+              			 <c:forEach var="l" items="${sessionScope.list}">
+	               			 <tr>
+			                   	<td>${l.post_pk_num}</td>
+			                   	<td><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_num=${l.post_pk_num}">${l.post_name}</a></td>
+			                   	<td>${l.post_fk_user_num}</td>
+	                 		</tr>
+                 		</c:forEach>
+               		</tbody>
+                  </table>
+                   
+             
                   </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-10
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
+                </div>               
               </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-calendar-grid-58 text-white opacity-10"
-                    ></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">일정 공유</h6>
-                    <span class="text-xs">프로젝트 중간 발표 일정</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-08
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i
-                            class="ni ni-single-copy-04 text-white opacity-10"
-                    ></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">회의록</h6>
-                    <span class="text-xs">9월 첫째 주 팀 미팅 회의록</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-05
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg"
-              >
-                <div class="d-flex align-items-center">
-                  <div
-                          class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center"
-                  >
-                    <i class="ni ni-satisfied text-white opacity-10"></i>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark text-sm">자유게시판</h6>
-                    <span class="text-xs">주말 등산 모임 안내</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center text-sm">
-                  2024-09-03
-                  <button
-                          class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"
-                  >
-                    <i class="ni ni-bold-right" aria-hidden="true"></i>
-                  </button>
-                </div>
+              <li>
               </li>
             </ul>
           </div>
+          
         </div>
       </div>
+     
       <!-- 게시판 끝 -->
 
 
@@ -609,7 +292,10 @@
       <!-- 업무 -->
 
     </div>
+    </div>
 </main>
+
+<!-- footer -->
 <footer  class="footer footer2team">
   <div class="container-fluid fix footer2con">
     <div class="row align-items-center justify-content-lg-between">
@@ -791,12 +477,15 @@
     </div>
   </div>
 </div>
+
 <!--   Core JS Files   -->
 <script src="asset/2_dashboard/js/core/popper.min.js"></script>
 <script src="asset/2_dashboard/js/core/bootstrap.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/chartjs.min.js"></script>
+
+
 <script>
   var ctx1 = document.getElementById("chart-line").getContext("2d");
 

@@ -341,6 +341,15 @@
 			<a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_LIST" class="btn btn-primary mt-3" style="margin-left: 20px;">목록</a>
 			<a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_DELETE&proj_pk_num=${dto.proj_pk_num}" class="btn btn-primary mt-3" style="margin-left: 10px;">삭제</a>
 			<a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_UPDATE&proj_pk_num=${dto.proj_pk_num}" class="btn btn-primary mt-3" style="margin-left: 10px;">수정</a>
+			<div class="form-check" style="margin-left:25px;">
+				<input class="form-check-input" type="checkbox" value="" id="favorite" 
+				<c:if test="${dto.favoriteCheck == true}">
+					 checked
+				</c:if>>
+				<label class="form-check-label" for="favorite">
+					  즐겨찾기
+				</label>
+			</div>	
 				</div>
             </div>
           </div>
@@ -540,6 +549,16 @@
 <script src="asset/2_dashboard/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/chartjs.min.js"></script>
 <script>
+//즐겨찾기 관련
+const favoriteToggle = document.getElementById('favorite');
+favoriteToggle.addEventListener('click',() => {
+	if (favoriteToggle.checked){
+		location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&proj_pk_num=${dto.proj_pk_num}&url=READ`;
+	} else {
+		location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&proj_pk_num=${dto.proj_pk_num}&url=READ`;
+	}
+})
+//
   var ctx1 = document.getElementById("chart-line").getContext("2d");
 
   var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

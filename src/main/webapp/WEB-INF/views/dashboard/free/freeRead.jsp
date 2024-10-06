@@ -329,7 +329,7 @@
 			<a href="${pageContext.request.contextPath}/dashboard?fn=FREE_DELETE&post_pk_num=${dto.post_pk_num}" class="btn btn-primary mt-3" style="margin-left: 10px;">삭제</a>
 			<a href="${pageContext.request.contextPath}/dashboard?fn=FREE_UPDATE&post_pk_num=${dto.post_pk_num}" class="btn btn-primary mt-3" style="margin-left: 10px;">수정</a>
 			
-			<div class="form-check">
+			<div class="form-check" style="margin-left:25px;">
 				<input class="form-check-input" type="checkbox" value="" id="favorite" 
 				<c:if test="${dto.favoriteCheck == true}">
 					 checked

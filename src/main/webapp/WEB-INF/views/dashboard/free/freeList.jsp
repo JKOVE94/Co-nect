@@ -291,7 +291,6 @@
             <div class="d-flex justify-content-center" style="padding-left: 0%;">
               <h5 class="mb-0">자유게시판 리스트</h5>
             </div>
-            <a  href="<%=request.getContextPath()%>/prototype/Project.jsp">
             <%
 		request.setCharacterEncoding("utf-8");
 		
@@ -304,14 +303,8 @@
     		int pagePerBlock = 5;	// 블럭당 페이지 수 여러 페이지를 하나로 묶은 단위
     		int totalBlock = 0;		// 총 블럭 수
     		int nowBlock = 0;		// 현재 블럭
-    		
 		
-		
-		String keyField = request.getParameter("keyField");
-		String keyWord = request.getParameter("keyWord");
-		
-		String sessionID = (String)session.getAttribute("sessionID");
-		ArrayList<PostDTO> list = (ArrayList)dao.getPost(sessionID);
+		ArrayList<PostDTO> list = (ArrayList)session.getAttribute("list");
 		
 		// 총 글의 수 계산 
 		totalRecord = list.size();
@@ -335,31 +328,30 @@
 		}
 		
 		// 현재 블록의 페이지 목록을 세팅
-		 ArrayList<PostDTO> currentPageList = new ArrayList<>(list.subList(beginPerPage, Math.min(beginPerPage + numPerPage, totalRecord)));
-		 session.setAttribute("list", currentPageList);
-		
+		if(list.size()>=1){
+			ArrayList<PostDTO> currentPageList = new ArrayList<>(list.subList(beginPerPage, Math.min(beginPerPage + numPerPage, totalRecord)));
+			session.setAttribute("list", currentPageList);
+		}
 	
 	%>
 		
 		<!-- 검색 기능 구현 -->
-		<form action="freeList.jsp" name="search" method="post">
+		<form action="${pageContext.request.contextPath}/dashboard?fn=FREE_LIST" name="search" method="post">
 		<table border=0 width=527 align=right cellpadding=4 cellspacing=0>
 		<tr>
 			<td align=right valign=bottom>
-				<select name="keyField" size="1">
+				<select name="keyField" id="keyField" size="1">
 					<option value="post_name"> 제목
-					<option value="user_name"> 작성자
+					<option value="post_fk_user_num"> 작성자
 				</select>
-				<input type="text" size="20" name="keyWord" placeholder="검색어를 입력하세요" required="required" >
+				<input type="text" size="20" name="keyWord" id="keyWord" placeholder="검색어를 입력하세요" >
 				<!-- input type="submit" value="검색" onClick="check()"-->
-				<button class="search-btn" type="submit">
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</button>
+				<button type="submit" class="btn btn-secondary">검색</button>
 				</td>
 			</tr>
-			</table>
-		</form>
-		 </a>
+		</table>
+		 </form>
+		 
 		</div>
 		<div class="card-body px-0 pt-0 pb-2">
 		 <div class="table-responsive p-0">
@@ -376,16 +368,15 @@
 			</thead>
 			
 			<%
-			
+			if(list.size()>=1){
 			for(int i=beginPerPage; i < beginPerPage + numPerPage; i++) { //시작 페이지 + 한 페이지당 보여질 개수
 				// 마지막 페이지는 에러 (글이 5개 아니기 때문)
 				if(i == totalRecord) { // 페이지 시작 번호가 총 글의 갯수와 같아지면 break;
 					break;
 				}
 				PostDTO board = list.get(i);
-				%>
-				<%
 				}
+			}
 				%>	
 			
 			<tbody>

@@ -10,7 +10,7 @@ import db.dto.ProjectDTO;
 
 public class Proj_List {
 
-	public ArrayList<ProjectDTO> getPost(String sessionID) {
+	public ArrayList<ProjectDTO> getPost(String sessionID, String keyField, String keyWord) {
         DBConnectionMgr pool =null;
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -20,15 +20,26 @@ public class Proj_List {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
 
-            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 SQL문
-            String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num FROM project"
+            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 쿼리
+            if(keyWord == null) {
+            	 String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num FROM project"
+                 		+ " LEFT OUTER JOIN (SELECT favor_fk_proj_num FROM favorites WHERE favor_fk_user_num = ?) AS favor"
+                 		+ "	ON project.proj_pk_num = favor.favor_fk_proj_num;";
+            	 stmt = conn.prepareStatement(sql);
+                 stmt.setString(1, sessionID);
+                 rs = stmt.executeQuery();
+            }
+            else if((keyWord != null) && (keyWord != " ")) {
+            	//키워드가 들어있는 글만 가져오는 쿼리
+            	String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num FROM"
+            		+ "	(SELECT * FROM project WHERE "+keyField+" LIKE ?) AS project "
             		+ " LEFT OUTER JOIN (SELECT favor_fk_proj_num FROM favorites WHERE favor_fk_user_num = ?) AS favor"
-            		+ "	ON project.proj_pk_num = favor.favor_fk_proj_num;";
-
-            
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, sessionID);
-            rs = stmt.executeQuery();
+            		+ " ON project.proj_pk_num = favor.favor_fk_proj_num;";
+            	stmt = conn.prepareStatement(sql);
+            	stmt.setString(1, "%"+keyWord+"%");
+            	stmt.setString(2, sessionID);
+            	rs = stmt.executeQuery();
+            }
             
             while (rs.next()) {
             	ProjectDTO dto = new ProjectDTO();
