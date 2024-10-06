@@ -305,7 +305,7 @@
                  <!-- sessionScope.list가 잘 전달되었는지 확인하기 위한 출력 -->
   				<!-- <c:out value="${sessionScope.list}" /> -->
                 <tbody>             
-                <c:forEach var="p" items="${sessionScope.list}">
+                <c:forEach var="p" items="${projList}">
                 <tr>
 	                 <td>
 	                   <a href="<%=request.getContextPath()%>/dashboard?fn=PROJ_READ&proj_pk_num=${p.proj_pk_num}">${p.proj_name}</a>
@@ -371,7 +371,7 @@
                   		</tr>
                   	</thead>                 	
                		<tbody>
-              			 <c:forEach var="l" items="${sessionScope.list}">
+              			 <c:forEach var="l" items="${postList}">
 	               			 <tr>
 			                   	<td>${l.post_pk_num}</td>
 			                   	<td><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_num=${l.post_pk_num}">${l.post_name}</a></td>
@@ -420,6 +420,13 @@
             <div class="table-responsive">
               <table class="table align-items-center">
                 <tbody id="taskList">
+                	<c:forEach var="t" items="${todoList}">
+	               			 <tr>
+			                   	<td>${t.todo_pk_num}</td>
+			                   	<td>${t.todo_title}</td>
+			                   	<td>${t.todo_content}</td>
+	                 		</tr>
+                 		</c:forEach>
                 </tbody>
               </table>
             </div>

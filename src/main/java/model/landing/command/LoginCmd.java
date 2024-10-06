@@ -1,6 +1,8 @@
 package model.landing.command;
 
 import model.Icommand;
+import model.dashboard.Free_List;
+import model.dashboard.Proj_List;
 import model.dashboard.Todo_List;
 import model.landing.Login;
 
@@ -34,6 +36,16 @@ public class LoginCmd implements Icommand {
 			Todo_List todo = new Todo_List();
 			ArrayList<TodoDTO> todoList = todo.getTodoList(user_pk_num);
 			req.setAttribute("todoList", todoList);
+			
+			//프로젝트 목록
+			Proj_List proj = new Proj_List();
+			ArrayList projList = proj.getPost(user_pk_num, null, null);
+			req.setAttribute("projList", projList);
+			
+			//게시판 목록
+			Free_List post = new Free_List();
+			ArrayList postList = post.getPost(user_pk_num, null, null);
+			req.setAttribute("postList", postList);
 					
         } catch (Exception e) {
             e.printStackTrace();
