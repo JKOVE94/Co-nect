@@ -15,13 +15,14 @@ import model.Icommand;
 
 public class DashProjCreateCmd implements Icommand {
     
+    
     @Override
-    public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TaskDTO dto = new TaskDTO();
-        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dto.setTask_title(req.getParameter("task_title"));
    
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       
         try {
         	
             java.util.Date startDate = dateFormat.parse(req.getParameter("task_startdate"));
@@ -64,6 +65,6 @@ public class DashProjCreateCmd implements Icommand {
             }
         }
     
-		return "/prototype/details.jsp";
+        return "dashProj?fn=taskRead";
 	}
 }

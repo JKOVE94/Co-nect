@@ -130,7 +130,7 @@
         <div class="collapse" id="project-collapse">
           <ul>
             <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/details.jsp">
+              <a class="nav-link" href="<%=request.getContextPath()%>/dashProj?fn=taskRead">
                 프로젝트 일정
               </a>
             </li>

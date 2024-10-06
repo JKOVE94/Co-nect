@@ -28,27 +28,7 @@
       <h2>
         비밀번호를 잊으셨나요?
       </h2>
-      <div class="form-wrapper align-items-center">package model.dashProj.factory;
-
-import model.Icommand;
-import model.dashProj.command.DashProjCreateCmd;
-
-public class FactoryDashProj {
-	private FactoryDashProj() {}
-	private static FactoryDashProj factoryProj = new FactoryDashProj();
-	public static FactoryDashProj newInstance() {
-		return factoryProj;
-	}
-    public static Icommand createInstance(String fn) {
-    	
-        if(fn.equals(""))
-                return new DashProjCreateCmd();
-            // 다른 커맨드들을 여기에 추가할 수 있습니다.
-            default:
-                throw new IllegalArgumentException("Unknown action: " + fn);
-        }
-    }
-}
+      <div class="form-wrapper align-items-center">
         <div class="form sign-up">
           <p>
             <button>
