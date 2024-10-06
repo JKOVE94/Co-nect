@@ -55,8 +55,15 @@
             <div class="collapse" id="favorites-collapse">
               <ul>
                   <li style="list-style: none; text-align: center;">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_PROJLIST">
                       프로젝트       
+                    </a>
+                  </li>
+              </ul>
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
+                      자유게시판       
                     </a>
                   </li>
               </ul>
@@ -140,7 +147,7 @@
             <div class="collapse" id="works-collapse">
               <ul>
                   <li style="list-style: none; text-align: center;">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/calendar/tables.jsp">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/calendar?fn=PAGE">
                       일정 관리      
                     </a>
                   </li>

@@ -11,7 +11,7 @@ import model.favorites.Favorites_Check;
 
 public class Free_List {
 
-	public ArrayList<PostDTO> getPost(String sessionID) {
+	public ArrayList<PostDTO> getPost(String sessionID, String keyField, String keyWord) {
         DBConnectionMgr pool =null;
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -21,15 +21,31 @@ public class Free_List {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
             
-            //전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 SQL문
-            String sql ="SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM post "
-            		+ "LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ?) AS favor "
-            		+ "ON post.post_pk_num = favor.favor_fk_post_num;";
+            if (keyWord == null) {
+            	//전체 글 목록과 해당 글이 로그인한 사용자의 즐겨찾기에 등록되어있는지 확인하는 쿼리
+                String sql ="SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM post "
+                		+ "LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ?) AS favor "
+                		+ "ON post.post_pk_num = favor.favor_fk_post_num;";
 
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, sessionID); //로그인한 사용자 사번 전달
-            rs = stmt.executeQuery();
-            
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, sessionID); //로그인한 사용자 사번 전달
+                rs = stmt.executeQuery();
+                
+            } else if ((keyWord != null) && (keyWord != " ")) {
+            	//키워드가 들어있는 글만 가져오는 쿼리
+            	String sql = "SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM"
+            			+ "	(SELECT * FROM post WHERE "+keyField+" LIKE ?) AS post"
+            			+ " LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ? ) AS favor"
+            			+ " ON post.post_pk_num = favor.favor_fk_post_num;";
+            	
+            	stmt = conn.prepareStatement(sql);
+            	stmt.setString(1, "%"+keyWord+"%");
+            	stmt.setString(2, sessionID);
+            	
+
+                rs = stmt.executeQuery();
+            }
+             
             while (rs.next()) {
             	PostDTO dto = new PostDTO();
                 dto.setPost_pk_num(rs.getInt("post_pk_num"));

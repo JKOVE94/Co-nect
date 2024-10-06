@@ -22,19 +22,25 @@ public class FreeListCmd implements Icommand {
 
 	@Override
     public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Proj_List list = new Proj_List();
+		    Free_List list = new Free_List();
         String url = "";
-
+        
         // sessionID를 사용해 프로젝트 리스트를 가져옴
         HttpSession session = req.getSession();
         String sessionID = (String) session.getAttribute("sessionID");
+        ArrayList<PostDTO> freeList = null;
+        
+        //검색관련
+        String keyField = req.getParameter("keyField");
+        String keyWord = req.getParameter("keyWord");
+        
+        //검색어가 있을 경우 검색어가 들어있는 리스트만 가져옴
+        freeList = list.getPost(sessionID,keyField,keyWord);
 
-        // 프로젝트 리스트를 가져옴
-        List<ProjectDTO> projectList = list.getPost(sessionID);
 
-        // 세션에 리스트 저장
-        if (projectList != null) {
-            session.setAttribute("list", projectList);
+        // 리스트 저장
+        if (freeList != null) {
+        	session.setAttribute("list", freeList);
             url = "/WEB-INF/views/dashboard/free/freeList.jsp";
         } else {
             // 만약 프로젝트 리스트가 비어있거나 null일 경우

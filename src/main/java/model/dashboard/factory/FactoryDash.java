@@ -29,10 +29,10 @@ public class FactoryDash {
             return new FreeUpdatedCmd();
         }
         else if (fn.equals("FREE_CREATE")) {
-            return new FreeCreateWriteCmd() ;
+            return new FreeCreateCmd() ;
         }
         else if (fn.equals("FREE_POST")) {
-            return new FreeCreateCmd();
+            return new FreeCreateWriteCmd();
         }
         else if (fn.equals("FREE_DELETE")) {
             return new FreeDeleteCmd();
@@ -61,7 +61,7 @@ public class FactoryDash {
         else if (fn.equals("PROJ_DELETE")) {
             return new ProjDeleteCmd();
         }
-
+        
         // 프로토타입
        /* else if (fn.equals("")) {
             return new ;

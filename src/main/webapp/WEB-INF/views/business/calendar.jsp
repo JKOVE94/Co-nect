@@ -19,89 +19,162 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="asset/2_dashboard/img/apple-icon.png"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="apple-touch-icon"sizes="76x76" href="asset/2_dashboard/img/apple-icon.png"/>
   <link rel="icon" type="image/png" href="asset/2_dashboard/img/favicon.png" />
   <title>2조 프로젝트</title>
+  
   <!--     Fonts and icons     -->
-  <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-          rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
   <!-- Nucleo Icons -->
   <link href="asset/2_dashboard/css/nucleo-icons.css" rel="stylesheet" />
   <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script
-          src="https://kit.fontawesome.com/42d5adcbca.js"
-          crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  
+  <!-- 캘린더 관련 moment:날짜형식, fuulcalendar:캘린더라이브러리, jquery:ajax -->
+  <script class="cssdesk" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js" type="text/javascript"></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="module">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  
+  <!-- 캘린더 툴팁 관련 -->
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  
+  <!-- 캘린더 관련 js코드 -->
+  <script type="module">
 	
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+ 
+		//캘린더 초기화 - body> div id=calendar 에 캘린더 들어감 426줄
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-		  footerToolbar:{
-			center:'addEventButton'
+          initialView: 'dayGridMonth', 
+		  //today버튼, 이전달, 다음달 조회 버튼, 제목, 일정추가 버튼 추가
+		  headerToolbar:{
+			start : 'today prev,next',
+			center : 'title',
+			end :'addEventButton'
 		  },
+		  timeZone : 'local',
+		 // 서블릿에서 db정보를 json으로 받아와 event 추가
 		  eventSources : [{
 				events : function(info, successCallback, failureCallback){
 					$.ajax({
 							url : '${pageContext.request.contextPath}/calendar?fn=GET',
-							type : 'POST',
+							type : 'GET',
 							dataType : 'json',
 							success: function(data) {
 								successCallback(data);
 							}
-					});
+					})
 				}
 		  }],
+		 //input박스에 값을 넣고 일정추가 버튼을 누르면 todo db에 저장되고 이벤트 추가됨
 		  customButtons : {
 			addEventButton: {
 				text:'일정추가',
 				click: function(){
 					const titleText = document.getElementById('title').value;
+					const content = document.getElementById('content').value;
 					const startDate = document.getElementById('startDate').value;
 					const endDate = document.getElementById('endDate').value;
+					//json형식으로 만들기
 					const requestData = {
 											title:titleText, 
+											content : content,
 											start : startDate, 
 											end : endDate
 										};
-					calendar.addEvent({
-						title : titleText,
-						start : startDate, 
-						end : endDate
-					});
-
+					//DB 데이터 저장
 					$.ajax({
-						url : '${pageContext.request.contextPath}/calendar?fn=SET',
+						url : '${pageContext.request.contextPath}/calendar',
 						type:'POST',
 						data : JSON.stringify(requestData),
-						contentType: 'application/json; charset=utf-8'
+						contentType: 'application/json; charset=utf-8',
+						success : function(data){
+							calendar.addEvent({
+								title : titleText,
+								start : startDate, 
+								content : content,
+								end : endDate,
+								num : data.num
+							});
+						}
 					})
 
 					document.getElementById('title').value = '';
+					document.getElementById('content').value = '';
 					document.getElementById('startDate').value = '';
 					document.getElementById('endDate').value = '';
 				}
 			 }
 		  },
+		//이벤트를 클릭할 경우 실행
+		eventClick: function(info){
+			const num = info.event._def.extendedProps.num;
+			const content = info.event._def.extendedProps.content;
+			const requestData = {
+									pknum : num
+								};
+			//pknum이 null이 아닐경우 (proj이벤트가 아닌 todo이벤트일 경우 실행)
+			if(num!=null){
+				if(confirm("일정명 : " + info.event.title +"\n내용 : "+ content
+					+ "\n\n해당 일정을 삭제하시겠습니까?"))
+				{	
+					//캘린더 내 이벤트 삭제
+					info.event.remove();
+					//DB에서 데이터 삭제
+					$.ajax({
+						url : '${pageContext.request.contextPath}/calendar',
+						type:'DELETE',
+						dataType:'json',
+						data : JSON.stringify(requestData),
+						contentType: 'application/json; charset=utf-8'
+					})
+				}
+			}
+		},
+		//이벤트를 끌어다 다른 날짜로 옮길 경우 실행
+		eventDrop : function(info){
+			
+			const num = info.event._def.extendedProps.num;
+			const start = info.event._instance.range.start;
+			const end = info.event._instance.range.end;
+			//pknum이 없다면 proj일정이므로 수정불가하게 해줌S
+			if(num==null){
+				alert('프로젝트 일정은 수정할 수 없습니다');
+				//이벤트 원래 자리로 돌아가기
+				info.revert();
+			} else {
+				const requestData = {
+   					pknum : num,
+					startDate : moment(start).format('YYYY-MM-DD hh:mm:ss'),
+					endDate : moment(end).format('YYYY-MM-DD hh:mm:ss')
+				};
+				//DB에서 데이터 수정
+				$.ajax({
+					url : '${pageContext.request.contextPath}/calendar',
+					type:'PUT',
+					dataType:'json',
+					data : JSON.stringify(requestData),
+					contentType: 'application/json; charset=utf-8'
+				})
+			}
+		},
+		//이벤트에 마우스 올릴 경우 해당 이벤트의 content(내용)을 툴팁으로 표시
+		eventDidMount:function(info){
+			//tippy.js 사용
+			tippy(info.el,{
+				content: info.event._def.extendedProps.content
+			});
+		},
+		  editable : true,
 		  dayMaxEventRows: true,
         });
         calendar.render();
       });
+
     </script>
   <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
@@ -124,148 +197,149 @@
   <img src="asset/1_landing/co-nect logo + text (w).svg" alt="Logo" class="sidenav-logo" style="margin-top:-0.75rem">
 </div>
 
-<aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-4 "
-        id="sidenav-main">
-  <!-- 사이드바 제목(로고) -->
-  <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-       aria-hidden="true" id="iconSidenav"></i>
-    <a class="navbar-brand m-0" href="<%=request.getContextPath()%>/dashboard?fn=HOME">
-      <img src="asset/1_landing/co-nect logo + text (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
-      <span class="ms-1 font-weight-bold">(주)코난2조</span>
-    </a>
-  </div>
 
-  <!-- 사이드바 항목 -->
-  <!-- 구분선 -->
-  <hr class="horizontal dark mt-0">
-
-  <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-    <!-- 사이드 바 하위 항목 시작 -->
-    <ul class="navbar-nav">
-      <!-- 1) 즐겨찾기 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#favorites-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="bi bi-star text-primary text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">즐겨찾기</span>
+<!-- 사이드바 붙여넣은 부분 -->
+	<aside
+      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-4 "
+      id="sidenav-main">
+      
+      <!-- 사이드바 제목(로고) -->
+      <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true" id="iconSidenav"></i>
+          
+          <!-- 회사 이름 및 로고 -->
+        <a class="navbar-brand m-0" href="<%=request.getContextPath()%>/dashboard?fn=HOME">
+          <img src="asset/1_landing/co-nect logo + text (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
+          <span class="ms-1 font-weight-bold">(주)코난2조</span>
         </a>
+      </div>
 
-        <!-- 즐겨찾기 하위 메뉴 ( 프로젝트 ) -->
-        <div class="collapse" id="favorites-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
-                자유게시판
-              </a>
-            </li>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_PROJLIST">
-                프로젝트
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      <!-- 사이드바 항목 -->
+       <!-- 구분선 -->
+      <hr class="horizontal dark mt-0"> 
 
-      <!-- 2) 프로젝트 -->
-      <li class="nav-item">
-        <a class="nav-link active" href="<%=request.getContextPath()%>/prototype/virtual-reality.html" data-bs-toggle="collapse"
-           data-bs-target="#project-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+      <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <!-- 사이드 바 하위 항목 시작 -->
+        <ul class="navbar-nav">
+          <!-- 1) 즐겨찾기 -->
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="collapse" 
+            data-bs-target="#favorites-collapse" aria-expanded="false" id="resourceManager">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="bi bi-star text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">즐겨찾기</span>
+            </a>
+
+            <!-- 즐겨찾기 하위 메뉴 ( 프로젝트 ) -->
+            <div class="collapse" id="favorites-collapse">
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_PROJLIST">
+                      프로젝트       
+                    </a>
+                  </li>
+              </ul>
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
+                      자유게시판       
+                    </a>
+                  </li>
+              </ul>
+            </div>
+          </li>
+          
+          <!-- 2) 프로젝트 -->
+          <li class="nav-item">
+            <a class="nav-link active" href="./virtual-reality.html" data-bs-toggle="collapse"
+            data-bs-target="#project-collapse" aria-expanded="false" id="resourceManager">
+            <div
+            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-app text-info text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">프로젝트</span>
         </a>
+        
         <!-- 프로젝트 하위 메뉴 -->
         <div class="collapse" id="project-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/Project.jsp">
-                프로젝트 개요
-              </a>
-            </li>
-          </ul>
-        </div>
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
+                    프로젝트 개요    
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="collapse" id="project-collapse">
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="details.jsp">
+                    프로젝트 일정    
+                  </a>
+                </li>
+              </ul>
+            </div>          
+          </li>
+          
+          <!-- 3) 게시판 -->
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="collapse"
+            data-bs-target="#board-collapse" aria-expanded="false" id="resourceManager">
+              <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">게시판</span>
+            </a>
+            <!-- 게시판 하위 메뉴 -->
+            <div class="collapse" id="board-collapse">
+              <ul>
+                <li style="list-style: none; text-align: center;">
+                  <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=FREE_LIST">
+                    사내 게시판
+                  </a>
+                </li>
+                <li style="list-style: none; text-align: center;">
+                <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
+                  프로젝트 게시판
+                </a>
+              </li>
+                
+              </ul>
+            </div>
+            
+          </li>
+          
 
-        <div class="collapse" id="project-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/details.jsp">
-                프로젝트 일정
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-      <!-- 3) 게시판 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#board-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">게시판</span>
-        </a>
-        <!-- 게시판 하위 메뉴 -->
-        <div class="collapse" id="board-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/prototype/tables.jsp">
-                사내 게시판
-              </a>
-            </li>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=FREE_LIST">
-                자유 게시판
-              </a>
-            </li><li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
-                프로젝트 게시판
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </li>
-
-
-      <!-- 4) 업무 관리 -->
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="collapse"
-           data-bs-target="#works-collapse" aria-expanded="false" id="resourceManager">
-          <div
-                  class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">업무 관리</span>
-        </a>
-        <!-- 업무관리 하위 메뉴 -->
-        <div class="collapse" id="works-collapse">
-          <ul>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="${pageContext.request.contextPath}/dashboard?fn=">
-                일정 관리
-              </a>
-            </li>
-            <li style="list-style: none; text-align: center;">
-              <a class="nav-link" href="${pageContext.request.contextPath}/calendar">
-                캘린더
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-</aside>
+          <!-- 4) 업무 관리 -->
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="collapse"
+              data-bs-target="#works-collapse" aria-expanded="false" id="resourceManager">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">업무 관리</span>
+            </a>
+              <!-- 업무관리 하위 메뉴 -->
+            <div class="collapse" id="works-collapse">
+              <ul>
+                  <li style="list-style: none; text-align: center;">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/calendar?fn=PAGE">
+                      일정 관리      
+                    </a>
+                  </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>   
+    <!-- 사이드바 붙여넣은 부분 -->
 <main class="main-content position-relative border-radius-lg">
   <!-- Navbar -->
   <nav style="padding-top: 17px;"
@@ -352,20 +426,24 @@
             </div>
           </div>
           <div class="card-body px-0 pt-0 pb-2 d-flex justify-content-center">
-	          <div  id='calendar' style="width:800px;height:800px;">
+	          <div  id='calendar' style="width:800px;height:800px;margin-bottom:100px;">
 	    	
 			   </div>
-			   <div >
+			   <div style="margin-left:30px;">
 				    <label for="title">제목  </label>
-				    <input type="text" id="title"/><br>
-				    	
+				    <input type="text" class="form-control" id="title"/><br>
+				    
+				    <label for="content">내용  </label>
+				    <textarea class="form-control" id="content" ></textarea><br>
+				    
 				    <label for="startDate">시작날짜</label>
-				    <input type="datetime-local" id="startDate"/><br>
+				    <input type="datetime-local" class="form-control" id="startDate"/><br>
 				    	
 				    <label for="endDate">종료날짜</label>
-				    <input type="datetime-local" id="endDate"/><br>
+				    <input type="datetime-local" class="form-control" id="endDate"/><br>
 	          </div>
           </div>
+          
         </div>
       </div>
     </div>

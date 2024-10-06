@@ -1,6 +1,7 @@
 package model.landing.command;
 
 import model.Icommand;
+import model.dashboard.Todo_List;
 import model.landing.Login;
 
 import javax.servlet.ServletException;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import db.dto.TodoDTO;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LoginCmd implements Icommand {
 
@@ -23,10 +27,14 @@ public class LoginCmd implements Icommand {
         try {
             message = dao.LoginMessage(req);
             
-            //유저별로 즐겨찾기 목록이 다르기 때문에
-            //user_pk_num을 sessionID에 저장하여 전달합니다.
+            //user_pk_num을 sessionID에 저장
 			session.setAttribute("sessionID", user_pk_num);
 			
+			//로그인한 사용자의 일정 목록 todoList에 담기
+			Todo_List todo = new Todo_List();
+			ArrayList<TodoDTO> todoList = todo.getTodoList(user_pk_num);
+			req.setAttribute("todoList", todoList);
+					
         } catch (Exception e) {
             e.printStackTrace();
         }        
