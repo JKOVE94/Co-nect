@@ -31,10 +31,10 @@ public class Proj_List {
             }
             else if((keyWord != null) && (keyWord != " ")) {
             	//키워드가 들어있는 글만 가져오는 쿼리
-            	String sql = "SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num, proj_icon, proj_tagcol FROM"
-            		+ "	(SELECT * FROM project WHERE "+keyField+" LIKE ?) AS project "
-            		+ " LEFT OUTER JOIN (SELECT favor_fk_proj_num FROM favorites WHERE favor_fk_user_num = ?) AS favor"
-            		+ " ON project.proj_pk_num = favor.favor_fk_proj_num;";
+            	String sql = " SELECT proj_pk_num, proj_name, proj_fk_user_num, proj_startdate, proj_enddate, proj_import, proj_status, favor.favor_fk_proj_num, proj_icon, proj_tagcol , user_name FROM"
+            			+ " (SELECT * FROM project LEFT OUTER JOIN user ON user.user_pk_num = project.proj_fk_user_num WHERE "+keyField+" LIKE ? ) AS project"
+            			+ " LEFT OUTER JOIN (SELECT favor_fk_proj_num FROM favorites WHERE favor_fk_user_num = 10) AS favor"
+            			+ " ON project.proj_pk_num = favor.favor_fk_proj_num;";
             	stmt = conn.prepareStatement(sql);
             	stmt.setString(1, "%"+keyWord+"%");
             	stmt.setString(2, sessionID);

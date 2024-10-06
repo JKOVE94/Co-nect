@@ -12,276 +12,65 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-
 <%@page import="db.dto.PostDTO"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="asset/2_dashboard/img/apple-icon.png"
-  />
-  <link rel="icon" type="image/png" href="asset/2_dashboard/img/favicon.png" />
-  <title>2조 프로젝트</title>
-  <!--     Fonts and icons     -->
-  <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-          rel="stylesheet"
-  />
-  <!-- Nucleo Icons -->
-  <link href="asset/2_dashboard/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script
-          src="https://kit.fontawesome.com/42d5adcbca.js"
-          crossorigin="anonymous"
-  ></script>
-  <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link
-          id="prototypetyle"
-          href="asset/2_dashboard/css/argon-dashboard.css?v=2.0.4"
-          rel="stylesheet"
-  />
-  <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-  />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="asset/2_dashboard/img/apple-icon.png" />
+<link rel="icon" type="image/png"
+	href="asset/2_dashboard/img/favicon.png" />
+<title>Co-nect</title>
+<!--     Fonts and icons     -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+	rel="stylesheet" />
+<!-- Nucleo Icons -->
+<link href="asset/2_dashboard/css/nucleo-icons.css" rel="stylesheet" />
+<link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js"
+	crossorigin="anonymous"></script>
+<link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
+<!-- CSS Files -->
+<link id="pagestyle"
+	href="asset/2_dashboard/css/argon-dashboard.css?v=2.0.4"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+<style>
+.search {
+	position: relative;
+	top: -10px;
+	float: right;
+}
 
+.title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+th {
+	text-align: center;
+}
+
+.center {
+	text-align: center;
+}
+</style>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-
-<div class="min-height-300 bg-primary position-absolute w-100"></div>
-
-<div class="sidenav-logo-container">
-  <img src="asset/1_landing/co-nect logo + text (w).svg" alt="Logo" class="sidenav-logo" style="margin-top:-0.75rem">
-</div>
-<!-- 사이드바 붙여넣은 부분 -->
-	<aside
-      class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-4 "
-      id="sidenav-main">
-      
-      <!-- 사이드바 제목(로고) -->
-      <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-          aria-hidden="true" id="iconSidenav"></i>
-          
-          <!-- 회사 이름 및 로고 -->
-        <a class="navbar-brand m-0" href="<%=request.getContextPath()%>/dashboard?fn=HOME">
-          <img src="asset/1_landing/co-nect logo + text (1E74B1).svg" class="navbar-brand-img h-100" alt="main_logo">
-          <span class="ms-1 font-weight-bold">(주)코난2조</span>
-        </a>
-      </div>
-
-      <!-- 사이드바 항목 -->
-       <!-- 구분선 -->
-      <hr class="horizontal dark mt-0"> 
-
-      <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <!-- 사이드 바 하위 항목 시작 -->
-        <ul class="navbar-nav">
-          <!-- 1) 즐겨찾기 -->
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="collapse" 
-            data-bs-target="#favorites-collapse" aria-expanded="false" id="resourceManager">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="bi bi-star text-primary text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">즐겨찾기</span>
-            </a>
-
-            <!-- 즐겨찾기 하위 메뉴 ( 프로젝트 ) -->
-            <div class="collapse" id="favorites-collapse">
-              <ul>
-                  <li style="list-style: none; text-align: center;">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_PROJLIST">
-                      프로젝트       
-                    </a>
-                  </li>
-              </ul>
-              <ul>
-                  <li style="list-style: none; text-align: center;">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
-                      자유게시판       
-                    </a>
-                  </li>
-              </ul>
-            </div>
-          </li>
-          
-          <!-- 2) 프로젝트 -->
-          <li class="nav-item">
-            <a class="nav-link active" href="./virtual-reality.html" data-bs-toggle="collapse"
-            data-bs-target="#project-collapse" aria-expanded="false" id="resourceManager">
-            <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-app text-info text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">프로젝트</span>
-        </a>
-        
-        <!-- 프로젝트 하위 메뉴 -->
-        <div class="collapse" id="project-collapse">
-              <ul>
-                <li style="list-style: none; text-align: center;">
-                  <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
-                    프로젝트 개요    
-                  </a>
-                </li>
-              </ul>
-            </div>
-            
-            <div class="collapse" id="project-collapse">
-              <ul>
-                <li style="list-style: none; text-align: center;">
-                  <a class="nav-link" href="details.jsp">
-                    프로젝트 일정    
-                  </a>
-                </li>
-              </ul>
-            </div>          
-          </li>
-          
-          <!-- 3) 게시판 -->
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="collapse"
-            data-bs-target="#board-collapse" aria-expanded="false" id="resourceManager">
-              <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">게시판</span>
-            </a>
-            <!-- 게시판 하위 메뉴 -->
-            <div class="collapse" id="board-collapse">
-              <ul>
-                <li style="list-style: none; text-align: center;">
-                  <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=FREE_LIST">
-                    사내 게시판
-                  </a>
-                </li>
-                <li style="list-style: none; text-align: center;">
-                <a class="nav-link" href="<%=request.getContextPath()%>/dashboard?fn=PROJ_LIST">
-                  프로젝트 게시판
-                </a>
-              </li>
-                
-              </ul>
-            </div>
-            
-          </li>
-          
-
-          <!-- 4) 업무 관리 -->
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="collapse"
-              data-bs-target="#works-collapse" aria-expanded="false" id="resourceManager">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">업무 관리</span>
-            </a>
-              <!-- 업무관리 하위 메뉴 -->
-            <div class="collapse" id="works-collapse">
-              <ul>
-                  <li style="list-style: none; text-align: center;">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/calendar?fn=PAGE">
-                      일정 관리      
-                    </a>
-                  </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </aside>   
+	<!-- 사이드바 항목 + 관리 -->
+	<jsp:include page="/asset/2_dashboard/page/navBar&profile.jsp"></jsp:include>
     <!-- 사이드바 붙여넣은 부분 -->
-<main class="main-content position-relative border-radius-lg">
-  <!-- Navbar -->
-  <nav style="padding-top: 17px;"
-       class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-       id="navbarBlur"
-       data-scroll="false"
-  >
-    <div  class="container-fluid py-1 px-3">
-      <div
-              class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-              id="navbar"
-      >
-        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
-        </div>
-        <ul class="navbar-nav align-items-center ml-auto">
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-              </div>
-            </a>
-          </li>
-          <li class="nav-item px-3 d-flex align-items-center profile-container">
-            <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="profile-photo-small">
-                <img src="path/to/profile-photo.jpg" alt="프로필 사진" class="rounded-circle" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <i class="bi bi-person-circle default-icon"></i>
-              </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end px-2 py-1 me-sm-5" aria-labelledby="dropdownMenuButton">
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="<%=request.getContextPath()%>/prototype/profile.jsp">
-                  <div class="d-flex py-1">
-                    <div class="my-auto">
-                      <i class="bi bi-person-circle avatar avatar-sm bg-white text-dark me-3"></i>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold" style="color=black">마이 페이지</span>
-                      </h6>
-                      <p class="text-xs text-secondary mb-0">
-                        <i class="bi bi-bell me-1"></i>
-                        1 new
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="${pageContext.request.contextPath}/manage?fn=ADMIN_MANAGE">
-                  <div class="d-flex py-1">
-                    <div class="my-auto">
-                      <i class="bi bi-gear-fill avatar avatar-sm bg-white text-dark me-3"></i>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold" style="color:black">관리자 페이지</span>
-                      </h6>
-                      <p class="text-xs text-secondary mb-0">
-                        <i class="bi bi-bell me-1"></i>
-                        1 new
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-
-      </div>
-    </div>
-  </nav>
   <!-- End Navbar -->
   
   
@@ -298,28 +87,70 @@
 		 
 		</div>
 		<div class="card-body px-0 pt-0 pb-2">
-		 <div class="table-responsive p-0 " style="width:500px;">
+		 <div class="table-responsive p-0 ">
 		  <table class="table align-items-center justify-content-center mb-0">
-			<thead>
-				<tr>
-				  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7-2">게시글 번호</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">제목</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">삭제</th>
-				</tr>
-			</thead>
-			
-			<tbody >
-				<c:forEach var="list" items="${list}">
-					<tr>
-						<td style="padding-left: 50px;width:50px;">${list.number}</td>
-						<!-- post_pk_num -->
-						<td ><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_num=${list.number}">${list.name}</a></td>
-						<!-- del -->
-						<td ><a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=${list.number}&url=FLIST">del</a>
-					</tr>
-				</c:forEach>
-           	</tbody>
-		</table>
+		  	<thead>
+									<tr>
+										<th
+											class="w-5 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+											게시글 번호</th>
+										<th
+											class="w-40 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+											제목</th>
+										<th
+											class="w-10 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+											작성자</th>
+
+										<th
+											class="w-15 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+											등록일</th>
+										<th
+											class="w-15 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+											중요도</th>
+										<th
+											class="w-5 text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+											삭제</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<c:set var="Nmap" value="${sessionScope.getUserNameMap}"/>
+										<c:forEach var="list" items="${list}">
+											<td class="center">
+												<!-- 글번호 --> <span class="text-xs font-weight-bold">${list.number}</span>
+											</td>
+											<td>
+												<div class="d-flex px-2">
+
+													<div class="my-auto">
+														<a
+															href="${pageContext.request.contextPath}/dashboard?fn=FREE_READ&post_pk_num=${list.number}">
+															<!-- 글제목 -->
+															<h6 class="mb-0 text-sm">${list.name}</h6>
+														</a>
+													</div>
+												</div>
+											</td>
+											<td>
+												<!-- 작성자 -->
+												<h6 class="mb-0 text-sm text-center"> ${Nmap[list.user.toString()]}</h6>
+
+											</td>
+											<!-- 등록일 -->
+											<td class="center"><span
+												class="text-xs font-weight-bold"> ${list.regdate} </span></td>
+											<!-- 중요도 -->
+											<td class="align-middle text-center">
+												<div>${list.status}</div>
+											</td>
+											<td class="align-middle text-center">
+											<a href="${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=${list.number}&url=FLIST">삭제</a>
+											</td>
+									</tr>
+									</c:forEach>
+									</tr>
+								</tbody>
+				</table>
 		<br>
 				</div>
             </div>
@@ -520,17 +351,6 @@
 <script src="asset/2_dashboard/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="asset/2_dashboard/js/plugins/chartjs.min.js"></script>
 <script>
-//즐겨찾기 버튼 check 시 즐겨찾기 등록 command, check 해제 시 즐겨찾기 해제 command로 이동하게 함
-const favoriteToggle = document.querySelectorAll('#favorite');
-	for(let i=0; i<favoriteToggle.length; i++){
-	favoriteToggle[i].addEventListener('click',() => {
-		if (favoriteToggle[i].checked){
-			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_CREATE&post_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
-		} else {
-			location.href = `${pageContext.request.contextPath}/favorites?fn=FAVOR_DEL&post_pk_num=`+favoriteToggle[i].value+`&url=LIST`;
-		}
-	})
-}
 	
   var ctx1 = document.getElementById("chart-line").getContext("2d");
 

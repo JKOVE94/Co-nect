@@ -130,7 +130,7 @@ if (list.size() >= 1) {
 
 							<span> <select name="keyField" size="1">
 									<option value="post_name">제목&nbsp;
-									<option value="post_fk_user_num">작성자
+									<option value="user_name">작성자
 							</select> <input type="text" size="20" name="keyWord"
 								placeholder="검색어를 입력하세요"> <!-- input type="submit" value="검색" onClick="check()"-->
 								<button type="submit" class="btn btn-secondary">검색</button>

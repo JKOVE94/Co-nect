@@ -32,10 +32,12 @@ public class Free_List {
                 
             } else if ((keyWord != null) && (keyWord != " ")) {
             	//키워드가 들어있는 글만 가져오는 쿼리
-            	String sql = "SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num FROM"
-            			+ "	(SELECT * FROM post WHERE "+keyField+" LIKE ?) AS post"
-            			+ " LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = ? ) AS favor"
+            	String sql = "SELECT post_pk_num, post_name, post_fk_user_num, post_regdate, post_view, favor_fk_post_num, user_name FROM"
+            			+ " (SELECT * FROM post LEFT OUTER JOIN user ON user.user_pk_num = post.post_fk_user_num"
+            			+ "	WHERE "+keyField+" LIKE ?) AS post"
+            			+ " LEFT OUTER JOIN (SELECT favor_fk_post_num FROM favorites WHERE favor_fk_user_num = 10 ) AS favor"
             			+ " ON post.post_pk_num = favor.favor_fk_post_num;";
+            	
             	
             	stmt = conn.prepareStatement(sql);
             	stmt.setString(1, "%"+keyWord+"%");
