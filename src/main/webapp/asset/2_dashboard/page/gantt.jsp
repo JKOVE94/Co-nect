@@ -160,7 +160,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             </div>
             
             <div class="Task">
-            <form action="${pageContext.request.contextPath}/dashProj?fn=Proj" method="post">        
+            <form action="${pageContext.request.contextPath}/dashProj?fn=Proj&proj_pk_num=${sessionScope.getProjDTO.proj_pk_num}" method="post">        
         <div class="form-group">
             <label for="proj_name">업무 명:</label><br>
             <input type="text" id="task_title" name="task_title" required>

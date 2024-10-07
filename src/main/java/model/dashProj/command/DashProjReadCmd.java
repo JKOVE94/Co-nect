@@ -26,6 +26,8 @@ public class DashProjReadCmd implements Icommand {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        String proj_pk_num =(String) req.getParameter("proj_pk_num");
+        System.out.println("proj_pk_num : "+proj_pk_num);
 
         try {
             pool = DBConnectionMgr.getInstance();
@@ -58,7 +60,6 @@ public class DashProjReadCmd implements Icommand {
             }
 
             req.setAttribute("taskList", taskList);
-            System.out.println("총 가져온 작업 수: " + taskList.size());
 
         } catch (Exception e) {
             System.out.println("Task Read 오류: " + e.getMessage());
@@ -69,13 +70,10 @@ public class DashProjReadCmd implements Icommand {
             }
         }
         
-        System.out.println("TaskReadCommand: 총 가져온 작업 수: " + taskList.size());
-        for (TaskDTO task : taskList) {
-            System.out.println("작업 제목: " + task.getTask_title());
-        }
+       
 
         req.setAttribute("taskList", taskList);
         
-        return "/WEB-INF/views/dashboard/details.jsp";
+        return "/dashboard?fn=PROJ_READ&proj_pk_num="+proj_pk_num;
     }
 }

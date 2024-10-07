@@ -25,7 +25,7 @@ public class DashProjRead implements Icommand {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        String proj_pk_num =(String) req.getAttribute("proj_pk_num");
         try {
             pool = DBConnectionMgr.getInstance();
             conn = pool.getConnection();
@@ -68,6 +68,6 @@ public class DashProjRead implements Icommand {
             }
         }
 
-        return "/prototype/details.jsp";
+        return "/dashboard?fn=PROJ_READ&proj_pk_num="+proj_pk_num;
     }
 }
