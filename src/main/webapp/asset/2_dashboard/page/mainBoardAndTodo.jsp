@@ -28,18 +28,17 @@ text-align:center;
        </div>
       </div>
       <div style="margin-left: 1rem; margin-top: -1rem;" class="card-body p-3">
-       <ul style="margin-top: -1rem; margin-bottom: 1rem;" class="list-group">
-        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-         <div class="d-flex align-items-center">
-          <div class="d-flex flex-column">
-           <table class="table align-items-center mb-0 custom-table">
+
+         <div class="d-flex align-items-center ">
+          <div class="d-flex flex-column m-1" style="width:50rem;">
+           <table  class="table align-items-center custom-table">
             <thead>
              <tr>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">글 번호</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">제목</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">작성자</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
+              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >글 번호</th>
+              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >제목</th>
+              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >작성자</th>
+              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >등록일</th>
+              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >조회수</th>
              </tr>
             </thead>
             <tbody>
@@ -56,8 +55,7 @@ text-align:center;
            </table>
           </div>
          </div>
-        </li>
-       </ul>
+             
       </div>
      </div>
     </div>
