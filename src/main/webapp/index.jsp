@@ -88,9 +88,11 @@
             <h2>
               Welcome
             </h2>
+
           </div>
 
           <div class="img sign-in">
+
           </div>
         </div>
         <!-- END SIGN IN CONTENT -->
