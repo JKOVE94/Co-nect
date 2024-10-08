@@ -88,16 +88,9 @@
             <h2>
               Welcome
             </h2>
-
           </div>
-<<<<<<< HEAD
-          <div class="input-group">      
-            <i class='bx bxs-user'></i>
-            <input type="number" placeholder="Username" name="user_pk_num" required>
-=======
-          <div class="img sign-in">
 
->>>>>>> 2a416973715b062bbeb2c9db82113c684cab60f3
+          <div class="img sign-in">
           </div>
         </div>
         <!-- END SIGN IN CONTENT -->
