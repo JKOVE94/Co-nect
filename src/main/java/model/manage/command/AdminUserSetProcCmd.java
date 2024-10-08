@@ -40,7 +40,7 @@ public Object method(HttpServletRequest req, HttpServletResponse resp) throws Se
     if (multi != null) {
         UserDTO dto = image.saveUserImage(realPath, multi);
         userset.setUser(dto);
-        return "/WEB-INF/views/manage/userSetting/admin_setUser.jsp";
+        return "/WEB-INF/views/manage/userSetting/userSet.jsp";
     } else {
         req.setAttribute("error", "MultipartRequest is null");
         return "";
