@@ -97,7 +97,7 @@
 													</div>
 												</div>
 											</td>
-											<td class="align-middle"><a href="projRead.jsp">
+											<td class="align-middle"><a href="${pageContext.request.contextPath}/dashboard?fn=PROJ_READ&proj_pk_num=${l.proj_pk_num}">
 													<button class="btn btn-link text-secondary mb-0">
 														<i class="fa fa-ellipsis-v text-xs"></i>
 													</button>
