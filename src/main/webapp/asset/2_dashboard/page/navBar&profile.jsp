@@ -4,8 +4,9 @@
 	<div class="min-height-300 bg-primary position-absolute w-100"></div>
 
 	<div class="sidenav-logo-container">
+	<a href="${pageContext.request.contextPath}/landing?fn=MAIN"style="float:left; position:relative; bottom:1.5em">
 		<img src="asset/1_landing/co-nect logo + text (w).svg" alt="Logo"
-			class="sidenav-logo" style="margin-top: -0.75rem">
+			class="sidenav-logo" style="margin-top: -0.75rem"></a>
 	</div>
 
 	<aside
