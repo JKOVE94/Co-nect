@@ -13,7 +13,7 @@ text-align:center;
 </head>
 <body>
 <c:set var="Nmap" value="${sessionScope.getUserNameMap}"/>
- <div class="container-fluid">
+ <div style="margin-top: -1.5rem" class="container-fluid">
   <div class="row">
    <!-- 게시판 -->
    <div class="col-lg-7">
