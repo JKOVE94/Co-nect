@@ -33,6 +33,8 @@ public class getAllTodo {
 				dto.setTodo_content(rs.getString("todo_content"));
 				dto.setTodo_start(rs.getDate("todo_start"));
 				dto.setTodo_end(rs.getDate("todo_end"));
+				dto.setTodo_icon(rs.getInt("todo_icon"));
+				dto.setTodo_tagcol(rs.getString("todo_tagcol"));
 
 				list.add(dto);
 			}

@@ -34,21 +34,32 @@ text-align:center;
            <table  class="table align-items-center custom-table">
             <thead>
              <tr>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >글 번호</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >제목</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >작성자</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >등록일</th>
-              <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 " >조회수</th>
+              <th class="text-center text-secondary text-xs font-weight-bolder opacity-7 " >글 번호</th>
+              <th class="text-center text-secondary text-xs font-weight-bolder opacity-7 " >제목</th>
+              <th class="text-center text-secondary text-xs font-weight-bolder opacity-7 " >작성자</th>
+              <th class="text-center text-secondary text-xs font-weight-bolder opacity-7 " >등록일</th>
+              <th class="text-center text-secondary text-xs font-weight-bolder opacity-7 " >조회수</th>
              </tr>
             </thead>
             <tbody>
              <c:forEach var="l" items="${AllPost}" begin="0" end="4" step="1">
               <tr>
-               <td class="center">${l.post_pk_num}</td>
-               <td><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_pk_num=${l.post_pk_num}">${l.post_name}</a></td>
-               <td class="center">${Nmap[l.post_fk_user_num.toString()]}</td>
-               <td class="center">${l.post_regdate}</td>
-               <td class="center">${l.post_view}</td>
+                <td class="center">
+                	<h6 class="text-sm mb-0">${l.post_pk_num}</h6>
+                </td>
+                <td><a href="<%=request.getContextPath()%>/dashboard?fn=FREE_READ&post_pk_num=${l.post_pk_num}">
+                	<h6 class="text-sm mb-0">${l.post_name}</h6>
+                </a></td>
+                <td class="center">
+                	<h6 class="text-sm mb-0">${Nmap[l.post_fk_user_num.toString()]}</h6>
+                </td>
+                <td class="center">
+                	<h6 class="text-sm mb-0">${l.post_regdate}</h6>
+                </td>
+                <td class="center">
+                 <h6 class="text-sm mb-0">${l.post_view}</h6>
+                </td>
+               
               </tr>
              </c:forEach>
             </tbody>
@@ -76,10 +87,32 @@ text-align:center;
        <table class="table align-items-center custom-table">
         <tbody id="taskList">
          <c:forEach var="t" items="${AllTodo}">
-          <tr>
-           <td>${t.todo_pk_num}</td>
-           <td>${t.todo_title}</td>
-           <td>${t.todo_content}</td>
+          <tr>          
+           	<td><i style="color: ${t.todo_tagcol};" class="bi" data-icon="${t.todo_icon}"></i></td>
+			<td>
+			 <div class="ms-4">
+              <p class="text-xs font-weight-bold mb-0">업무 번호:</p>
+              <h6 class="text-sm mb-0">${t.todo_pk_num}</h6>
+             </div>
+			</td>
+			<td>
+			 <div class="ms-4">
+              <p class="text-xs font-weight-bold mb-0">업무:</p>
+              <h6 class="text-sm mb-0">${t.todo_title}</h6>
+             </div>
+			</td>
+			<td>
+			 <div class="ms-4">
+              <p class="text-xs font-weight-bold mb-0">마감일:</p>
+              <h6 class="text-sm mb-0">${t.todo_end}</h6>
+             </div>
+			</td>
+			<td>
+			<div class="ms-4">
+              <p class="text-xs font-weight-bold mb-0">내용:</p>
+              <h6 class="text-sm mb-0">${t.todo_content}</h6>
+             </div>
+			</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -91,4 +124,25 @@ text-align:center;
   </div>
  </div>
 </body>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+	  function getTaskIcon(number) {
+	    const iconMap = {
+	      1: 'bi-list-task',
+	      2: 'bi-clipboard',
+	      3: 'bi-calendar',
+	      4: 'bi-check-circle',
+	      5: 'bi-alarm',
+	      6: 'bi-file-earmark-text',
+	      7: 'bi-clock'
+	    };
+	    return iconMap[number] || 'bi-question-circle-fill';
+	  }
+
+	  document.querySelectorAll('i[data-icon]').forEach(icon => {
+	    const iconNumber = icon.getAttribute('data-icon');
+	    icon.classList.add(getTaskIcon(iconNumber));
+	  });
+	});
+</script>
 </html>

@@ -33,6 +33,8 @@
 <link href="asset/2_dashboard/css/nucleo-icons.css" rel="stylesheet" />
 <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
 <!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <script src="https://kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
 <link href="asset/2_dashboard/css/nucleo-svg.css" rel="stylesheet" />
@@ -42,6 +44,8 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+
+	
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
