@@ -1,4 +1,6 @@
+<%@page import="model.manage.Admin_check"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body>
 	<div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -169,7 +171,13 @@
 											</div>
 										</div>
 								</a></li>
-								<li class="mb-2"><a class="dropdown-item border-radius-md"
+								<%
+									String sessionID = (String)session.getAttribute("sessionID");
+									Admin_check admin = new Admin_check();
+									boolean b = admin.AdminCheck(sessionID);
+								%>
+								<li class="mb-2" <c:if test="<%=!b %>">hidden</c:if>>
+									<a class="dropdown-item border-radius-md"
 									href="${pageContext.request.contextPath}/manage?fn=ADMIN_MANAGE">
 										<div class="d-flex py-1">
 											<div class="my-auto">
