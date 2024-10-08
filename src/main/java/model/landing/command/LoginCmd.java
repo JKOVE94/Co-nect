@@ -38,6 +38,10 @@ public class LoginCmd implements Icommand {
             message = dao.LoginMessage(req);
         } catch (Exception e) {
             e.printStackTrace();
+            message = "잘못된 정보입니다";
+            //예외 확인
+            System.out.println("예외발생(java) :" + e );
+            System.out.println("message(LoginCmd_예외):"+ message);
 
         }
 
@@ -74,6 +78,7 @@ public class LoginCmd implements Icommand {
         }
         else {
             req.setAttribute("message", message);
+            System.out.println("message(LoginCmd_로그인 실패):"+ message);
             url = "index.jsp";
         }
         return url;

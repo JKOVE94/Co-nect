@@ -30,10 +30,12 @@ public class Login {
 
 
     public String LoginMessage(HttpServletRequest req) throws Exception {
-        //로그인 실패 메시지 변수
+        
+
+    	//로그인 실패 메시지 변수
         String message = null;
         
-        
+    
         //dtoReturn 메서드 호출
         UserDTO user = dtoReturn(req);
         
@@ -42,78 +44,92 @@ public class Login {
         int userNum = user.getUser_pk_num();
         String userPw = user.getUser_pw();
         
-        
-        
+        /*
+        if(compNum<0||userNum<0) {
+        	message = "잘못된 정보입니다.";
+        	System.out.println("음수 막힘");
+        }else {
+        */
        
-        //사용자 입력 값 null empty 일때 try catch, 그리고 message 추가 
-        String checkCompanySql = "SELECT * FROM user WHERE user.user_fk_comp_num = ?";
-        String checkUserNumSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ?";
-        String checkPasswordSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ? AND user.user_pw =?";
+        	//사용자 입력 값 null empty 일때 try catch, 그리고 message 추가 
+        	String checkCompanySql = "SELECT * FROM user WHERE user.user_fk_comp_num = ?";
+        	String checkUserNumSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ?";
+        	String checkPasswordSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ? AND user.user_pw =?";
+
+        	try {
+
+        		conn = pool.getConnection();
 
 
-        conn = pool.getConnection();
+        		// 1.회사코드 확인
+        		stmt = conn.prepareStatement(checkCompanySql);
+        		stmt.setInt(1, compNum); // 회사 코드
 
+        		rs = stmt.executeQuery();
+        		if(!rs.next()) {
+        			message = "존재하지 않는 회사 코드입니다.";
 
-        // 1.회사코드 확인
-        stmt = conn.prepareStatement(checkCompanySql);
-        stmt.setInt(1, compNum); // 회사 코드
+        		}
+        		rs.close();
+        		stmt.close();
 
-        rs = stmt.executeQuery();
-        if(!rs.next()) {
-            message = "존재하지 않는 회사 코드입니다.";
-            return message;
-        }
-        rs.close();
-        stmt.close();
+        		//2.사번까지 확인
+        		stmt = conn.prepareStatement(checkUserNumSql);
+        		stmt.setInt(1, compNum); //회사 코드
+        		stmt.setInt(2, userNum); // 사번 ID
+        		if(!rs.next()) {
+        			message = "잘못된 정보입니다.";
+        		}
+        		rs.close();
+        		stmt.close();
 
-        //2.사번까지 확인
-        stmt = conn.prepareStatement(checkUserNumSql);
-        stmt.setInt(1, compNum); //회사 코드
-        stmt.setInt(2, userNum); // 사번 ID
-        if(!rs.next()) {
-            message = "잘못된 정보입니다.";
-            return message;
-        }
-        rs.close();
-        stmt.close();
+        		//3. 패스워드 확인
+        		stmt = conn.prepareStatement(checkPasswordSql);
+        		stmt.setInt(1, compNum);//회사코드
+        		stmt.setInt(2, userNum);  //사번 ID
+        		stmt.setString(3, userPw); //패스워드
+        		rs = stmt.executeQuery();
 
-        //3. 패스워드 확인
-        stmt = conn.prepareStatement(checkPasswordSql);
-        stmt.setInt(1, compNum);//회사코드
-        stmt.setInt(2, userNum);  //사번 ID
-        stmt.setString(3, userPw); //패스워드
-        rs = stmt.executeQuery();
+        		//로그인 실패시
+        		if(!rs.next()) {
+        			//로그인 실패 : 계정 잠금 확인(사번 회사번호만 맞아도 확인)
+        			if(lockedUserCheck(user)) {
+        				message = "잠긴 계정입니다 담당자에게 문의하세요(비밀번호 틀림 5회 초과)";
+        			}else {
+        				incrementLoginAttempts(user); //로그인 시도 횟수 증가
+        				lockUserAccount(user); //5회 초과시 계정 잠금
+        				message = "잘못된 정보입니다.";
+        			}
 
+        		}
+        		//로그인 성공
+        		else {
 
-
-
-
-        //로그인 실패시
-        if(!rs.next()) {
-            incrementLoginAttempts(user); //로그인 시도 횟수 증가
-            lockUserAccount(user); //5회 초과시 계정 잠금
-            message = "잘못된 정보입니다.";
-            return message;
-        }
-        //로그인 성공
-        else {
-
-            //계정 잠금 확인
-            if(lockedUserCheck(user)) {
-                message = "잠긴 계정입니다 담당자에게 문의하세요(비밀번호 틀림 5회 초과)";
-                return message;
-            }
-
-
-            //시도 횟수 초기화
-            resetLoginAttempts(user);
-            message = null;
-
-
-        }
+        			//로그인 성공 : 계정 잠금 확인
+        			if(lockedUserCheck(user)) {
+        				message = "잠긴 계정입니다 담당자에게 문의하세요(비밀번호 틀림 5회 초과)";
+        			}else {
+        				//시도 횟수 초기화
+        				resetLoginAttempts(user);
+            			message = null;
+        			}
+        			
+        		}
+        	
+            
+        	
+        	}catch(Exception e) {
+        		System.out.println("로그인(sql) 오류 :" + e);
+        		message = "잘못된 정보입니다.";
+        		System.out.println("Loginjava:"+ message);
+        
+        
+        	}finally {pool.freeConnection(conn, stmt, rs);}
+        
+   //  }
 
         return message;
-    }
+   }
 
 
 
@@ -133,7 +149,7 @@ public class Login {
             }
             return false;
 
-        }finally {pool.freeConnection(conn, stmt);}
+        }finally {pool.freeConnection(conn, stmt, rs);}
 
     }
 
@@ -148,7 +164,7 @@ public class Login {
             stmt.setInt(1, user.getUser_fk_comp_num()); // 회사 코드
             stmt.setInt(2, user.getUser_pk_num());      // 사번 ID
             stmt.executeUpdate();
-        } finally {pool.freeConnection(conn, stmt);}
+        } finally {pool.freeConnection(conn, stmt, rs);}
     }
 
 
@@ -162,7 +178,7 @@ public class Login {
             stmt.setInt(1, user.getUser_fk_comp_num()); // 회사 코드
             stmt.setInt(2, user.getUser_pk_num());      // 사번 ID
             stmt.executeUpdate();
-        } finally {pool.freeConnection(conn, stmt);}
+        } finally {pool.freeConnection(conn, stmt, rs);}
     }
 
 
