@@ -24,7 +24,7 @@ public class AdminLockUserCmd implements Icommand {
 
 		req.getSession().setAttribute("userList", userList);
 		
-		return "WEB-INF/views/manage/lockedUser/userList.jsp";
+		return "WEB-INF/views/manage/lockedUser/unlockuserList.jsp";
 	}
 
 }

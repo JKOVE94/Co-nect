@@ -25,18 +25,21 @@ public class FileSave {
 		MultipartRequest multi = new MultipartRequest(request, realPath, fileDto.getSize(), "UTF-8"); //파일저장
 		
 		File oldFile = multi.getFile("user_pic"); //저장된 파일의 이름을 변경하기 위해 객체 생성
-		String oldFileName = oldFile.getName();
-		String fileExtension = oldFileName.substring(oldFileName.lastIndexOf('.'),oldFileName.length());
 		
-		int userPkNum = Integer.parseInt(multi.getParameter("user_pk_num"));
-		fileDto.setFileName(fileDto.getDirPath()+"/"+userPkNum +fileExtension); // DB에 저장될 파일명은 디렉토리/사번.확장
-		
-		File newFile = new File(realPath, userPkNum + fileExtension); //새로 저장될 파일명
-		if(newFile.exists()) { //기존에 저장되어 있는 이미지 파일 삭제
-			newFile.delete();
+		if (oldFile!= null) {
+			String oldFileName = oldFile.getName();
+			String fileExtension = oldFileName.substring(oldFileName.lastIndexOf('.'),oldFileName.length());
+			int userPkNum = Integer.parseInt(multi.getParameter("user_pk_num"));
+			fileDto.setFileName(fileDto.getDirPath()+"/"+userPkNum +fileExtension); // DB에 저장될 파일명은 디렉토리/사번.확장
+			
+			File newFile = new File(realPath, userPkNum + fileExtension); //새로 저장될 파일명
+			
+			if(newFile.exists()) { //기존에 저장되어 있는 이미지 파일 삭제
+				newFile.delete();
+			}
+			oldFile.renameTo(newFile); //이름변경
 		}
-		oldFile.renameTo(newFile); //이름변경
-		
+
 		//파일정보와 multiReq 정보 전달
 		map.put("FileDTO", fileDto); 
 		map.put("MultipartRequest", multi);

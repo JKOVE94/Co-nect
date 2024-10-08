@@ -6,6 +6,7 @@ import db.dto.UserDTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 
 public class Admin_userSet {
 	public void setUser(UserDTO user) {
@@ -23,10 +24,14 @@ public class Admin_userSet {
 			
 			//connection에 prepareStatement로 query
 			stmt = conn.prepareStatement(sql);
-		
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			String date = format.format(user.getUser_regdate());
+			java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+			
 			//몇번째 ?에 값을 넣을것인가.
 			stmt.setInt(1, user.getUser_pk_num()); //사번
-			stmt.setDate(2, (Date) user.getUser_regdate()); //입사일
+			stmt.setDate(2, sqlDate); //입사일
 			stmt.setString(3, user.getUser_pw()); //패스워드ㅋ
 			stmt.setString(4, user.getUser_name()); //이름
 			stmt.setString(5, user.getUser_mail()); // 이메일

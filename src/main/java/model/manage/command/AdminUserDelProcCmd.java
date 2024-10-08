@@ -20,8 +20,8 @@ public class AdminUserDelProcCmd implements Icommand{
 		} catch (Exception e) {
 			System.out.println("AdminUserDelProcCmd"+e);
 		}
-	
-		return "/WEB-INF/views/manage/userList/userListTest.jsp";
+		
+		return "/manage?fn=ADMIN_USERLIST_PROC.jsp";
 	}
 	
 }

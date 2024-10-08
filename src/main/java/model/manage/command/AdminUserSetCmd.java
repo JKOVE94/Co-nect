@@ -10,6 +10,6 @@ import java.io.IOException;
 public class AdminUserSetCmd implements Icommand {
 @Override
 public Object method(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-    return "/WEB-INF/views/manage/userSetting/admin_setUser.jsp";
+    return "/WEB-INF/views/manage/userSetting/userSet.jsp";
     }
 }

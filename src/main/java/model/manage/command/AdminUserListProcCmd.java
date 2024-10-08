@@ -25,7 +25,7 @@ public class AdminUserListProcCmd implements Icommand {
 		HttpSession session = req.getSession();
 		
 		session.setAttribute("userList", list);
-		return "/WEB-INF/views/manage/userList/userListTest.jsp";
+		return "/WEB-INF/views/manage/userList/userList.jsp";
 	}
 
 }

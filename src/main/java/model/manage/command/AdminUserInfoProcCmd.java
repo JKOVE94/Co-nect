@@ -28,7 +28,7 @@ public class AdminUserInfoProcCmd implements Icommand{
 			System.out.println("AdminUserInfoProcCmd" + e);
 		}
 		
-		return "/WEB-INF/views/manage/userInfo/userInfoTest.jsp";
+		return "/WEB-INF/views/manage/userInfo/userInfo.jsp";
 	}
 
 }

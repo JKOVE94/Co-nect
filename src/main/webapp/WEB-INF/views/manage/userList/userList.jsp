@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
 =========================================================
 * Argon Dashboard 2 - v2.0.4
@@ -87,7 +88,43 @@
         </ul>
     </div>
 </aside>
-
+<main>
+	<div style="margin-top: 116px; margin-left:300px; margin-right : 30px;" >
+	<div class="card mb-4">
+		<div class="card-header pb-0 d-flex justify-content-between">
+			<h2>회원 리스트</h2>
+		</div>
+		
+	    <table class="table align-items-center justify-content-center mb-0"
+				style="width: 95%; margin-left: 2em">
+	     	<tr>
+	        	<th style="text-align: center">사번</th>
+	            <th style="text-align: center">이름</th>
+	            <th style="text-align: center">직급</th>
+	            <th></th>
+	            <th></th>
+	        </tr>
+	    <c:forEach items="${userList}" var="user">
+	       	<c:if test="${user.user_fk_acc_authornum == 3}" >
+	       		<tr style="color:black; font-weight: bold">
+	       	</c:if>
+	       	<c:if test="${user.user_fk_acc_authornum != 3}">
+	       		<tr>
+	       	</c:if>
+	            <td style="text-align: center">${user.user_pk_num}</td>
+	            <td style="text-align: center">${user.user_name}</td>
+	            <td style="text-align: center">${user.user_rank}</td>
+	            <c:if test="${user.user_fk_acc_authornum != 3}">
+	            	<td style="text-align: center"><a href="${pageContext.request.contextPath}/manage?fn=ADMIN_USERINFO_PROC&user_pk_num=${user.user_pk_num}">수정</a></td>
+	            	<td style="text-align: center"><a href="${pageContext.request.contextPath}/manage?fn=ADMIN_USERDEL_PROC&user_pk_num=${user.user_pk_num}">삭제</a></td>
+	            </c:if>
+	        <tr/>
+	    </c:forEach>
+	    </table>
+	</div>
+		
+	</div>
+</main>
 
 
 <%-------------------- 플러그인 섹션: 설정 옵션 ---------------------%>

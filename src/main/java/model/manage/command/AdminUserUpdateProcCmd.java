@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -31,8 +33,16 @@ public class AdminUserUpdateProcCmd implements Icommand{
 		user.setUser_name(multi.getParameter("user_name"));
 		user.setUser_mail(multi.getParameter("user_mail"));
 		user.setUser_pic(fileDto.getFileName());
-
-		user.setUser_regdate(new Date(multi.getParameter("user_regdate")));
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = format.parse(multi.getParameter("user_regdate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		user.setUser_regdate(date);
 		user.setUser_rank(multi.getParameter("user_rank"));
 		user.setUser_fk_job_num(Integer.parseInt(multi.getParameter("user_fk_job_num")));
 		user.setUser_fk_dpart_num(Integer.parseInt(multi.getParameter("user_fk_dpart_num")));
@@ -49,7 +59,7 @@ public class AdminUserUpdateProcCmd implements Icommand{
 			e.printStackTrace();
 		}
 	
-		return "WEB-INF/views/manage/userInfo/userInfoUpdateTest.jsp";
+		return "WEB-INF/views/manage/userInfo/userInfoUpdate.jsp";
 	}
 
 }

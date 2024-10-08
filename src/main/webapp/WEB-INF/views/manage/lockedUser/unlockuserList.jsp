@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
 =========================================================
 * Argon Dashboard 2 - v2.0.4
@@ -87,7 +88,44 @@
         </ul>
     </div>
 </aside>
-
+<main>
+	<div style="margin-top: 116px; margin-left:300px; margin-right : 30px; width:800px;" >
+		<div class="card ">
+		 <form action="${pageContext.request.contextPath}/manage?fn=ADMIN_LOCKUSER_PROC" method="post">
+			<div class="card-header pb-0 d-flex justify-content-between">
+				<h2>잠긴 계정 관리</h2> <input type="submit" value="저장" class="btn btn-primary" />
+			</div>
+			
+			<table class="table align-items-center justify-content-center mb-0"
+				style="width: 95%; margin-left: 2em">
+		     	<tr>
+		        	<th style="text-align: center">사번</th>
+		            <th style="text-align: center">이름</th>
+		            <th></th>
+		        </tr>
+			  <c:forEach var="user" items="${sessionScope.userList}">
+			    <tr>
+			     	<td style="text-align:center;">
+			     		${user.user_pk_num}
+			     		<input type="hidden" id="user_pk_num_${user.user_pk_num}" name="user_pk_num" value="${user.user_pk_num}" />
+			     	</td>	
+			     	<td style="text-align:center;">
+			     		${user.user_name}
+			     		<input type="hidden" id="user_name_${user.user_pk_num}" name="user_name" value="${user.user_name}" />
+			     	</td>
+			     	<td>
+			     		<select class="form-control-sm" id="user_locked_${user.user_pk_num}" name="user_locked">
+		                    <option value="0" <c:if test="${user.user_locked eq '0'}">selected</c:if>>해제</option>
+		                    <option value="1" <c:if test="${user.user_locked eq '1'}">selected</c:if>>잠김</option>
+		                </select>
+			     	</td>
+			    <tr/>
+			  </c:forEach>
+	    	</table>
+		  </form>
+		</div>
+	</div>
+</main>
 
 
 <%-------------------- 플러그인 섹션: 설정 옵션 ---------------------%>
