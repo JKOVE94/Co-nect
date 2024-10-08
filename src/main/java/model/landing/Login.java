@@ -21,9 +21,10 @@ public class Login {
 
     public UserDTO dtoReturn(HttpServletRequest req) {
         UserDTO dto = new UserDTO();
-        dto.setUser_fk_comp_num(Integer.parseInt(req.getParameter("user_fk_comp_num")));
+        dto.setUser_fk_comp_num(Integer.parseInt(req.getParameter("comp_pk_num")));
         dto.setUser_pk_num(Integer.parseInt(req.getParameter("user_pk_num")));
         dto.setUser_pw(req.getParameter("user_pw"));
+        
         return dto;
     }
 
@@ -31,14 +32,20 @@ public class Login {
     public String LoginMessage(HttpServletRequest req) throws Exception {
         //로그인 실패 메시지 변수
         String message = null;
-
+        
+        
+        //dtoReturn 메서드 호출
         UserDTO user = dtoReturn(req);
-
-        String compNum = req.getParameter("user_fk_comp_num");
-        String userNum = req.getParameter("user_pk_num");
-        String userPw = req.getParameter("user_pw");
-
-
+        
+        //변수에 DTO(req)값 담기 
+        int compNum = user.getUser_fk_comp_num();
+        int userNum = user.getUser_pk_num();
+        String userPw = user.getUser_pw();
+        
+        
+        
+       
+        //사용자 입력 값 null empty 일때 try catch, 그리고 message 추가 
         String checkCompanySql = "SELECT * FROM user WHERE user.user_fk_comp_num = ?";
         String checkUserNumSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ?";
         String checkPasswordSql = "SELECT * FROM user WHERE user.user_fk_comp_num = ? AND user.user_pk_num = ? AND user.user_pw =?";
@@ -49,7 +56,7 @@ public class Login {
 
         // 1.회사코드 확인
         stmt = conn.prepareStatement(checkCompanySql);
-        stmt.setString(1, compNum); // 회사 코드
+        stmt.setInt(1, compNum); // 회사 코드
 
         rs = stmt.executeQuery();
         if(!rs.next()) {
@@ -61,8 +68,8 @@ public class Login {
 
         //2.사번까지 확인
         stmt = conn.prepareStatement(checkUserNumSql);
-        stmt.setString(1, compNum); //회사 코드
-        stmt.setString(2, userNum); // 사번 ID
+        stmt.setInt(1, compNum); //회사 코드
+        stmt.setInt(2, userNum); // 사번 ID
         if(!rs.next()) {
             message = "잘못된 정보입니다.";
             return message;
@@ -72,8 +79,8 @@ public class Login {
 
         //3. 패스워드 확인
         stmt = conn.prepareStatement(checkPasswordSql);
-        stmt.setString(1, compNum);//회사코드
-        stmt.setString(2, userNum);  //사번 ID
+        stmt.setInt(1, compNum);//회사코드
+        stmt.setInt(2, userNum);  //사번 ID
         stmt.setString(3, userPw); //패스워드
         rs = stmt.executeQuery();
 
