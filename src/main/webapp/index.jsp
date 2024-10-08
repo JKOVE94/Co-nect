@@ -101,7 +101,7 @@
           </div>
           <div class="text sign-up">
             <h2>
-              &emsp;Contact
+              Contact
             </h2>
 
           </div>
