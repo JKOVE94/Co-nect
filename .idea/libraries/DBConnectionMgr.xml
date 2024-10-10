@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DBConnectionMgr">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/java/db/dbcp/DBConnectionMgr.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

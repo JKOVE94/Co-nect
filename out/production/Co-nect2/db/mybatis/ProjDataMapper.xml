@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Project와 관련된 SQL 쿼리 -->
+<mapper namespace="proj">
+    <!-- 설명 주석 -->
+    <select id="selectProjAll" resultType="ProjectDTO">  <!-- 반환타입은 기본으로 list collection -->
+        select * from project order by proj_pk_num asc
+    </select>
+
+    <!-- 설명 주석 -->
+    <select id="selectProjBy" parameterType="String" resultType="ProjectDTO">
+        select  from project where =#{}
+    </select>
+
+    <!-- 설명 주석 -->
+    <insert id="insertProj" parameterType="ProjectFORM">
+        insert into project() values(#{},#{},#{},#{})
+    </insert>
+
+    <!-- 설명 주석 -->
+    <update id="updateProj" parameterType="ProjectFORM">
+        update project set =#{}, =#{}, =#{}
+        where proj_pk_num=#{proj_pk_num}
+    </update>
+
+    <!-- 설명 주석 -->
+    <delete id="deleteProj" parameterType="String" >
+        delete from project where proj_pk_num=#{proj_pk_num}
+    </delete>
+
+</mapper>

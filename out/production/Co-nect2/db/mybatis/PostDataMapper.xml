@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- post와 관련된 SQL 쿼리 -->
+<mapper namespace="post">
+
+    <!-- 전체 게시글 가져오기 -->
+    <select id="selectPostAll" resultType="postDto">  <!-- 반환타입은 기본으로 list collection -->
+        select * from post order by post_pk_num asc
+    </select>
+
+    <!-- 특정 게시글 가져오기 -->
+    <select id="selectPostBy" parameterType="String" resultType="postDto">
+        select  from post where =#{}
+    </select>
+
+    <!-- 쿼리에 대한 설명 -->
+    <insert id="insertPost" parameterType="postFORM">
+        insert into post() values(#{},#{},#{},#{})
+    </insert>
+
+    <update id="updatePost" parameterType="postFORM">
+        update post set =#{}, =#{}, =#{}
+        where =#{}
+    </update>
+
+    <delete id="deletePost" parameterType="String" >
+        delete from post where code=#{post_pk_num}
+    </delete>
+
+</mapper>
