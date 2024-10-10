@@ -1,10 +1,10 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 public class DepartmentDTO {
 	private int dpart_pk_num; //부서 번호 [PK, INT]
 	private String dpart_name; //부서 이름 [VARCHAR]

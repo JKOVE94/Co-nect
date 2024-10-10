@@ -1,12 +1,12 @@
 <%@page import="java.sql.Date"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="db.dto.TaskDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%
 List<TaskDTO> tasks = (List<TaskDTO>) request.getAttribute("getTaskList");
@@ -16,216 +16,208 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="./assets/img/apple-icon.png"
-  />
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
-  <title>2조 프로젝트</title>
-  <!--     Fonts and icons     -->
-  <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-          rel="stylesheet"
-  />
-  <!-- Nucleo Icons -->
-  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script
-          src="https://kit.fontawesome.com/42d5adcbca.js"
-          crossorigin="anonymous"
-  ></script>
-  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link
-          id="pagestyle"
-          href="./assets/css/argon-dashboard.css?v=2.0.4"
-          rel="stylesheet"
-  />
-  <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-  />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="./assets/img/apple-icon.png" />
+<link rel="icon" type="image/png" href="./assets/img/favicon.png" />
+<title>2조 프로젝트</title>
+<!--     Fonts and icons     -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+	rel="stylesheet" />
+<!-- Nucleo Icons -->
+<link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js"
+	crossorigin="anonymous"></script>
+<link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- CSS Files -->
+<link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
 
-  <style>
-    .profile-container {
-      margin-top:2px; /* 위쪽 마진 추가 */
-    }
-    .profile-container {
-      margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
-    }
+<style>
+.profile-container {
+	margin-top: 2px; /* 위쪽 마진 추가 */
+}
 
-    .profile-photo-small {
-      width: 36px;
-      height: 36px;
-      position: relative;
-      overflow: hidden;
-    }
+.profile-container {
+	margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
+}
 
-    .profile-photo-small img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.profile-photo-small {
+	width: 36px;
+	height: 36px;
+	position: relative;
+	overflow: hidden;
+}
 
-    .profile-photo-small .default-icon {
-      display: none;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-      align-items: center;
-      font-size: 36px;
-      color: #f1f1f1;
-      background-color: transparent;
-    }
+.profile-photo-small img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
-    @media (max-width: 1199.98px) {
-      /* xl 브레이크포인트 미만에서 적용 */
-      .profile-container {
-        margin-right: 15px; /* 모바일에서 오른쪽 여백 추가 */
-      }
-    }
-  </style>
+.profile-photo-small .default-icon {
+	display: none;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	font-size: 36px;
+	color: #f1f1f1;
+	background-color: transparent;
+}
 
-  <!-- 간트차트 스타일 -->
-  <style>
-  		* {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-        .chartMenu {
-            width: 100vw;
-            height: 80px;
-            color: rgba(54, 162, 235, 1);
-        }
-        .chartMenu p {
-            padding: 10px;
-            font-size: 20px;
-        }
-         
-       .chartCard {
-    position:relative;
-    left:5em;
-    top:5em;
-
-    margin-right: auto;
-    width: 100%;
-    max-width: 80%;
-    height: 60vh;
-    overflow: hidden;
-  }
-    }
-		.chartBox {
-    		width: 80%; 
-    		padding: 0px; 
-    		border-radius: 20px;
-    		border: solid 3px rgba(255,0,0,0); 
-    		background: white;
-		}
-		
-    .Task {
-        max-width: 20%; 
-        margin-top: 50px; 
-        font-size: 15px; 
-    }
-    .Task input, .Task select, .Task button {
-        width: 70%; /* Make inputs and buttons full width */
-        margin-bottom: 10px; /* Add some space between elements */
-        padding: 8px; /* Add padding for better touch targets */
-        box-sizing: border-box; /* Ensure padding doesn't affect width */
-    }
-    
+@media ( max-width : 1199.98px) {
+	/* xl 브레이크포인트 미만에서 적용 */
+	.profile-container {
+		margin-right: 15px; /* 모바일에서 오른쪽 여백 추가 */
+	}
+}
 </style>
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- 간트차트 스타일 -->
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.chartMenu {
+	width: 100vw;
+	height: 80px;
+	color: rgba(54, 162, 235, 1);
+}
+
+.chartMenu p {
+	padding: 10px;
+	font-size: 20px;
+}
+
+.chartCard {
+	position: relative;
+	left: 5em;
+	top: 5em;
+	margin-right: auto;
+	width: 100%;
+	max-width: 80%;
+	height: 60vh;
+	overflow: hidden;
+}
+
+}
+.chartBox {
+	width: 80%;
+	padding: 0px;
+	border-radius: 20px;
+	border: solid 3px rgba(255, 0, 0, 0);
+	background: white;
+}
+
+.Task {
+	max-width: 20%;
+	margin-top: 50px;
+	font-size: 15px;
+}
+
+.Task input, .Task select, .Task button {
+	width: 70%; /* Make inputs and buttons full width */
+	margin-bottom: 10px; /* Add some space between elements */
+	padding: 8px; /* Add padding for better touch targets */
+	box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+</style>
+</style>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+	integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<!-- 간트차트 시작 -->
+	<!-- 간트차트 시작 -->
 
-<div class="col-12">
-    <div class="card"> 
-        <div class="row">
-            <div class="chartCard"> 
-                <canvas id="myChart"></canvas>
-            </div>
-            
-            <div class="Task">
-            <form action="${pageContext.request.contextPath}/dashProj?fn=Proj&proj_pk_num=${sessionScope.getProjDTO.proj_pk_num}" method="post">        
-        <div class="form-group">
-            <label for="proj_name">업무 명:</label><br>
-            <input type="text" id="task_title" name="task_title" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="task_startdate">시작일:</label><br>
-            <input type="date" id="task_startdate" name="task_startdate" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="task_enddate">마감일:</label><br>
-            <input type="date" id="task_enddate" name="task_enddate" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="task_status">업무 상태:</label><br>
-            <select id="task_status" name="task_status" required>
-                <option value="">선택하세요</option>
-                <option value="예정">예정</option>
-                <option value="진행중">진행중</option>
-                <option value="완료">완료</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="task_desc">업무 중요도:</label><br>
-            <select id="task_desc" name="task_desc" required>
-                <option value="">선택하세요</option>
-                <option value="낮음">낮음</option>
-                <option value="보통">보통</option>
-                <option value="중요">중요</option>
-                <option value="긴급">긴급</option>
-            </select>
-        </div>
-        
-        <button type="submit">제출</button>
-    </form>
+	<div class="col-12">
+		<div class="card">
+			<div class="row">
+				<div class="chartCard">
+					<canvas id="myChart"></canvas>
+				</div>
+
+				<div class="Task">
+					<form
+						action="${pageContext.request.contextPath}/dashProj?fn=Proj&proj_pk_num=${sessionScope.getProjDTO.proj_pk_num}"
+						method="post">
+						<div class="form-group">
+							<label for="proj_name">업무 명:</label><br> <input type="text"
+								id="task_title" name="task_title" required>
+						</div>
+
+						<div class="form-group">
+							<label for="task_startdate">시작일:</label><br> <input
+								type="date" id="task_startdate" name="task_startdate" required>
+						</div>
+
+						<div class="form-group">
+							<label for="task_enddate">마감일:</label><br> <input
+								type="date" id="task_enddate" name="task_enddate" required>
+						</div>
+
+						<div class="form-group">
+							<label for="task_status">업무 상태:</label><br> <select
+								id="task_status" name="task_status" required>
+								<option value="">선택하세요</option>
+								<option value="예정">예정</option>
+								<option value="진행중">진행중</option>
+								<option value="완료">완료</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="task_desc">업무 중요도:</label><br> <select
+								id="task_desc" name="task_desc" required>
+								<option value="">선택하세요</option>
+								<option value="낮음">낮음</option>
+								<option value="보통">보통</option>
+								<option value="중요">중요</option>
+								<option value="긴급">긴급</option>
+							</select>
+						</div>
+
+						<button type="submit">제출</button>
+					</form>
 
 
-                <select id="minTask" onchange="showTask()">
-                    <option selected value="0">Task 1</option>
-                    <option value="1">Task 2</option>
-                    <option value="2">Task 3</option>
-                    <option value="3">Task 4</option>
-                </select>
+					<select id="minTask" onchange="showTask()">
+						<option selected value="0">Task 1</option>
+						<option value="1">Task 2</option>
+						<option value="2">Task 3</option>
+						<option value="3">Task 4</option>
+					</select> <select id="maxTask" onchange="showTask()">
+						<option value="4">Task 5</option>
+						<option value="5">Task 6</option>
+						<option value="6">Task 7</option>
+						<option selected value="7">Task 8</option>
+					</select>
+				</div>
 
-                <select id="maxTask" onchange="showTask()">
-                    <option value="4">Task 5</option>
-                    <option value="5">Task 6</option>
-                    <option value="6">Task 7</option>
-                    <option selected value="7">Task 8</option>
-                </select>
-            </div>
-            
-        </div>
-    </div>
-</div>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
-    <script>
+	<script>
       const colours = [
         "rgba(255 ,26, 104, 1)",
         "rgba(255,159,64,1)",
@@ -560,19 +552,19 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         myChart.update();
       }
     </script>
-  
-<!-- 간트차트 끝 -->
-</main>
 
-<!--   Core JS Files   -->
-<script src="./assets/js/core/popper.min.js"></script>
-<script src="./assets/js/core/bootstrap.min.js"></script>
-<script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="./assets/js/plugins/chartjs.min.js"></script>
-<!-- Github buttons -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+	<!-- 간트차트 끝 -->
+	</main>
+
+	<!--   Core JS Files   -->
+	<script src="./assets/js/core/popper.min.js"></script>
+	<script src="./assets/js/core/bootstrap.min.js"></script>
+	<script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+	<script src="./assets/js/plugins/chartjs.min.js"></script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 </html>

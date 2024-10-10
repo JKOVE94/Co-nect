@@ -1,10 +1,10 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class ReplyDTO {
 	private int reply_pk_num; //댓글 번호 [PK, INT]
 	private String reply_cont; //댓글 내용 {TEXT]

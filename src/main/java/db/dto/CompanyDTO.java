@@ -1,10 +1,10 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 public class CompanyDTO {
 	private int comp_pk_num; //회사 고유번호 [PK, INT]
 	private String comp_name; //회사 명 [VARCHAR]

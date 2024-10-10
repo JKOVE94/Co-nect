@@ -1,10 +1,10 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class FileDTO {
 	private String dirPath; //파일의 주소
 	private int size; //파일의 크기
