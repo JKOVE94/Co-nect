@@ -97,8 +97,11 @@
 													</div>
 												</div>
 											</td>
-											<td class="align-middle"><a href="projRead.jsp">
-													<button class="btn btn-link text-secondary mb-0">
+											<td class="align-middle">
+
+												<!--드롭다운 메뉴-->
+												<div class="dropdown">
+													<button class="btn btn-link text-secondary mb-0 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
 														<i class="fa fa-ellipsis-v text-xs"></i>
 													</button>
 													<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
