@@ -99,9 +99,6 @@
 					<input type="hidden" name="user_fk_comp_num" value="${user.user_fk_comp_num}" />
 					
 					<label for="user_pic">사진</label> 
-					<div style="width:100px; height:100px;border:1px solid black; border-radius : 5px;overflow:hidden;">
-						<img src="${user.user_pic}"/>
-					</div>
 					* 파일 선택 시 기존 사진은 삭제 됩니다 *
 					<input class="form-control" type="file" id="user_pic" name="user_pic"  value="${user.user_pic}"> 
 					<!-- 파일 선택 취소하는 버튼 넣기 -->
