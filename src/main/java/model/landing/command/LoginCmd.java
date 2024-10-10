@@ -1,5 +1,6 @@
 package model.landing.command;
 
+import db.dto.UserDTO;
 import model.Icommand;
 import model.common.getAllPost;
 import model.common.getAllProj;
@@ -59,7 +60,8 @@ public class LoginCmd implements Icommand {
     		
     		getUserNameMap = user.getAllUserName();
     		getUserMailMap = user.getAllUserEmail();
-    		
+
+			HashMap<Integer, UserDTO> userMap = user.getAllUserInfo();
     		ArrayList<ProjectDTO> projList = proj.getAllProjInfoList();
     		ArrayList<PostDTO> postList = post.getAllPostInfoList();
     		ArrayList<TodoDTO> todoList = todo.getAllTodoList();
@@ -74,7 +76,11 @@ public class LoginCmd implements Icommand {
     		req.getSession().setAttribute("AllPost", postList);
     		//투두리스트 전체 정보
     		req.getSession().setAttribute("AllTodo", todoList);
-    		
+    		//유저 권한 정보
+			int authorNum = userMap.get(Integer.parseInt(user_pk_num)).getUser_fk_acc_authornum();
+
+			req.getSession().setAttribute("sessionAuthor",authorNum);
+
         }
         else {
             req.setAttribute("message", message);

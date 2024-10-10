@@ -212,11 +212,29 @@ if (list.size() >= 1) {
 													</div>
 												</div>
 											</td>
-											<td class="align-middle"><a href="projRead.jsp">
-													<button class="btn btn-link text-secondary mb-0">
+											<td class="align-middle">
+
+												<!--드롭다운 메뉴-->
+												<div class="dropdown">
+													<button class="btn btn-link text-secondary mb-0 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
 														<i class="fa fa-ellipsis-v text-xs"></i>
 													</button>
-											</a></td>
+													<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+														<li><a class="dropdown-item" href="${pageContext.request.contextPath}/dashboard?fn=PROJ_UPDATE&proj_pk_num=${l.proj_pk_num}">프로젝트 수정</a></li>
+														<li><a class="dropdown-item" href="#" onclick="confirmDelete('${pageContext.request.contextPath}/dashboard?fn=PROJ_DELETE&proj_pk_num=${l.proj_pk_num}')">프로젝트 삭제</a></li>
+													</ul>
+													<script>
+														function confirmDelete(url) {
+															if (confirm("해당 프로젝트를 삭제하시겠습니까?")) {
+																window.location.href = url;  // 확인 시 해당 URL로 이동
+															}
+															// 취소 시 아무 동작도 하지 않음
+														}
+													</script>
+												</div>
+												<!--드롭다운 메뉴 끝-->
+
+											</td>
 									</tr>
 									</c:forEach>
 									</tr>
