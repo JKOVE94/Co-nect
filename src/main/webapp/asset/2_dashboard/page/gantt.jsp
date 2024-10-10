@@ -126,12 +126,21 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	font-size: 15px;
 }
 
-.Task input, .Task select, .Task button {
-	width: 70%; /* Make inputs and buttons full width */
-	margin-bottom: 10px; /* Add some space between elements */
-	padding: 8px; /* Add padding for better touch targets */
-	box-sizing: border-box; /* Ensure padding doesn't affect width */
-}
+ /* 작업(Task) 내부의 입력, 선택, 버튼 스타일 */
+	.Task input, .Task select, .Task button {
+		width: 70%; /* 입력, 선택, 버튼의 너비 70%로 설정 */
+		margin-bottom: 10px; /* 요소 간의 하단 여백 추가 */
+		padding: 8px; /* 패딩 추가하여 터치 영역 개선 */
+		box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
+		border: 1px solid #4F6EF7; /* 파란 테두리 */
+    	border-radius: 10px; /* 둥근 모서리 */
+	}
+	button[type="submit"] {
+    	font-weight: bold; 
+    	border: 4px solid #4F6EF7;
+    	}
+    
+
 </style>
 </style>
 <link rel="stylesheet"
