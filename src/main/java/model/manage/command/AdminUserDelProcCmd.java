@@ -21,7 +21,7 @@ public class AdminUserDelProcCmd implements Icommand{
 			System.out.println("AdminUserDelProcCmd"+e);
 		}
 		
-		return "/manage?fn=ADMIN_USERLIST_PROC.jsp";
+		return "/manage?fn=ADMIN_USERLIST_PROC";
 	}
 	
 }
