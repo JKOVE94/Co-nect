@@ -1,12 +1,12 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Setter
-@Getter
+@Data
 public class PostDTO {
 	private int post_pk_num; //게시글 번호 [PK, INT, INCREMENT]
 	private int post_kind; //게시글 유형 [INT]

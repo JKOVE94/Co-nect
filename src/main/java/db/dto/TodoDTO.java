@@ -1,12 +1,12 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Setter
-@Getter
+@Data
 public class TodoDTO {
     private int todo_pk_num; //투두리스트 고유 식별자 [PK, INT, INCREMENT]
     private String todo_title; // 투두리스트 제목 [VARCHAR]

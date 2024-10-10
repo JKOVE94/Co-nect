@@ -1,12 +1,12 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Setter
-@Getter
+@Data
 public class ProjectDTO {
 	private int proj_pk_num; //프로젝트 번호 [PK, INT]
 	private String proj_name; //프로젝트 이름 [VARCHAR]

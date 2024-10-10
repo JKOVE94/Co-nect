@@ -2,11 +2,11 @@ package db.dto;
 
 import java.util.Date;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class FavoritesDTO {
 	private int number; //글번호
 	private String name; //제목

@@ -1,12 +1,11 @@
 package db.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
+
 public class UserDTO {
 
 	private int user_pk_num; //사용자 사번 [INT, PK]

@@ -212,52 +212,57 @@
   </style>
   <!-- 간트차트 스타일 -->
   <style>
-  		* {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-        .chartMenu {
-            width: 100vw;
-            height: 80px;
-            color: rgba(54, 162, 235, 1);
-        }
-        .chartMenu p {
-            padding: 10px;
-            font-size: 20px;
-        }
-          .chartCard {
-        margin-left: -1rem; /* Adjust this value if necessary */
-        width: calc(100% + 15rem); /* Make the width responsive */
-        max-width: 80%; /* Prevent overflow */
-        height: 60vh; /* Set chart height */
-        overflow: hidden; /* Prevent content overflow */
-        transform: scale(0.9);
-    }
-		.chartBox {
-    		width: 80%;
-    		padding: 0px;
-    		border-radius: 20px;
-    		border: solid 3px rgba(255,0,0,0);
-    		background: white;
-		}
-
-    .Task {
-        max-width: 20%;
-        margin-top: 50px;
-        font-size: 15px;
-    }
-    .Task input, .Task select, .Task button {
-        width: 70%; /* Make inputs and buttons full width */
-        margin-bottom: 10px; /* Add some space between elements */
-        padding: 8px; /* Add padding for better touch targets */
-        box-sizing: border-box; /* Ensure padding doesn't affect width */
-    }
-
+	* {
+		margin: 0; /* 마진 제거 */
+		padding: 0; /*패딩 제거 */
+		font-family: sans-serif; /* 글꼴 설정 */
+	}
+	.chartMenu {
+		width: 100vw; /*너비 100vw*/
+		height: 80px; /* 높이 80 px*/
+		color: rgba(54, 162, 235, 1); /* 텍스트 색상설정 */
+	}
+	/*차트 메뉴 내 단락 스타일 */
+	.chartMenu p {
+		padding: 10px; /*패딩 추가 */
+		font-size: 20px; /*글꼴 크기 설정 */
+	}
+	/* 차트 카드 스타일 */
+	.chartCard {
+		margin-left: -1rem; /* 카드 왼쪽 여백 조정 */
+		width: calc(100% + 15rem); /* 너비를 동적으로 조정 */
+		max-width: 80%; /* 최대 너비 80%로 설정 */
+		height: 60vh; /* 차트 높이를 뷰포트 높이의 60%로 설정 */
+		overflow: hidden; /* 콘텐츠가 넘칠 경우 숨기기 */
+		transform: scale(0.9); /* 차트 크기 90%로 축소 */
+	}
+	/* 차트 박스 스타일 */
+	.chartBox {
+		width: 80%; /* 너비 80% */
+		padding: 0px; /* 패딩 0으로 설정 */
+		border-radius: 20px; /* 둥근 모서리 설정 */
+		border: solid 3px rgba(255, 0, 0, 0); /* 투명한 테두리 설정 */
+		background: white; /* 배경색 흰색 */
+	}
+	/* 작업(Task) 스타일 */
+	.Task {
+		max-width: 20%; /* 최대 너비 20%로 설정 */
+		margin-top: 10px; /* 상단 여백 50px */
+		font-size: 15px; /* 글꼴 크기 설정 */
+		transform: scale(0.91);
+	}
+	/* 작업(Task) 내부의 입력, 선택, 버튼 스타일 */
+	.Task input, .Task select, .Task button {
+		width: 70%; /* 입력, 선택, 버튼의 너비 70%로 설정 */
+		margin-bottom: 10px; /* 요소 간의 하단 여백 추가 */
+		padding: 8px; /* 패딩 추가하여 터치 영역 개선 */
+		box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
+		border: 1px solid #4F6EF7; /* 파란 테두리 */
+    	border-radius: 10px; /* 둥근 모서리 */
+	}
 </style>
-    </style>
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -750,36 +755,44 @@
 
 
 <!-- 간트차트 시작 -->
-
-<div class="col-lg-11">
+<div style="margin-top : -1rem; margin-left : -3rem; width: calc(100% + 3rem);" class="container-fluid py-4">	
+	<!-- 카드 컴포넌트 시작 -->
     <div style="margin-left: 3rem" class="card">
         <div class="row">
+        	<!-- 차트 영역 -->
             <div class="chartCard">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart"></canvas> <!-- 차트를 그리기 위한 캔버스 -->
             </div>
+            <!-- 작업(Task) 입력 영역 -->
             <div class="Task">
+            	<!-- 월 선택기: 월이 변경될 때 차트 필터링 -->
                 <input type="month" onchange="chartFilter(this)" /><br>
+                <!-- 작업 이름 입력 -->
                 <input type="text" id="nameTask" placeholder="Task Name" /><br>
+                <!-- 작업 시작일 입력 -->
                 <input type="date" id="startDateTask" /><br>
+                <!-- 작업 종료일 입력 -->
                 <input type="date" id="endDateTask" /><br>
+                <!-- 팀원 선택: 데이터 리스트를 사용하여 자동 완성 기능 제공 -->
                 <input type="text" id="teamMemberTask" list="names" placeholder="Team Member" /><br>
+                <!-- 팀원 이름을 제공하는 데이터 리스트 -->
                 <datalist id="names"></datalist>
-
+				<!-- 작업 상태 선택 -->
                 <select id="statusTask">
-                    <option value="0">Delayed</option>
-                    <option value="1">Pending</option>
-                    <option value="2">Complete</option>
+                    <option value="0">Delayed</option> <!-- 지연 상태 -->
+                    <option value="1">Pending</option> <!-- 보류 상태 -->
+                    <option value="2">Complete</option> <!-- 완료 상태 -->
                 </select><br>
-
-                <button onclick="addTask()">View Task</button><br>
-
+                <!-- 작업 추가 버튼: 클릭 시 addTask 함수 호출 -->
+                <button style="font-weight: bold; border: 2px solid #4F6EF7;" onclick="addTask()">View Task</button><br>
+				<!-- 최소 작업 선택: 변경 시 showTask 함수 호출 -->
                 <select id="minTask" onchange="showTask()">
                     <option selected value="0">Task 1</option>
                     <option value="1">Task 2</option>
                     <option value="2">Task 3</option>
                     <option value="3">Task 4</option>
                 </select>
-
+				<!-- 최대 작업 선택: 변경 시 showTask 함수 호출 -->
                 <select id="maxTask" onchange="showTask()">
                     <option value="4">Task 5</option>
                     <option value="5">Task 6</option>
@@ -790,8 +803,11 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<!-- Chart.js 라이브러리 로드 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+<!-- Chart.js Date FNS 어댑터 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<!-- 사용자 정의 스크립트 로드 -->
 	<script src="assets/js/gantt.js"></script>
 <!-- 간트차트 끝 -->
 </main>

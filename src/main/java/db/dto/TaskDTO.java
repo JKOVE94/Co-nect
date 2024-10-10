@@ -1,12 +1,12 @@
 package db.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 public class TaskDTO {
 	private int task_pk_num; //업무 고유 식별자 [PK, INT, INCREMENT]
 	private String task_title; //업무 제목 [VARCHAR]
