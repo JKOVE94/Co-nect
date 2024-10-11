@@ -116,7 +116,8 @@
 	            <td style="text-align: center">${user.user_rank}</td>
 	            <c:if test="${user.user_fk_acc_authornum != 3}">
 	            	<td style="text-align: center"><a href="${pageContext.request.contextPath}/manage?fn=ADMIN_USERINFO_PROC&user_pk_num=${user.user_pk_num}">수정</a></td>
-	            	<td style="text-align: center"><a href="${pageContext.request.contextPath}/manage?fn=ADMIN_USERDEL_PROC&user_pk_num=${user.user_pk_num}">삭제</a></td>
+	            	<td style="text-align: center"><a href="${pageContext.request.contextPath}/manage?fn=ADMIN_USERDEL_PROC&user_pk_num=${user.user_pk_num}"
+	            	onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a></td>
 	            </c:if>
 	        <tr/>
 	    </c:forEach>
