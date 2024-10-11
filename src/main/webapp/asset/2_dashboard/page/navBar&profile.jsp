@@ -53,7 +53,7 @@
 							<li style="list-style: none; text-align: center;"><a
 								class="nav-link"
 								href="<%=request.getContextPath()%>/favorites?fn=FAVOR_POSTLIST">
-									자유게시판 </a></li>
+									자유 게시판 </a></li>
 						</ul>
 					</div></li>
 
@@ -172,34 +172,9 @@
 											</div>
 										</div>
 								</a></li>
-								<!-- 로그 아웃 -->
+
+								<c:if test="${sessionScope.sessionAuthor == 3}">
 								<li class="mb-2">
-									<a class="dropdown-item border-radius-md" href="#" onclick="logout()">
-
-									<div class="d-flex py-1">
-										<div class="my-auto">
-											<i class="bi bi-person-circle avatar avatar-sm bg-white text-dark me-3"></i>
-										</div>
-										<div class="d-flex flex-column justify-content-center">
-											<h6 class="text-sm font-weight-normal mb-1">
-												<span class="font-weight-bold" style="">로그 아웃</span>
-											</h6>
-										</div>
-									</div>
-								</a></li>
-								<script>
-									function logout() {
-										if (confirm("로그아웃 하시겠습니까?")) {
-											location.href = "${pageContext.request.contextPath}";
-											sessionStorage.clear();
-										}
-									}
-								</script>
-								<!-- 로그 아웃 -->
-
-
-								<li class="mb-2">
-									<c:if test="${sessionScope.sessionAuthor == 3}">
 									<a class="dropdown-item border-radius-md"
 									href="${pageContext.request.contextPath}/manage?fn=ADMIN_MANAGE">
 										<div class="d-flex py-1">
@@ -218,7 +193,34 @@
 											</div>
 										</div>
 								</a>
-									</c:if></li>
+									</li></c:if>
+
+								<!-- 로그 아웃 -->
+								<li class="mb-2">
+									<a class="dropdown-item border-radius-md" href="#" onclick="logout()">
+
+										<div class="d-flex py-1">
+											<div class="my-auto">
+												<i class="bi bi-door-open-fill avatar avatar-sm bg-white text-dark me-3"></i>
+											</div>
+											<div class="d-flex flex-column justify-content-center">
+												<h6 class="text-sm font-weight-normal mb-1">
+													<span class="font-weight-bold" style="">로그 아웃</span>
+												</h6>
+											</div>
+										</div>
+									</a>
+								</li>
+								<script>
+									function logout() {
+										if (confirm("로그아웃 하시겠습니까?")) {
+											location.href = "${pageContext.request.contextPath}";
+											sessionStorage.clear();
+										}
+									}
+								</script>
+								<!-- 로그 아웃 -->
+
 							</ul>
 				</div>
 			</div>
