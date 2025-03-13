@@ -19,13 +19,22 @@
 <img src="https://img.shields.io/badge/googlegemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white"/>
 <img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white"/>
   
+</div><br/>
+<div align="center">
+  시연 영상 : https://youtu.be/Hwq2O0narfc?si=f26yP1-dk8xDdRj1<br/>
+  발표 영상 : https://www.youtube.com/watch?v=wZ8V4AEB60A&t=903s
 </div>
+<br/>
+
+# ⚠️ 이 레파지토리는 리팩토링 이전의 레파지토리입니다. 
+리팩토링 이후 레파지토리 : https://github.com/JKOVE94/Co-nect-final
+<br/>
 <br/>
 
 # 1. Project Overview (프로젝트 개요)
 
-- 프로젝트 이름: 연결로 시작되는 팀워크의 힘! CO-NECT
-- 프로젝트 설명: WBS, 간트차트, AI어시스턴트 기반 업무협업툴
+- <b>프로젝트 이름:</b> 연결로 시작되는 팀워크의 힘! CO-NECT
+- <b>프로젝트 설명:</b> WBS, 간트차트, AI어시스턴트 기반 업무협업툴
   <br/>
 
 # 2. Key Features (주요 기능)
