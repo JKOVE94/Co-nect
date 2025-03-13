@@ -1,131 +1,311 @@
-# Acorn_Team2_WBS_Service
+<img src="https://github.com/JKOVE94/Co-nect-final/blob/main/info/Co-nect.jpg" alt="배너" width="100%"/>
+<div align="center">
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
+<img src="https://img.shields.io/badge/springsecurity-6DB33F?style=flat-square&logo=springsecurity&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariaDB&logoColor=white"/><br/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+<img src="https://img.shields.io/badge/anaconda-44A833?style=flat-square&logo=anaconda&logoColor=white"/>
+<img src="https://img.shields.io/badge/pytorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
+<img src="https://img.shields.io/badge/gunicorn-499848?style=flat-square&logo=gunicorn&logoColor=white"/>
+<img src="https://img.shields.io/badge/huggingface-FFD21E?style=flat-square&logo=huggingface&logoColor=white"/>
+<img src="https://img.shields.io/badge/googlecloudstorage-AECBFA?style=flat-square&logo=googlecloudstorage&logoColor=white"/>
+<img src="https://img.shields.io/badge/googlegemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white"/>
+<img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white"/>
+  
+</div>
+<br/>
 
-안녕하세요 팀장 김대현 입니다.<br>
-원활한 코딩을 위해 원활한 코딩을 위해 참고하셔야 할 사항 공유합니다. 참고 부탁드립니다 😊
+# 1. Project Overview (프로젝트 개요)
 
-<h1>⭐️ method ⭐️</h1>
-====== 사전 입력 정보 ======
+- 프로젝트 이름: 연결로 시작되는 팀워크의 힘! CO-NECT
+- 프로젝트 설명: WBS, 간트차트, AI어시스턴트 기반 업무협업툴
+  <br/>
 
-회사정보 (company)
-1. comp_pk_num : (PK) 회사 고유번호
-2. comp_name : 회사 명
-3. comp_pic : 회사 로고사진 경로 (상대경로 사용 0_asset/emp_pic)
+# 2. Key Features (주요 기능)
 
-계정 정보 (account)
-1. acc_pk_authornum: (PK) 계정 권한 고유번호 int (1, 2, 3, 4)
-2. acc_author: 계정 권한 varchar (admin, manager, user, locked)
+- **로그인**
 
-부서 (dpartment)
-1. dpart_pk_num (PK): 부서 번호
-2. dpart_name: 부서 이름
-3. dpart_mail: 부서 이메일
-4. dpart_fk_dpart_num: 상위 부서 번호 (FK => pk_dpart_num)
-5. dpart_fk_comp_num : 부서의 회사 번호 (FK => comp_pk_num)
+  - 로그인시 회사 고유번호 아이디, 비밀번호 입력
+  - 5회이상 로그인 실패시 계정 잠김
 
-직무 (job)
-1. job_pk_num (PK): 직무 번호
-2. job_name: 직무 명
+- **프로젝트 관리**
 
-====== 유저 입력 정보 ======
+  - 로그인 후 참여하고 있는 프로젝트 목록 확인 가능
+  - 대시보드를 통해 프로젝트 별 업무, 공지, 일정 한눈에 파악 가능
 
-사용자 (user)
-1. user_pk_num (PK): 사용자 사번
-2. user_regdate: 입사일
-3. user_pw: 사용자 패스워드 (NN)
-4. user_name: 사용자 이름
-5. user_mail: 사용자 이메일
-6. user_pic: 사용자 사진 경로 (상대경로 사용 0_asset/emp_pic)
-7. user_rank: 사용자 직급
-8. user_lastlogin: 사용자 마지막 로그인 일시 (DATETIME)
-9. user_trynum : 사용자 로그인 시도 횟수 (로그인 실패 시 증가, 5회 초과시 acc_pk_authornum 4로 변경 (잠금), 로그인 성공시 0으로 설정) 
-10. user_fk_job_num: 사용자 직무 번호 (FK => job_pk_num)
-11. user_fk_dpart_num: 사용자 부서번호 (FK => dpart_pk_num)
-12. user_fk_acc_authornum: 사용자 계정 권한 번호 (FK => acc_pk_authornum)
-13. user_fk_comp_num : 사용자 회사 고유번호 (랜딩 페이지에서 입력한 회사 번호가 모든 페이지에서 따라다닐수 있게 input type=hidden으로 설정, 관리자가 설정시에 해당 데이터는 자동 전송)
+- **업무 관리**
 
-프로젝트 (project)
-1. proj_pk_num (PK): 프로젝트 번호
-2. proj_name: 프로젝트 이름
-3. proj_desc: 프로젝트 설명
-4. proj_startdate: 프로젝트 시작일
-5. proj_enddate: 프로젝트 종료일
-6. proj_status: 프로젝트 상태 (계획, 진행 중, 완료)
-7. proj_members : 프로젝트 참여자 사번 (String으로 저장 후 string tokenizer로 데이터 사용)
-8. proj_created: 프로젝트 생성 일시
-9. proj_updated: 프로젝트 정보 최종 수정 일시
-10. proj_import: 프로젝트 중요도 (low, mid, high, ergen)
-11. proj_tag : 프로젝트 태그
-12. proj_tagcol : 프로젝트 태그 컬러
-13. proj_fk_user_num: 프로젝트 담당자 사번 (FK => user_num)
-14. proj_fk_dpart_num: 프로젝트 부서 번호 (FK => dpart_num)
-15. proj_fk_comp_num : 프로젝트 회사 고유번호 (FK => comp_pk_num)
-16. post_fk_post_num : 게시글 번호 (FK => post_pk_num)
+  - 등록된 업무 및 하위업무 파악 가능 (하위업무는 상위업무 하단에 위치, 굵기로 구분)
+  - 업무 수정이력 확인 가능
+  - 업무일정 트리구조, 간트차트로 파악 가능
 
-게시글 (post)
-1. post_pk_num (PK): 게시글 번호 (auto increase)
-2. post_kind : 게시글 유형 enum(1 공지 ,2 프로젝트 ,3 일반)
-3. post_targetnum : 게시글 대상 부서번호 (VARCHAR) => String으로 작성 이후 데이터사용은 String tokenizer 사용
-4. post_name : 게시글 제목
-5. post_regdate: 게시글 등록일
-6. post_import: 게시글 중요도
-7. post_content: 게시글 내용
-8. post_tag: 게시글 태그
-9. post_fk_dpart_num: 게시글 작성 부서 번호 (FK => dpart_pk_num)
-10. post_fk_user_num: 게시글 작성자 사번 (FK => user_pk_num)
-11. post_fk_comp_num : 게시글 회사 고유번호 (FK => comp_pk_num)
+- **파일공유**:
 
-댓글 (reply)
-1. reply_pk_num (PK) : 댓글 번호
-2. reply_cont : 댓글 내용
-3. reply_fk_post_num : 게시글 번호 (FK => post_pk_num)
-4. reply_fk_user_num : 댓글 작성자 사번 (FK => user_num)
+  - 프로젝트 게시판 내 파일 업로드 & 다운로드 가능
 
-작업 (task)
-1. task_pk_num (PK): 작업 고유 식별자
-2. task_title: 작업 제목
-3. task_desc: 작업 설명
-4. task_startdate : 작업 시작일
-5. task_deadlien : 마감 기한일
-6. task_enddate: 작업 종료일	
-7. taks_duration: 작업 기간 (일 단위)
-8. task_progress: 진행률 (%)
-9. task_status: 작업 상태 (미시작, 진행중, 완료)
-10. task_priority: 우선순위
-11. task_created: 작업 생성 일시
-12. task_updated: 작업 정보 최종 수정 일시
-13. task_version: 작업 버전 번호
-14. task_fk_user_num: 담당자 사번 (FK => user_num)
-15. task_fk_proj_num: 연관된 프로젝트 번호 (FK => proj_pk_num)
-16. task_fk_task_num: 상위 작업 번호 (FK => task_pk_num)
+- **일정공유**:
 
-------------추후구현------------- 
-개인화 (personalized)
-pserson_fk_user_num : 유저 정보
-person_favorit : 즐겨찾기
+  - 캘린더를 통해 업무와 관련된 일정 빠르게 확인 가능
+  - 태그 기능을 통해 팀원에게 개인 일정 공유 가능
 
+- **관리자 페이지**:
 
-<h1>MVC패턴 관련 적용사항</h1>
-1. controller에 정보를 줄 parameter명은 fn으로 통일 (예제 : http://localhost:8080/acorn_wbs/dashboard?fn=파라미터값)
-- parameter value는 팀별 기량으로 설정해주세요 (직관적인 명칭으로)
+  - 회사의 정보 수정 가능
+  - 사원관리를 통해서 사원을 추가, 수정, 삭제 가능
+  - 잠긴 계정 해제 가능, 비밀번호 초기화 기능 (각 회사별 임의로 지정한 비밀번호로 설정)
+  - 프로젝트 관리를 통해서 프로젝트 추가, 수정, 삭제 가능
+  - 프로젝트 별 담당자, 프로젝트 팀원 설정 가능
 
-2. 컨트롤러 구조는 3단계로 나누기
-- landing->dashboard  @webServlet("/landing")
-- dashboard내에 다양한 기능들 (프로젝트, 자유게시판, 사용자 설정&관리자 설정) @webServlet("/dashboard") 
-- 사용자설정&관리자설정 내의 기능들 @webServlet("/manage")
+- **채팅**:
 
-3. 모든 view는 WEB-INF/views 폴더안에 위치 (index.html 제외)
-- 이 때에 views안에 세부 폴더로 분리 => landing, dashboard, manage
-- dashboard의 경우에는 그 안에 세부폴더로 가능 분리 (예제 : WEB-INF/views/dashboard/project)
+  - 전체 사원과 1:1 채팅 가능
+  - 사용자가 속해있는 프로젝트단위 채팅 가능
+  - AI어시스턴트와 채팅 가능
 
-4. package명 설정
-- controller (내부 클래스 : LandingServlet, DashboardServlet, ManageServlet)
-- model.landing / model.dashboard / model.manage (내부 클래스 : 각 내부 클래스별 기능)
-- 지금까지 작업했던 dao가 해당 모델 패키지로 이동한다고 생각하시면 됩니다. 단 기능을 직관적으로 구분하기 위해 해당 명칭의 규칙을 적용하겠습니다.
+- **AI어시스턴트**:
+  - 자연어로 업무, 프로젝트, 사원에 관련된 질문 및 답변을 얻을 수 있음
 
-- Class 파일명 규칙1 : 관례에 따라 첫 글자는 대문자로 통일
-- Class 파일명 규칙2 : 구분을 쉽게 하기 위해 언더바 적극 기용 => (예제 : model.dashbaord.Free_create -> model.dashboard 패키지 Free_create 자유게시판 생성)
-- db.dto / db.dbcp
-- dto의 class명은 변경하지 않겠습니다.
+<br/>
 
-MVC패턴이 적용되면서 변경되는부분이 상당히 많습니다. 처음에 적용하는데 상당히 번거롭겠지만 평가 기준이 MVC패턴이고 추후 Spring이 MVC패턴의 구조를 띄고 있기 때문에 필히 적용해야하는 사항입니다. 기본적인 사항들은 제가 main branch, master branch를 통해 적용 / 수정해두겠습니다.
-※ 이번에 package명, class명을 변경하다보니 예외가 발생할 확률이 매우 높습니다. package명, class명 변경시 기존에 적용해주셨던 문서에서도 해당 package명, class명 수정 필히 부탁드립니다. (꼭 eclipse의 Refactor - rename 기능을 사용해주시기 바랍니다)
+# 3. Team Members (팀원 및 팀 소개)
+
+## 팀 코난2조
+
+<table>
+  <tr>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/k480eg4p4699wsg5/%EB%8C%80%ED%98%84%EB%8B%98.jpg?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/k3776pv3dmtjn9jn/%EC%84%B8%ED%95%98%EB%8B%98.jpg?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/kxom9f8x8tvuuboo/%EC%9D%80%ED%98%9C%EB%8B%98.jpg?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/ktn9f51modn542n4/%EC%84%9C%ED%98%84%EB%8B%98.jpg?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/kh0yktxkxnv6bk29/%EC%88%98%EB%AF%BC%EB%8B%98.jpg?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/21/20/km6wtc4ziru3ubiq/%E1%84%92%E1%85%A8%E1%84%85%E1%85%B5%E1%86%AB%E1%84%82%E1%85%B5%E1%86%B7.png?size=200"></td>
+    <td><img src="https://file.miricanvas.com/user_image/2024/10/09/20/10/k8rsbhwpby9zk1gk/%EC%83%81%ED%98%84%EB%8B%98.jpg?size=200"></td>
+  </tr>  
+  <tr>
+    <td>김대현 (팀장)</td>
+    <td>김세하</td>
+    <td>김은혜</td>
+    <td>문서현</td>
+    <td>이수민</td>
+    <td>이혜린</td>
+    <td>인상현</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/JKOVE94">Github</a></td>
+    <td><a href="https://github.com/aio19581">Github</a></td>
+    <td><a href="https://github.com/eunhyeub">Github</a></td>
+    <td><a href="https://github.com/seohyunMoon1123">Github</a></td>
+    <td><a href="https://github.com/sumin9501">Github</a></td>
+    <td><a href="https://github.com/Lee4405">Github</a></td>
+    <td><a href="https://github.com/InSangWWW">Github</a></td>
+  </tr>
+  <tr>
+    <td>
+      • 프로젝트 관리 개발<br/>
+      • 프로젝트 문서 작성 및 관리<br/>
+      • 프로젝트 리펙토링(JSP -> Spring Boot, React)<br/>
+      • 관리자 페이지 개발<br/>
+      • 간트차트 기능 구현<br/>
+      • 업무수정 history 기능 개발<br/>
+      • AI비서, 채팅 기능 개발<br/>
+    </td>
+     <td>
+      • 건의사항 게시판 개발<br/>
+      • 캘린더 페이지 개발<br/>
+      • 멘션, 댓글, 좋아요 기능 구현<br/>
+      • 페이징, 정렬 기능 구현<br/>
+    </td>
+     <td>
+      • 로그인 페이지 개발<br/>
+      • 파일 게시판 개발<br/>
+      • 파일 업로드, 다운로드 기능 구현<br/>
+      • 조회수 로직 구현<br/>
+      • 페이징, 정렬, 검색 기능 구현<br/>
+    </td>
+     <td>
+      • 문서 게시판 개발<br/>
+      • 파일 업로드, 다운로드 기능 구현<br/>
+      • 조회수 로직 구현<br/>
+      • 페이징, 정렬, 검색 기능 구현<br/>
+    </td>
+     <td>
+      • 업무 관리 개발<br/>
+      • 하위 업무 추가 기능 개발<br/>
+      • 페이징, 검색 기능 구현<br/>
+    </td>
+     <td>
+      • 로그인 로직 개발<br/>
+      • 공지 게시판 개발<br/>
+      • 조회수 로직 구현<br/>
+      • 페이징, 검색 기능 구현<br/>
+    </td>
+     <td>
+      • 프로젝트 선택 페이지 개발<br/>
+      • 대시보드 페이지 개발<br/>
+      • Spring Security, JWT 적용<br/>
+      • 업무 관리 개발<br/>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+# 4. Project Structure (프로젝트 구조)
+<img src="https://github.com/JKOVE94/Co-nect-final/blob/main/info/Co-nect%20final%20%EA%B8%B0%EB%8A%A5%EC%A0%95%EB%A6%AC.jpg"/>
+
+```plaintext
+Node/
+├── chat/                   # 채팅 관련 기능
+├── config/                 # 설정 파일
+│   └── db.js               # 데이터베이스 연결 설정
+├── models/                 # 데이터 모델
+│   ├── ChatMessage.js      # 채팅 메시지 모델
+│   └── ChatRoom.js         # 채팅방 모델
+├── node_modules/           # 의존성 패키지 (숨겨짐)
+├── routes/                 # 라우팅
+│   └── chatRoutes.js       # 채팅 관련 라우트
+├── utils/                  # 유틸리티 함수
+│   └── socket.js           # 소켓 통신 관련 유틸리티
+├── .env                    # 환경 변수 파일
+├── package-lock.json       # 의존성 잠금 파일
+├── package.json            # 프로젝트 설정 및 의존성
+└── server.js               # 서버 진입점
+
+Python/
+├── app/                    # 애플리케이션 관련 코드
+│   ├── api/                # API 관련 코드
+│   │   └── endpoints/      # API 엔드포인트
+│   ├── core/               # 핵심 기능 관련 코드
+│   │   ├── config.py       # 설정 파일
+│   │   ├── database.py     # 데이터베이스 관련 코드
+│   │   └── embaded.env     # 환경 변수 파일
+│   └── services/           # 서비스 관련 코드
+│       └── embeddings/     # 임베딩 관련 코드
+│           └── gemini_service.py # Gemini 서비스 관련 코드
+├── environment.yml         # Conda 환경 설정 파일
+└── main.py                 # 애플리케이션 진입점
+
+React/
+├── .github/workflows/       # GitHub Actions 워크플로우 설정
+├── Documentation/          # 문서 관련 파일
+├── public/                 # 정적 자산 및 HTML 템플릿
+├── src/                    # 소스 코드
+│   ├── Models/             # 데이터 모델
+│   │   ├── chat.js         # 채팅 데이터 모델
+│   │   └── user.js         # 사용자 데이터 모델
+│   ├── Redux/              # Redux 관련 코드
+│   │   ├── Actions/        # Redux 액션
+│   │   ├── Reducer/        # Redux 리듀서
+│   │   └── Store.jsx       # Redux 스토어 설정
+│   ├── api/                # API 관련 코드
+│   │   └── axiosInstance.js # Axios 인스턴스 설정
+│   ├── assets/             # 자산
+│   │   ├── CSS/            # CSS 스타일
+│   │   ├── fonts/          # 폰트
+│   │   ├── img/            # 이미지
+│   │   ├── landing/        # 랜딩 페이지 관련 자산
+│   │   ├── plugins/nucleo/ # nucleo 플러그인
+│   │   └── SCSS/           # SCSS 스타일
+│   ├── components/         # 컴포넌트
+│   │   ├── 2dashboard/     # 대시보드 관련 컴포넌트
+│   │   │   ├── Favorite/    # 즐겨찾기 관련 컴포넌트
+│   │   │   ├── File/        # 파일 관련 컴포넌트
+│   │   │   ├── Footers/     # 푸터 관련 컴포넌트
+│   │   │   ├── Free/        # 자유 관련 컴포넌트
+│   │   │   ├── Function/    # 기능 관련 컴포넌트
+│   │   │   ├── Headers/     # 헤더 관련 컴포넌트
+│   │   │   ├── Navbars/     # 네비게이션 바 관련 컴포넌트
+│   │   │   ├── Noti/        # 알림 관련 컴포넌트
+│   │   │   ├── Post/Free/    # 게시물/자유 관련 컴포넌트
+│   │   │   ├── Project/     # 프로젝트 관련 컴포넌트
+│   │   │   ├── Sidebar/     # 사이드바 관련 컴포넌트
+│   │   │   ├── Task/        # 작업 관련 컴포넌트
+│   │   │   ├── Temporary/   # 임시 컴포넌트
+│   │   │   ├── Wiki/        # 위키 관련 컴포넌트
+│   │   │   ├── profile/     # 프로필 관련 컴포넌트
+│   │   │   └── recommendation/ # 추천 관련 컴포넌트
+│   │   ├── ErrPage.jsx     # 에러 페이지 컴포넌트
+│   │   ├── 3manage/        # 관리 관련 컴포넌트
+│   │   │   ├── company/     # 회사 관련 컴포넌트
+│   │   │   ├── project/     # 프로젝트 관련 컴포넌트
+│   │   │   ├── user/        # 사용자 관련 컴포넌트
+│   │   ├── 4chatting/      # 채팅 관련 컴포넌트
+│   │   │   ├── chatroom/    # 채팅방 관련 컴포넌트
+│   │   │   ├── ChatHome.jsx # 채팅 홈 컴포넌트
+│   │   │   ├── ChatList.jsx # 채팅 목록 컴포넌트
+│   │   │   ├── ChatOffcanvas.jsx # 채팅 오프캔버스 컴포넌트
+│   │   │   ├── ChatOffcnavasSet.jsx # 채팅 오프캔버스 설정 컴포넌트
+│   │   │   ├── Chatting.css # 채팅 스타일
+│   │   │   ├── SocketContext.js # 소켓 컨텍스트
+│   │   │   └── chatoffcanvas.css # 채팅 오프캔버스 스타일
+│   │   ├── TempComp/       # 임시 컴포넌트
+│   ├── MainComponent.jsx   # 메인 컴포넌트
+│   └── index.js            # 진입점
+
+Spring/
+├── gradle/wrapper/          # Gradle Wrapper 설정
+├── src/                     # 소스 코드
+│   └── main/java/conect/    # 메인 Java 패키지
+│       ├── controller/      # 컨트롤러
+│       │   ├── FunctionController.java # 기능 관련 컨트롤러
+│       │   ├── LoginController.java  # 로그인 관련 컨트롤러
+│       │   └── ManageController.java # 관리 관련 컨트롤러
+│       ├── data/            # 데이터 관련
+│       │   ├── dto/         # DTO (Data Transfer Object)
+│       │   ├── entity/      # 엔티티
+│       │   ├── form/        # 폼
+│       │   └── repository/  # 리포지토리
+│       ├── security/        # 보안 관련
+│       │   └── SecurityConfig.java # 보안 설정
+│       ├── service/         # 서비스
+│       │   ├── board/        # 게시판 관련 서비스
+│       │   │   ├── post/       # 게시물 관련 서비스
+│       │   │   └── proj/       # 프로젝트 관련 서비스
+│       │   ├── common/       # 공통 서비스
+│       │   │   ├── LoginService.java # 로그인 서비스 인터페이스
+│       │   │   └── LoginServiceImpl.java # 로그인 서비스 구현체
+│       │   ├── function/      # 기능 관련 서비스
+│       │   ├── schedule/      # 스케줄 관련 서비스
+│       │   │   ├── ScheduleService.java # 스케줄 서비스 인터페이스
+│       │   │   └── ScheduleServiceImpl.java # 스케줄 서비스 구현체
+│       │   └── todo/         # 할 일 관련 서비스
+│       │       ├── TodoService.java # 할 일 서비스 인터페이스
+│       │       └── TodoServiceImpl.java # 할 일 서비스 구현체
+│       └── CoNectApplication.java # Spring Boot 애플리케이션 진입점
+```
+
+<br/>
+
+# 5. ERD
+
+<img src="https://github.com/JKOVE94/Co-nect-final/blob/main/info/Co-nect%20ERD.png"/>
+<div align="center"> <a href="https://www.erdcloud.com/d/cixBpRJsmseAwMYop">ERD Cloud 주소</a></div>
+<br/>
+
+# 6. 화면설계서
+
+<a href="https://github.com/JKOVE94/Co-nect-final/blob/main/info/Co-nect%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%84%9C.pdf"/>화면설계서</a>
+<br/>
+
+# 7. Development Workflow (개발 워크플로우)
+
+## 브랜치 전략 (Branch Strategy)
+
+우리의 브랜치 전략은 Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
+
+- Main Branch
+  - 배포 가능한 상태의 코드를 유지합니다.
+  - 모든 배포는 이 브랜치에서 이루어집니다.
+- {name} Branch
+  - 팀원 각자의 개발 브랜치입니다.
+  - 모든 기능 개발은 이 브랜치에서 이루어집니다.
+
+<br/>
+<br/>
